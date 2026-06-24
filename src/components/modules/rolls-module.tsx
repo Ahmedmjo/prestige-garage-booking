@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Film, Plus, Search, Package, TrendingDown, AlertTriangle,
-  CheckCircle2, XCircle, Clock,
+  CheckCircle2, XCircle,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -15,6 +15,8 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter,
 } from '@/components/ui/dialog'
 import { toast } from 'sonner'
+import { useI18n } from '@/lib/i18n-context'
+import { formatNumber, formatCurrency } from '@/lib/i18n'
 
 interface Roll {
   id: string
@@ -33,13 +35,16 @@ interface Roll {
   consumptions?: any[]
 }
 
-const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: any }> = {
-  active: { label: 'نشط', color: '#00C853', bg: 'rgba(0,200,83,0.12)', icon: CheckCircle2 },
-  low: { label: 'أوشك على النفاذ', color: '#FF9100', bg: 'rgba(255,145,0,0.12)', icon: AlertTriangle },
-  finished: { label: 'منتهي', color: '#DC143C', bg: 'rgba(220,20,60,0.12)', icon: XCircle },
-}
+// Status labels are localized inline below
+
+const STATUS_CONFIG = (lang: 'ar' | 'en'): Record<string, { label: string; color: string; bg: string; icon: any }> => ({
+  active: { label: lang === 'ar' ? 'نشط' : 'Active', color: '#00C853', bg: 'rgba(0,200,83,0.12)', icon: CheckCircle2 },
+  low: { label: lang === 'ar' ? 'أوشك على النفاذ' : 'Running Low', color: '#FF9100', bg: 'rgba(255,145,0,0.12)', icon: AlertTriangle },
+  finished: { label: lang === 'ar' ? 'منتهي' : 'Finished', color: '#DC143C', bg: 'rgba(220,20,60,0.12)', icon: XCircle },
+})
 
 export function RollsModule() {
+  const { t, lang } = useI18n()
   const [rolls, setRolls] = useState<Roll[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -47,6 +52,7 @@ export function RollsModule() {
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [showConsumptionDialog, setShowConsumptionDialog] = useState(false)
   const [selectedRoll, setSelectedRoll] = useState<Roll | null>(null)
+  const statusConfig = STATUS_CONFIG(lang)
 
   useEffect(() => {
     loadRolls()
@@ -136,7 +142,7 @@ export function RollsModule() {
         </div>
         <div className="prestige-card p-4">
           <p className="text-xs text-gray-400">قيمة المخزون</p>
-          <p className="text-xl font-bold text-white mt-1">{Math.round(stats.totalValue).toLocaleString('ar-EG')}</p>
+          <p className="text-xl font-bold text-white mt-1">{formatNumber(Math.round(stats.totalValue), lang)}</p>
           <p className="text-xs text-gray-500">ج.م</p>
         </div>
       </div>
@@ -182,7 +188,7 @@ export function RollsModule() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((roll, idx) => {
-            const status = STATUS_CONFIG[roll.status] || STATUS_CONFIG.active
+            const status = statusConfig[roll.status] || statusConfig.active
             const StatusIcon = status.icon
             const remaining = roll.remainingLength || 0
             const total = roll.totalLength || 1
@@ -245,7 +251,7 @@ export function RollsModule() {
                 {/* Footer */}
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-gray-500">
-                    {roll.price ? `${roll.price.toLocaleString('ar-EG')} ج.م` : '—'}
+                    {roll.price ? formatCurrency(roll.price, lang) : '—'}
                   </span>
                   <span className="text-gray-500">{roll.supplier || '—'}</span>
                 </div>

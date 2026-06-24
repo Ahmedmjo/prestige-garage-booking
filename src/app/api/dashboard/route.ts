@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { categorizeService } from '@/lib/i18n'
+
+// ─── Category labels (Arabic) ────────────────────────────────
+const CAT_LABELS_AR: Record<string, string> = {
+  cat_polish: 'بوليش',
+  cat_nano: 'نانو سيراميك',
+  cat_detailing: 'دتيلنج',
+  cat_thermal: 'عزل حراري وفاميه',
+  cat_protection: 'بروتيكشن',
+  cat_other: 'أخرى',
+}
 
 // GET /api/dashboard — aggregated stats for smart dashboard
 export async function GET() {
@@ -26,7 +37,22 @@ export async function GET() {
       db.advance.findMany(),
     ])
 
-    // Revenue by service type
+    // Revenue by category (regrouped: polish, nano, detailing, thermal+vamia, protection, other)
+    const revenueByCategory: Record<string, { count: number; total: number; label: string }> = {
+      cat_polish: { count: 0, total: 0, label: CAT_LABELS_AR.cat_polish },
+      cat_nano: { count: 0, total: 0, label: CAT_LABELS_AR.cat_nano },
+      cat_detailing: { count: 0, total: 0, label: CAT_LABELS_AR.cat_detailing },
+      cat_thermal: { count: 0, total: 0, label: CAT_LABELS_AR.cat_thermal },
+      cat_protection: { count: 0, total: 0, label: CAT_LABELS_AR.cat_protection },
+      cat_other: { count: 0, total: 0, label: CAT_LABELS_AR.cat_other },
+    }
+    for (const s of services) {
+      const cat = categorizeService(s.serviceType)
+      revenueByCategory[cat].count++
+      revenueByCategory[cat].total += s.price
+    }
+
+    // Also keep the original by-type breakdown for the services module
     const revenueByType: Record<string, { count: number; total: number }> = {}
     for (const s of services) {
       const t = s.serviceType || 'أخرى'
@@ -127,6 +153,13 @@ export async function GET() {
       },
       revenueByType: Object.entries(revenueByType).map(([type, v]) => ({
         type,
+        count: v.count,
+        total: v.total,
+        average: v.count > 0 ? Math.round(v.total / v.count) : 0,
+      })),
+      revenueByCategory: Object.entries(revenueByCategory).map(([key, v]) => ({
+        key,
+        label: v.label,
         count: v.count,
         total: v.total,
         average: v.count > 0 ? Math.round(v.total / v.count) : 0,

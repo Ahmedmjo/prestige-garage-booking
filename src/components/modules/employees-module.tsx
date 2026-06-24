@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Users, Plus, Search, DollarSign, Calendar,
-  TrendingUp, Wallet, Award, UserCheck, UserX,
+  TrendingUp, Wallet, Award, UserCheck, UserX, Save, Edit3, Grid3x3,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,6 +16,9 @@ import {
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { toast } from 'sonner'
+import { useI18n } from '@/lib/i18n-context'
+import { formatNumber, formatCurrency } from '@/lib/i18n'
+import { AttendanceGrid } from '@/components/prestige/attendance-grid'
 
 interface EmployeeData {
   id: string
@@ -49,6 +52,7 @@ interface EmployeeData {
 }
 
 export function EmployeesModule() {
+  const { t, lang } = useI18n()
   const [employees, setEmployees] = useState<EmployeeData[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -56,6 +60,8 @@ export function EmployeesModule() {
   const [year, setYear] = useState(new Date().getFullYear())
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [showAdvanceDialog, setShowAdvanceDialog] = useState(false)
+  const [showSalaryDialog, setShowSalaryDialog] = useState(false)
+  const [showAttendanceGrid, setShowAttendanceGrid] = useState(false)
   const [selectedEmp, setSelectedEmp] = useState<EmployeeData | null>(null)
 
   useEffect(() => {
@@ -69,7 +75,7 @@ export function EmployeesModule() {
       const data = await res.json()
       setEmployees(data)
     } catch (e) {
-      toast.error('فشل تحميل بيانات الموظفين')
+      toast.error(lang === 'ar' ? 'فشل تحميل بيانات الموظفين' : 'Failed to load employees')
     } finally {
       setLoading(false)
     }
@@ -86,7 +92,9 @@ export function EmployeesModule() {
     totalBase: employees.reduce((s, e) => s + e.payroll.baseEarned, 0),
   }
 
-  const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
+  const monthNames = lang === 'ar'
+    ? ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
+    : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   return (
     <div className="space-y-6">
@@ -95,11 +103,11 @@ export function EmployeesModule() {
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3">
             <Users className="text-[#00C853]" />
-            حسابات الموظفين
+            {t('employeeAccounts')}
           </h1>
-          <p className="text-gray-400 mt-1">إدارة الحضور والرواتب والعمولات والسلفيات</p>
+          <p className="text-gray-400 mt-1">{t('employeeAccountsDesc')}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <select
             value={month}
             onChange={e => setMonth(Number(e.target.value))}
@@ -119,11 +127,19 @@ export function EmployeesModule() {
             ))}
           </select>
           <Button
+            onClick={() => setShowAttendanceGrid(true)}
+            variant="outline"
+            className="border-white/10 bg-white/5 text-white hover:bg-white/10"
+          >
+            <Grid3x3 size={16} className="ml-1" />
+            {t('attendanceSheet')}
+          </Button>
+          <Button
             onClick={() => setShowAddDialog(true)}
             className="prestige-gradient border-0 hover:opacity-90"
           >
             <Plus size={16} className="ml-1" />
-            موظف جديد
+            {t('newEmployee')}
           </Button>
         </div>
       </div>
@@ -133,34 +149,34 @@ export function EmployeesModule() {
         <div className="prestige-card p-4">
           <div className="flex items-center gap-2 mb-1">
             <Wallet size={14} className="text-[#DC143C]" />
-            <p className="text-xs text-gray-400">صافي الرواتب</p>
+            <p className="text-xs text-gray-400">{t('netPayroll')}</p>
           </div>
-          <p className="text-xl font-bold text-white">{totals.netPayroll.toLocaleString('ar-EG')}</p>
-          <p className="text-xs text-gray-500">ج.م</p>
+          <p className="text-xl font-bold text-white">{formatNumber(totals.netPayroll, lang)}</p>
+          <p className="text-xs text-gray-500">{t('egp')}</p>
         </div>
         <div className="prestige-card p-4">
           <div className="flex items-center gap-2 mb-1">
             <DollarSign size={14} className="text-[#00C853]" />
-            <p className="text-xs text-gray-400">الأساسي المستحق</p>
+            <p className="text-xs text-gray-400">{t('baseEarned')}</p>
           </div>
-          <p className="text-xl font-bold text-white">{totals.totalBase.toLocaleString('ar-EG')}</p>
-          <p className="text-xs text-gray-500">ج.م</p>
+          <p className="text-xl font-bold text-white">{formatNumber(totals.totalBase, lang)}</p>
+          <p className="text-xs text-gray-500">{t('egp')}</p>
         </div>
         <div className="prestige-card p-4">
           <div className="flex items-center gap-2 mb-1">
             <Award size={14} className="text-[#FF9100]" />
-            <p className="text-xs text-gray-400">إجمالي العمولات</p>
+            <p className="text-xs text-gray-400">{t('totalCommissions')}</p>
           </div>
-          <p className="text-xl font-bold text-white">{totals.totalCommissions.toLocaleString('ar-EG')}</p>
-          <p className="text-xs text-gray-500">ج.م</p>
+          <p className="text-xl font-bold text-white">{formatNumber(totals.totalCommissions, lang)}</p>
+          <p className="text-xs text-gray-500">{t('egp')}</p>
         </div>
         <div className="prestige-card p-4">
           <div className="flex items-center gap-2 mb-1">
             <Wallet size={14} className="text-[#FF1744]" />
-            <p className="text-xs text-gray-400">إجمالي السلفيات</p>
+            <p className="text-xs text-gray-400">{t('totalAdvances')}</p>
           </div>
-          <p className="text-xl font-bold text-white">{totals.totalAdvances.toLocaleString('ar-EG')}</p>
-          <p className="text-xs text-gray-500">ج.م</p>
+          <p className="text-xl font-bold text-white">{formatNumber(totals.totalAdvances, lang)}</p>
+          <p className="text-xs text-gray-500">{t('egp')}</p>
         </div>
       </div>
 
@@ -168,7 +184,7 @@ export function EmployeesModule() {
       <div className="relative">
         <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
         <Input
-          placeholder="بحث بالاسم أو المسمى الوظيفي..."
+          placeholder={t('searchName')}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="bg-[#0A0A0A] border-white/10 text-white pr-10 placeholder:text-gray-600"
@@ -177,9 +193,9 @@ export function EmployeesModule() {
 
       {/* Employees grid */}
       {loading ? (
-        <div className="text-center py-12 text-gray-400">جاري التحميل...</div>
+        <div className="text-center py-12 text-gray-400">{t('loading')}</div>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">لا يوجد موظفون</div>
+        <div className="text-center py-12 text-gray-500">{lang === 'ar' ? 'لا يوجد موظفون' : 'No employees'}</div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {filtered.map((emp, idx) => (
@@ -200,40 +216,61 @@ export function EmployeesModule() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white">{emp.name}</h3>
-                    <p className="text-xs text-gray-400">{emp.jobTitle || 'موظف'}</p>
+                    <p className="text-xs text-gray-400">{emp.jobTitle || (lang === 'ar' ? 'موظف' : 'Employee')}</p>
                   </div>
                 </div>
                 <Badge
-                  className={emp.status === 'نشط'
+                  className={emp.status === 'نشط' || emp.status === 'active'
                     ? 'bg-[#00C853]/15 text-[#00C853] border-[#00C853]/30'
                     : 'bg-[#DC143C]/15 text-[#DC143C] border-[#DC143C]/30'
                   }
                   variant="outline"
                 >
-                  {emp.status}
+                  {emp.status === 'نشط' ? (lang === 'ar' ? 'نشط' : 'Active') :
+                   emp.status === 'active' ? (lang === 'ar' ? 'نشط' : 'Active') :
+                   (lang === 'ar' ? 'متوقف' : 'Stopped')}
                 </Badge>
+              </div>
+
+              {/* Base salary row (editable) */}
+              <div className="bg-black/40 rounded-lg p-3 mb-3 flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-gray-500">{t('baseSalary')}</p>
+                  <p className="text-lg font-bold text-white">
+                    {formatNumber(emp.baseSalary, lang)} <span className="text-xs text-gray-500">{t('egp')}</span>
+                  </p>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => { setSelectedEmp(emp); setShowSalaryDialog(true) }}
+                  className="border-white/10 bg-white/5 text-white hover:bg-white/10 text-xs"
+                >
+                  <Edit3 size={12} className="ml-1" />
+                  {t('editSalary')}
+                </Button>
               </div>
 
               {/* Attendance summary */}
               <div className="grid grid-cols-4 gap-2 mb-4">
-                <AttBox label="حاضر" value={emp.attendance.present} color="#00C853" icon={UserCheck} />
-                <AttBox label="غائب" value={emp.attendance.absent} color="#DC143C" icon={UserX} />
-                <AttBox label="إجازة" value={emp.attendance.officialLeave} color="#03DAC6" icon={Calendar} />
-                <AttBox label="راحة" value={emp.attendance.weeklyLeave} color="#888" icon={Calendar} />
+                <AttBox label={t('present')} value={emp.attendance.present} color="#00C853" icon={UserCheck} />
+                <AttBox label={t('absent')} value={emp.attendance.absent} color="#DC143C" icon={UserX} />
+                <AttBox label={t('officialLeave')} value={emp.attendance.officialLeave} color="#03DAC6" icon={Calendar} />
+                <AttBox label={t('weeklyLeave')} value={emp.attendance.weeklyLeave} color="#888" icon={Calendar} />
               </div>
 
               {/* Payroll breakdown */}
               <div className="bg-black/40 rounded-lg p-3 space-y-2 text-sm">
-                <PayRow label="الأساسي المستحق" value={emp.payroll.baseEarned} />
-                <PayRow label="العمولات" value={emp.payroll.totalCommissions} color="#00C853" />
-                <PayRow label="السلفيات" value={-emp.payroll.totalAdvances} color="#FF9100" />
+                <PayRow label={t('baseEarned')} value={emp.payroll.baseEarned} lang={lang} />
+                <PayRow label={t('commissions')} value={emp.payroll.totalCommissions} color="#00C853" lang={lang} />
+                <PayRow label={t('advances')} value={-emp.payroll.totalAdvances} color="#FF9100" lang={lang} />
                 {emp.payroll.penalties > 0 && (
-                  <PayRow label="الجزاءات" value={-emp.payroll.penalties} color="#DC143C" />
+                  <PayRow label={t('penalties')} value={-emp.payroll.penalties} color="#DC143C" lang={lang} />
                 )}
                 <div className="border-t border-white/10 pt-2 flex justify-between items-center">
-                  <span className="font-bold text-white">صافي المرتب</span>
+                  <span className="font-bold text-white">{t('netSalary')}</span>
                   <span className="font-bold text-[#DC143C] text-lg">
-                    {emp.payroll.netSalary.toLocaleString('ar-EG')} ج.م
+                    {formatCurrency(emp.payroll.netSalary, lang)}
                   </span>
                 </div>
               </div>
@@ -247,16 +284,16 @@ export function EmployeesModule() {
                   className="border-white/10 bg-white/5 text-white hover:bg-white/10 text-xs"
                 >
                   <Plus size={12} className="ml-1" />
-                  سلفة
+                  {t('advance')}
                 </Button>
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => toast.info(`عرض تفاصيل ${emp.name} — قريباً`)}
+                  onClick={() => { setSelectedEmp(emp); setShowAttendanceGrid(true) }}
                   className="border-white/10 bg-white/5 text-white hover:bg-white/10 text-xs"
                 >
-                  <Calendar size={12} className="ml-1" />
-                  كشف الحضور
+                  <Grid3x3 size={12} className="ml-1" />
+                  {t('attendance')}
                 </Button>
               </div>
             </motion.div>
@@ -264,14 +301,27 @@ export function EmployeesModule() {
         </div>
       )}
 
-      {/* Add Employee Dialog */}
+      {/* Dialogs */}
       <AddEmployeeDialog open={showAddDialog} onOpenChange={setShowAddDialog} onSuccess={loadEmployees} />
-
-      {/* Advance Dialog */}
       <AdvanceDialog
         open={showAdvanceDialog}
         onOpenChange={setShowAdvanceDialog}
         employee={selectedEmp}
+        onSuccess={loadEmployees}
+      />
+      <SalaryDialog
+        open={showSalaryDialog}
+        onOpenChange={setShowSalaryDialog}
+        employee={selectedEmp}
+        onSuccess={loadEmployees}
+      />
+      <AttendanceGrid
+        open={showAttendanceGrid}
+        onOpenChange={setShowAttendanceGrid}
+        employees={employees}
+        preselectedEmp={selectedEmp}
+        month={month}
+        year={year}
         onSuccess={loadEmployees}
       />
     </div>
@@ -288,12 +338,12 @@ function AttBox({ label, value, color, icon: Icon }: { label: string; value: num
   )
 }
 
-function PayRow({ label, value, color = '#fff' }: { label: string; value: number; color?: string }) {
+function PayRow({ label, value, color = '#fff', lang }: { label: string; value: number; color?: string; lang: 'ar' | 'en' }) {
   return (
     <div className="flex justify-between items-center">
       <span className="text-gray-400 text-xs">{label}</span>
       <span className="font-semibold" style={{ color }}>
-        {value >= 0 ? '+' : ''}{value.toLocaleString('ar-EG')} ج.م
+        {value >= 0 ? '+' : ''}{formatNumber(value, lang)} {lang === 'ar' ? 'ج.م' : 'EGP'}
       </span>
     </div>
   )
@@ -304,6 +354,7 @@ function AddEmployeeDialog({ open, onOpenChange, onSuccess }: {
   onOpenChange: (v: boolean) => void
   onSuccess: () => void
 }) {
+  const { t, lang } = useI18n()
   const [form, setForm] = useState({
     name: '', baseSalary: '', phone: '', hireDate: '', jobTitle: '', notes: '', status: 'نشط',
   })
@@ -311,7 +362,7 @@ function AddEmployeeDialog({ open, onOpenChange, onSuccess }: {
 
   async function handleSubmit() {
     if (!form.name || !form.baseSalary) {
-      toast.error('الاسم والمرتب الأساسي مطلوبان')
+      toast.error(lang === 'ar' ? 'الاسم والمرتب الأساسي مطلوبان' : 'Name and base salary are required')
       return
     }
     setSaving(true)
@@ -323,9 +374,9 @@ function AddEmployeeDialog({ open, onOpenChange, onSuccess }: {
       })
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'فشل الإضافة')
+        throw new Error(err.error || (lang === 'ar' ? 'فشل الإضافة' : 'Failed to add'))
       }
-      toast.success(`تم إضافة ${form.name} بنجاح`)
+      toast.success(lang === 'ar' ? `تم إضافة ${form.name} بنجاح` : `Added ${form.name} successfully`)
       setForm({ name: '', baseSalary: '', phone: '', hireDate: '', jobTitle: '', notes: '', status: 'نشط' })
       onOpenChange(false)
       onSuccess()
@@ -338,36 +389,36 @@ function AddEmployeeDialog({ open, onOpenChange, onSuccess }: {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0A0A0A] border-white/10 text-white max-w-md" dir="rtl">
+      <DialogContent className="bg-[#0A0A0A] border-white/10 text-white max-w-md" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
         <DialogHeader>
-          <DialogTitle className="text-white">إضافة موظف جديد</DialogTitle>
+          <DialogTitle className="text-white">{t('newEmployee')}</DialogTitle>
         </DialogHeader>
         <div className="space-y-3 py-2">
           <div>
-            <Label className="text-gray-400 text-xs">الاسم *</Label>
+            <Label className="text-gray-400 text-xs">{lang === 'ar' ? 'الاسم *' : 'Name *'}</Label>
             <Input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">المرتب الأساسي (ج.م) *</Label>
+            <Label className="text-gray-400 text-xs">{t('baseSalary')} ({t('egp')}) *</Label>
             <Input type="number" value={form.baseSalary} onChange={e => setForm({ ...form, baseSalary: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">رقم الهاتف</Label>
+            <Label className="text-gray-400 text-xs">{lang === 'ar' ? 'رقم الهاتف' : 'Phone'}</Label>
             <Input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">المسمى الوظيفي</Label>
-            <Input value={form.jobTitle} onChange={e => setForm({ ...form, jobTitle: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" placeholder="فني بروتيكشن" />
+            <Label className="text-gray-400 text-xs">{t('jobTitle')}</Label>
+            <Input value={form.jobTitle} onChange={e => setForm({ ...form, jobTitle: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" placeholder={lang === 'ar' ? 'فني بروتيكشن' : 'Protection Technician'} />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">تاريخ التعيين</Label>
+            <Label className="text-gray-400 text-xs">{lang === 'ar' ? 'تاريخ التعيين' : 'Hire Date'}</Label>
             <Input type="date" value={form.hireDate} onChange={e => setForm({ ...form, hireDate: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} className="text-gray-400">إلغاء</Button>
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="text-gray-400">{t('cancel')}</Button>
           <Button onClick={handleSubmit} disabled={saving} className="prestige-gradient border-0">
-            {saving ? 'جاري الحفظ...' : 'إضافة'}
+            {saving ? t('saving') : t('add')}
           </Button>
         </DialogFooter>
       </DialogContent>
@@ -375,40 +426,41 @@ function AddEmployeeDialog({ open, onOpenChange, onSuccess }: {
   )
 }
 
-function AdvanceDialog({ open, onOpenChange, employee, onSuccess }: {
+function SalaryDialog({ open, onOpenChange, employee, onSuccess }: {
   open: boolean
   onOpenChange: (v: boolean) => void
   employee: EmployeeData | null
   onSuccess: () => void
 }) {
-  const [form, setForm] = useState({
-    amount: '', date: new Date().toISOString().split('T')[0], notes: '',
-  })
+  const { t, lang } = useI18n()
+  const [baseSalary, setBaseSalary] = useState('')
+  const [status, setStatus] = useState('نشط')
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     if (employee) {
-      setForm({ amount: '', date: new Date().toISOString().split('T')[0], notes: '' })
+      setBaseSalary(String(employee.baseSalary))
+      setStatus(employee.status)
     }
   }, [employee, open])
 
   async function handleSubmit() {
-    if (!employee || !form.amount) {
-      toast.error('المبلغ مطلوب')
+    if (!employee || !baseSalary) {
+      toast.error(t('required'))
       return
     }
     setSaving(true)
     try {
-      const res = await fetch(`/api/employees/${employee.id}/advances`, {
-        method: 'POST',
+      const res = await fetch(`/api/employees/${employee.id}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ baseSalary: Number(baseSalary), status }),
       })
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'فشل الإضافة')
+        throw new Error(err.error || (lang === 'ar' ? 'فشل التحديث' : 'Failed to update'))
       }
-      toast.success(`تم تسجيل سلفة ${Number(form.amount).toLocaleString('ar-EG')} ج.م لـ ${employee.name}`)
+      toast.success(lang === 'ar' ? `تم تحديث مرتب ${employee.name}` : `Updated ${employee.name}'s salary`)
       onOpenChange(false)
       onSuccess()
     } catch (e: any) {
@@ -422,28 +474,132 @@ function AdvanceDialog({ open, onOpenChange, employee, onSuccess }: {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#0A0A0A] border-white/10 text-white max-w-md" dir="rtl">
+      <DialogContent className="bg-[#0A0A0A] border-white/10 text-white max-w-md" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
         <DialogHeader>
-          <DialogTitle className="text-white">تسجيل سلفة — {employee.name}</DialogTitle>
+          <DialogTitle className="text-white">{t('editBaseSalary')} — {employee.name}</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-3 py-2">
+          <div className="bg-white/5 rounded-lg p-3 text-sm flex justify-between">
+            <span className="text-gray-400">{lang === 'ar' ? 'المرتب الحالي:' : 'Current Salary:'}</span>
+            <span className="font-bold text-white">{formatNumber(employee.baseSalary, lang)} {t('egp')}</span>
+          </div>
+          <div>
+            <Label className="text-gray-400 text-xs">{t('baseSalary')} ({t('egp')}) *</Label>
+            <Input type="number" value={baseSalary} onChange={e => setBaseSalary(e.target.value)} className="bg-[#000] border-white/10 text-white mt-1" />
+            <p className="text-xs text-gray-500 mt-1">
+              {lang === 'ar' ? 'معدل اليومي:' : 'Daily rate:'}{' '}
+              <span className="text-[#DC143C] font-bold">
+                {formatNumber(Number(baseSalary) / 30, lang)} {t('egp')}
+              </span>
+            </p>
+          </div>
+          <div>
+            <Label className="text-gray-400 text-xs">{t('status')}</Label>
+            <div className="flex gap-2 mt-1">
+              <button
+                onClick={() => setStatus('نشط')}
+                className={`flex-1 py-2 rounded-md text-sm font-medium ${
+                  status === 'نشط'
+                    ? 'bg-[#00C853]/20 text-[#00C853] border border-[#00C853]/40'
+                    : 'bg-white/5 text-gray-400 border border-white/10'
+                }`}
+              >
+                {lang === 'ar' ? 'نشط' : 'Active'}
+              </button>
+              <button
+                onClick={() => setStatus('متوقف')}
+                className={`flex-1 py-2 rounded-md text-sm font-medium ${
+                  status === 'متوقف'
+                    ? 'bg-[#DC143C]/20 text-[#DC143C] border border-[#DC143C]/40'
+                    : 'bg-white/5 text-gray-400 border border-white/10'
+                }`}
+              >
+                {lang === 'ar' ? 'متوقف' : 'Stopped'}
+              </button>
+            </div>
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="text-gray-400">{t('cancel')}</Button>
+          <Button onClick={handleSubmit} disabled={saving} className="prestige-gradient border-0">
+            {saving ? t('saving') : t('save')}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+function AdvanceDialog({ open, onOpenChange, employee, onSuccess }: {
+  open: boolean
+  onOpenChange: (v: boolean) => void
+  employee: EmployeeData | null
+  onSuccess: () => void
+}) {
+  const { t, lang } = useI18n()
+  const [form, setForm] = useState({
+    amount: '', date: new Date().toISOString().split('T')[0], notes: '',
+  })
+  const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    if (employee) {
+      setForm({ amount: '', date: new Date().toISOString().split('T')[0], notes: '' })
+    }
+  }, [employee, open])
+
+  async function handleSubmit() {
+    if (!employee || !form.amount) {
+      toast.error(t('required'))
+      return
+    }
+    setSaving(true)
+    try {
+      const res = await fetch(`/api/employees/${employee.id}/advances`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || (lang === 'ar' ? 'فشل الإضافة' : 'Failed to add'))
+      }
+      toast.success(lang === 'ar' ? `تم تسجيل سلفة ${formatNumber(Number(form.amount), lang)} ${t('egp')} لـ ${employee.name}` : `Advance of ${formatNumber(Number(form.amount), lang)} ${t('egp')} recorded for ${employee.name}`)
+      onOpenChange(false)
+      onSuccess()
+    } catch (e: any) {
+      toast.error(e.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (!employee) return null
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="bg-[#0A0A0A] border-white/10 text-white max-w-md" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+        <DialogHeader>
+          <DialogTitle className="text-white">{lang === 'ar' ? 'تسجيل سلفة' : 'Record Advance'} — {employee.name}</DialogTitle>
         </DialogHeader>
         <div className="space-y-3 py-2">
           <div>
-            <Label className="text-gray-400 text-xs">المبلغ (ج.م) *</Label>
+            <Label className="text-gray-400 text-xs">{lang === 'ar' ? 'المبلغ' : 'Amount'} ({t('egp')}) *</Label>
             <Input type="number" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">التاريخ</Label>
+            <Label className="text-gray-400 text-xs">{t('date')}</Label>
             <Input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" />
           </div>
           <div>
-            <Label className="text-gray-400 text-xs">ملاحظات</Label>
+            <Label className="text-gray-400 text-xs">{t('notes')}</Label>
             <Textarea value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} className="bg-[#000] border-white/10 text-white mt-1" rows={2} />
           </div>
         </div>
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} className="text-gray-400">إلغاء</Button>
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="text-gray-400">{t('cancel')}</Button>
           <Button onClick={handleSubmit} disabled={saving} className="prestige-gradient border-0">
-            {saving ? 'جاري الحفظ...' : 'تسجيل السلفة'}
+            {saving ? t('saving') : (lang === 'ar' ? 'تسجيل السلفة' : 'Record Advance')}
           </Button>
         </DialogFooter>
       </DialogContent>

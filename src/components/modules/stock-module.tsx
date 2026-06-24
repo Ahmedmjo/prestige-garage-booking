@@ -104,7 +104,7 @@ export function StockModule() {
         </div>
         <div className="prestige-card p-4">
           <p className="text-xs text-gray-400">قيمة المخزون</p>
-          <p className="text-xl font-bold text-white mt-1">{Math.round(stats.value).toLocaleString('ar-EG')}</p>
+          <p className="text-xl font-bold text-white mt-1">{new Intl.NumberFormat('en-US').format(Math.round(stats.value))}</p>
           <p className="text-xs text-gray-500">ج.م</p>
         </div>
       </div>

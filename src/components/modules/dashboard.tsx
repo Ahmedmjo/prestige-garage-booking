@@ -14,6 +14,8 @@ import { StatCard } from '@/components/prestige/stat-card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useI18n } from '@/lib/i18n-context'
+import { formatNumber, formatCurrency } from '@/lib/i18n'
 
 interface DashboardData {
   stats: {
@@ -35,6 +37,7 @@ interface DashboardData {
     criticalAlerts: number
   }
   revenueByType: { type: string; count: number; total: number; average: number }[]
+  revenueByCategory: { key: string; label: string; count: number; total: number; average: number }[]
   monthlyRevenue: { month: string; revenue: number; count: number }[]
   attendanceSummary: { present: number; absent: number; officialLeave: number; weeklyLeave: number }
   employeePerformance: { name: string; commissions: number; services: number }[]
@@ -47,9 +50,17 @@ interface DashboardProps {
   onNavigate: (tab: any) => void
 }
 
-const COLORS = ['#DC143C', '#00C853', '#FF9100', '#BB86FC', '#03DAC6', '#FFD600', '#FF4081']
+const CATEGORY_COLORS: Record<string, string> = {
+  cat_polish: '#FF9100',
+  cat_nano: '#BB86FC',
+  cat_detailing: '#03DAC6',
+  cat_thermal: '#DC143C',
+  cat_protection: '#00C853',
+  cat_other: '#888888',
+}
 
 export function Dashboard({ onNavigate }: DashboardProps) {
+  const { t, lang } = useI18n()
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -65,7 +76,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full border-4 border-[#DC143C]/20 border-t-[#DC143C] animate-spin" />
-          <p className="text-gray-400">جاري تحميل لوحة التحكم...</p>
+          <p className="text-gray-400">{t('loading')}</p>
         </div>
       </div>
     )
@@ -73,22 +84,32 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
   const { stats } = data
 
+  // Localize category labels
+  const localizedCategories = (data.revenueByCategory || []).map(c => ({
+    ...c,
+    localizedLabel: t(c.key as any) || c.label,
+  }))
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-white">
-            مرحباً بك في <span className="prestige-text-gradient">Prestige Garage</span>
+            {lang === 'ar' ? (
+              <>مرحباً بك في <span className="prestige-text-gradient">Prestige Garage</span></>
+            ) : (
+              <>Welcome to <span className="prestige-text-gradient">Prestige Garage</span></>
+            )}
           </h1>
-          <p className="text-gray-400 mt-1">لوحة التحكم الذكية · إحصائيات لحظية وتحليلات تفاعلية</p>
+          <p className="text-gray-400 mt-1">{t('welcomeSubtitle')}</p>
         </div>
         <Button
           onClick={() => onNavigate('ai')}
           className="prestige-gradient text-white border-0 hover:opacity-90"
         >
           <Bot className="ml-2" size={18} />
-          اسأل مساعد برستيج
+          {t('askAssistant')}
         </Button>
       </div>
 
@@ -102,15 +123,15 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           <div className="w-8 h-8 rounded-lg prestige-gradient flex items-center justify-center">
             <Bot size={16} />
           </div>
-          <h3 className="font-bold text-white">اقتراحات سريعة لمساعد برستيج</h3>
+          <h3 className="font-bold text-white">{t('quickSuggestions')}</h3>
         </div>
         <div className="flex flex-wrap gap-2">
           {[
-            'كم رصيد رول Hexis BF-001؟',
-            'من أكثر فني أداءً هذا الشهر؟',
-            'قيمة المخزون المتبقي؟',
-            'اعملي تقرير شهري ليونيو',
-            'أظهر لي الرولات اللي أوشكت على النفاذ',
+            lang === 'ar' ? 'كم رصيد رول Hexis BF-001؟' : 'How much Hexis BF-001 roll balance?',
+            lang === 'ar' ? 'من أكثر فني أداءً هذا الشهر؟' : 'Top technician this month?',
+            lang === 'ar' ? 'قيمة المخزون المتبقي؟' : 'Remaining inventory value?',
+            lang === 'ar' ? 'اعملي تقرير شهري ليونيو' : 'Generate June monthly report',
+            lang === 'ar' ? 'أظهر لي الرولات اللي أوشكت على النفاذ' : 'Show rolls running low',
           ].map(q => (
             <button
               key={q}
@@ -125,18 +146,18 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
       {/* Main Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard title="إجمالي الإيرادات" value={`${stats.totalRevenue.toLocaleString('ar-EG')} ج.م`} subtitle={`${stats.servicesCount} خدمة`} icon={DollarSign} color="#DC143C" delay={0.05} />
-        <StatCard title="الرولات النشطة" value={stats.activeRolls} subtitle={`${stats.lowRolls} أوشكت على النفاذ`} icon={Film} color="#FF9100" delay={0.1} />
-        <StatCard title="الموظفون النشطون" value={stats.employeesCount} subtitle="فريق العمل" icon={Users} color="#00C853" delay={0.15} />
-        <StatCard title="أصناف المخزون" value={stats.stockItemsCount} subtitle={`${stats.lowStockCount + stats.outOfStockCount} تحتاج طلب`} icon={Package} color="#BB86FC" delay={0.2} />
+        <StatCard title={t('totalRevenue')} value={formatCurrency(stats.totalRevenue, lang)} subtitle={`${stats.servicesCount} ${t('service')}`} icon={DollarSign} color="#DC143C" delay={0.05} />
+        <StatCard title={t('activeRolls')} value={formatNumber(stats.activeRolls, lang)} subtitle={`${stats.lowRolls} ${t('lowRolls')}`} icon={Film} color="#FF9100" delay={0.1} />
+        <StatCard title={t('activeEmployees')} value={formatNumber(stats.employeesCount, lang)} subtitle={lang === 'ar' ? 'فريق العمل' : 'Team'} icon={Users} color="#00C853" delay={0.15} />
+        <StatCard title={t('stockItems')} value={formatNumber(stats.stockItemsCount, lang)} subtitle={`${stats.lowStockCount + stats.outOfStockCount} ${lang === 'ar' ? 'تحتاج طلب' : 'need order'}`} icon={Package} color="#BB86FC" delay={0.2} />
       </div>
 
       {/* Secondary Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard title="قيمة المخزون" value={`${stats.inventoryValue.toLocaleString('ar-EG')} ج.م`} icon={TrendingUp} color="#03DAC6" delay={0.25} />
-        <StatCard title="قيمة الرولات المتبقية" value={`${stats.rollsValue.toLocaleString('ar-EG')} ج.م`} icon={Film} color="#FF9100" delay={0.3} />
-        <StatCard title="إجمالي الفواتير" value={`${stats.invoicesTotal.toLocaleString('ar-EG')} ج.م`} subtitle={`${stats.invoicesCount} فاتورة`} icon={Wrench} color="#FFD600" delay={0.35} />
-        <StatCard title="تنبيهات نشطة" value={stats.unreadAlerts} subtitle={`${stats.criticalAlerts} حرجة`} icon={Bell} color="#FF1744" delay={0.4} />
+        <StatCard title={t('inventoryValue')} value={formatCurrency(stats.inventoryValue, lang)} icon={TrendingUp} color="#03DAC6" delay={0.25} />
+        <StatCard title={t('rollsValue')} value={formatCurrency(stats.rollsValue, lang)} icon={Film} color="#FF9100" delay={0.3} />
+        <StatCard title={t('totalInvoices')} value={formatCurrency(stats.invoicesTotal, lang)} subtitle={`${stats.invoicesCount} ${lang === 'ar' ? 'فاتورة' : 'invoices'}`} icon={Wrench} color="#FFD600" delay={0.35} />
+        <StatCard title={t('activeAlerts')} value={formatNumber(stats.unreadAlerts, lang)} subtitle={`${stats.criticalAlerts} ${t('critical')}`} icon={Bell} color="#FF1744" delay={0.4} />
       </div>
 
       {/* Charts row */}
@@ -150,12 +171,12 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="font-bold text-white">الإيرادات الشهرية</h3>
-              <p className="text-xs text-gray-500">آخر 6 أشهر</p>
+              <h3 className="font-bold text-white">{t('monthlyRevenue')}</h3>
+              <p className="text-xs text-gray-500">{t('last6Months')}</p>
             </div>
             <Badge className="bg-[#DC143C]/15 text-[#DC143C] border-[#DC143C]/30">
               <TrendingUp size={12} className="ml-1" />
-              {data.monthlyRevenue[data.monthlyRevenue.length - 1]?.count || 0} خدمة هذا الشهر
+              {data.monthlyRevenue[data.monthlyRevenue.length - 1]?.count || 0} {t('servicesThisMonth')}
             </Badge>
           </div>
           <ResponsiveContainer width="100%" height={260}>
@@ -171,46 +192,70 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               <YAxis stroke="#888" tick={{ fill: '#888', fontSize: 11 }} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
               <Tooltip
                 contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
-                formatter={(v: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, 'الإيراد']}
+                formatter={(v: any) => [`${formatNumber(Number(v), lang)} ${t('egp')}`, lang === 'ar' ? 'الإيراد' : 'Revenue']}
               />
               <Area type="monotone" dataKey="revenue" stroke="#DC143C" strokeWidth={2} fill="url(#colorRev)" />
             </AreaChart>
           </ResponsiveContainer>
         </motion.div>
 
-        {/* Revenue by Type Pie */}
+        {/* Revenue by Category Pie (regrouped) */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="prestige-card p-5"
         >
-          <h3 className="font-bold text-white mb-4">الإيرادات حسب نوع الخدمة</h3>
+          <h3 className="font-bold text-white mb-4">{t('revenueByType')}</h3>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
               <Pie
-                data={data.revenueByType}
+                data={localizedCategories}
                 dataKey="total"
-                nameKey="type"
+                nameKey="localizedLabel"
                 cx="50%"
                 cy="50%"
                 outerRadius={80}
                 innerRadius={45}
                 paddingAngle={2}
               >
-                {data.revenueByType.map((_, idx) => (
-                  <Cell key={idx} fill={COLORS[idx % COLORS.length]} stroke="none" />
+                {localizedCategories.map((entry, idx) => (
+                  <Cell key={idx} fill={CATEGORY_COLORS[entry.key] || '#888'} stroke="none" />
                 ))}
               </Pie>
               <Tooltip
                 contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
-                formatter={(v: any, n: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, n]}
+                formatter={(v: any, n: any) => [`${formatNumber(Number(v), lang)} ${t('egp')}`, n]}
               />
               <Legend wrapperStyle={{ fontSize: 11, color: '#888' }} />
             </PieChart>
           </ResponsiveContainer>
         </motion.div>
       </div>
+
+      {/* Category breakdown cards (new) */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.52 }}
+        className="prestige-card p-5"
+      >
+        <h3 className="font-bold text-white mb-3">{t('revenueByType')}</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {localizedCategories.map((cat) => (
+            <div key={cat.key} className="bg-white/5 rounded-lg p-3 border-r-2" style={{ borderColor: CATEGORY_COLORS[cat.key] }}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-gray-300 font-medium">{cat.localizedLabel}</span>
+                <div className="w-2.5 h-2.5 rounded-full" style={{ background: CATEGORY_COLORS[cat.key] }} />
+              </div>
+              <p className="text-lg font-bold" style={{ color: CATEGORY_COLORS[cat.key] }}>
+                {formatNumber(cat.total, lang)}
+              </p>
+              <p className="text-xs text-gray-500">{cat.count} {t('service')}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Bottom row: Alerts + Employee Performance */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -224,16 +269,16 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-white flex items-center gap-2">
               <AlertTriangle size={18} className="text-[#FF9100]" />
-              التنبيهات الذكية
+              {t('smartAlerts')}
             </h3>
             <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white text-xs">
-              عرض الكل
+              {t('viewAll')}
             </Button>
           </div>
           <ScrollArea className="h-72 pr-3">
             <div className="space-y-2">
               {data.alerts.length === 0 ? (
-                <div className="text-center py-8 text-gray-500 text-sm">لا توجد تنبيهات</div>
+                <div className="text-center py-8 text-gray-500 text-sm">{t('noNotifications')}</div>
               ) : (
                 data.alerts.map((alert, idx) => (
                   <motion.div
@@ -268,7 +313,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-white flex items-center gap-2">
               <Users size={18} className="text-[#00C853]" />
-              أداء الفنيين هذا الشهر
+              {t('employeePerformance')}
             </h3>
             <Button
               variant="ghost"
@@ -276,11 +321,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               onClick={() => onNavigate('employees')}
               className="text-gray-400 hover:text-white text-xs"
             >
-              التفاصيل <ArrowLeft size={12} className="mr-1" />
+              {t('details')} <ArrowLeft size={12} className="mr-1" />
             </Button>
           </div>
           {data.employeePerformance.length === 0 ? (
-            <div className="text-center py-8 text-gray-500 text-sm">لا توجد عمولات هذا الشهر</div>
+            <div className="text-center py-8 text-gray-500 text-sm">{lang === 'ar' ? 'لا توجد عمولات هذا الشهر' : 'No commissions this month'}</div>
           ) : (
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={data.employeePerformance} layout="vertical" margin={{ left: 0, right: 20 }}>
@@ -289,11 +334,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 <YAxis type="category" dataKey="name" stroke="#888" tick={{ fill: '#ccc', fontSize: 12 }} width={100} />
                 <Tooltip
                   contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
-                  formatter={(v: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, 'العمولات']}
+                  formatter={(v: any) => [`${formatNumber(Number(v), lang)} ${t('egp')}`, lang === 'ar' ? 'العمولات' : 'Commissions']}
                 />
                 <Bar dataKey="commissions" radius={[0, 6, 6, 0]}>
                   {data.employeePerformance.map((_, idx) => (
-                    <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
+                    <Cell key={idx} fill={CATEGORY_COLORS.cat_detailing} />
                   ))}
                 </Bar>
               </BarChart>
@@ -312,7 +357,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-bold text-white flex items-center gap-2">
             <Wrench size={18} className="text-[#03DAC6]" />
-            آخر الخدمات المسجلة
+            {t('recentServices')}
           </h3>
           <Button
             variant="ghost"
@@ -320,33 +365,33 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             onClick={() => onNavigate('services')}
             className="text-gray-400 hover:text-white text-xs"
           >
-            عرض الكل <ArrowLeft size={12} className="mr-1" />
+            {t('viewAll')} <ArrowLeft size={12} className="mr-1" />
           </Button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-right border-b border-white/5">
-                <th className="py-2 px-3 text-gray-400 font-medium">الكود</th>
-                <th className="py-2 px-3 text-gray-400 font-medium">التاريخ</th>
-                <th className="py-2 px-3 text-gray-400 font-medium">العميل</th>
-                <th className="py-2 px-3 text-gray-400 font-medium">السيارة</th>
-                <th className="py-2 px-3 text-gray-400 font-medium">الخدمة</th>
-                <th className="py-2 px-3 text-gray-400 font-medium text-left">السعر</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">{t('code')}</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">{t('date')}</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">{t('client')}</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">{t('car')}</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">{lang === 'ar' ? 'الخدمة' : 'Service'}</th>
+                <th className="py-2 px-3 text-gray-400 font-medium text-left">{t('price')}</th>
               </tr>
             </thead>
             <tbody>
               {data.recentServices.map((s, idx) => (
                 <tr key={idx} className="border-b border-white/5 hover:bg-white/3">
                   <td className="py-2 px-3 font-mono text-[#DC143C]">{s.code}</td>
-                  <td className="py-2 px-3 text-gray-300">{new Date(s.date).toLocaleDateString('ar-EG')}</td>
+                  <td className="py-2 px-3 text-gray-300">{new Date(s.date).toLocaleDateString('en-GB')}</td>
                   <td className="py-2 px-3 text-white">{s.clientName || '-'}</td>
                   <td className="py-2 px-3 text-gray-300">{s.carType || '-'}</td>
                   <td className="py-2 px-3">
                     <Badge className="bg-white/5 text-gray-300 border-white/10 text-xs">{s.serviceType}</Badge>
                   </td>
                   <td className="py-2 px-3 text-left font-bold text-[#00C853]">
-                    {Number(s.price).toLocaleString('ar-EG')} ج.م
+                    {formatCurrency(s.price, lang)}
                   </td>
                 </tr>
               ))}

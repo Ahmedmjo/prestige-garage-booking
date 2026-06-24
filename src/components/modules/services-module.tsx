@@ -135,7 +135,7 @@ export function ServicesModule() {
             <DollarSign size={14} className="text-[#DC143C]" />
             <p className="text-xs text-gray-400">إجمالي الإيرادات</p>
           </div>
-          <p className="text-xl font-bold text-white mt-1">{stats.revenue.toLocaleString('ar-EG')}</p>
+          <p className="text-xl font-bold text-white mt-1">{new Intl.NumberFormat('en-US').format(stats.revenue)}</p>
           <p className="text-xs text-gray-500">ج.م</p>
         </div>
         <div className="prestige-card p-4">
@@ -143,7 +143,7 @@ export function ServicesModule() {
             <DollarSign size={14} className="text-[#00C853]" />
             <p className="text-xs text-gray-400">متوسط السعر</p>
           </div>
-          <p className="text-xl font-bold text-white mt-1">{Math.round(stats.average).toLocaleString('ar-EG')}</p>
+          <p className="text-xl font-bold text-white mt-1">{new Intl.NumberFormat('en-US').format(Math.round(stats.average))}</p>
           <p className="text-xs text-gray-500">ج.م</p>
         </div>
         <div className="prestige-card p-4">
@@ -170,7 +170,7 @@ export function ServicesModule() {
                 <div className="text-left">
                   <p className="text-xs text-gray-500">الإيراد</p>
                   <p className="text-lg font-bold" style={{ color: getTypeColor(type) }}>
-                    {data.total.toLocaleString('ar-EG')}
+                    {new Intl.NumberFormat('en-US').format(data.total)}
                   </p>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export function ServicesModule() {
                     <td className="py-3 px-4 text-gray-300">{s.technician || '-'}</td>
                     <td className="py-3 px-4 text-gray-400 text-xs">{s.paymentMethod || '-'}</td>
                     <td className="py-3 px-4 text-left font-bold text-[#00C853]">
-                      {s.price.toLocaleString('ar-EG')} ج.م
+                      {new Intl.NumberFormat('en-US').format(s.price)} ج.م
                     </td>
                   </motion.tr>
                 ))}
