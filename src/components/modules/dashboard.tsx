@@ -1,0 +1,359 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import {
+  DollarSign, Film, Users, Wrench, Package, Bell,
+  TrendingUp, AlertTriangle, ArrowLeft, Bot,
+} from 'lucide-react'
+import {
+  AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+} from 'recharts'
+import { StatCard } from '@/components/prestige/stat-card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { ScrollArea } from '@/components/ui/scroll-area'
+
+interface DashboardData {
+  stats: {
+    totalRevenue: number
+    rollsCount: number
+    activeRolls: number
+    lowRolls: number
+    finishedRolls: number
+    employeesCount: number
+    servicesCount: number
+    invoicesCount: number
+    invoicesTotal: number
+    stockItemsCount: number
+    lowStockCount: number
+    outOfStockCount: number
+    inventoryValue: number
+    rollsValue: number
+    unreadAlerts: number
+    criticalAlerts: number
+  }
+  revenueByType: { type: string; count: number; total: number; average: number }[]
+  monthlyRevenue: { month: string; revenue: number; count: number }[]
+  attendanceSummary: { present: number; absent: number; officialLeave: number; weeklyLeave: number }
+  employeePerformance: { name: string; commissions: number; services: number }[]
+  consumptionByRoll: { type: string; meters: number }[]
+  recentServices: any[]
+  alerts: { id: string; type: string; severity: string; title: string; message: string; createdAt: string }[]
+}
+
+interface DashboardProps {
+  onNavigate: (tab: any) => void
+}
+
+const COLORS = ['#DC143C', '#00C853', '#FF9100', '#BB86FC', '#03DAC6', '#FFD600', '#FF4081']
+
+export function Dashboard({ onNavigate }: DashboardProps) {
+  const [data, setData] = useState<DashboardData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/dashboard')
+      .then(r => r.json())
+      .then(d => { setData(d); setLoading(false) })
+      .catch(() => setLoading(false))
+  }, [])
+
+  if (loading || !data) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full border-4 border-[#DC143C]/20 border-t-[#DC143C] animate-spin" />
+          <p className="text-gray-400">جاري تحميل لوحة التحكم...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const { stats } = data
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-white">
+            مرحباً بك في <span className="prestige-text-gradient">Prestige Garage</span>
+          </h1>
+          <p className="text-gray-400 mt-1">لوحة التحكم الذكية · إحصائيات لحظية وتحليلات تفاعلية</p>
+        </div>
+        <Button
+          onClick={() => onNavigate('ai')}
+          className="prestige-gradient text-white border-0 hover:opacity-90"
+        >
+          <Bot className="ml-2" size={18} />
+          اسأل مساعد برستيج
+        </Button>
+      </div>
+
+      {/* AI Quick Suggestions */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="prestige-card p-5"
+      >
+        <div className="flex items-center gap-2 mb-3">
+          <div className="w-8 h-8 rounded-lg prestige-gradient flex items-center justify-center">
+            <Bot size={16} />
+          </div>
+          <h3 className="font-bold text-white">اقتراحات سريعة لمساعد برستيج</h3>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {[
+            'كم رصيد رول Hexis BF-001؟',
+            'من أكثر فني أداءً هذا الشهر؟',
+            'قيمة المخزون المتبقي؟',
+            'اعملي تقرير شهري ليونيو',
+            'أظهر لي الرولات اللي أوشكت على النفاذ',
+          ].map(q => (
+            <button
+              key={q}
+              onClick={() => onNavigate('ai')}
+              className="text-sm px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-gray-300 hover:bg-[#DC143C]/10 hover:border-[#DC143C]/30 hover:text-white transition-all"
+            >
+              {q}
+            </button>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Main Stats Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard title="إجمالي الإيرادات" value={`${stats.totalRevenue.toLocaleString('ar-EG')} ج.م`} subtitle={`${stats.servicesCount} خدمة`} icon={DollarSign} color="#DC143C" delay={0.05} />
+        <StatCard title="الرولات النشطة" value={stats.activeRolls} subtitle={`${stats.lowRolls} أوشكت على النفاذ`} icon={Film} color="#FF9100" delay={0.1} />
+        <StatCard title="الموظفون النشطون" value={stats.employeesCount} subtitle="فريق العمل" icon={Users} color="#00C853" delay={0.15} />
+        <StatCard title="أصناف المخزون" value={stats.stockItemsCount} subtitle={`${stats.lowStockCount + stats.outOfStockCount} تحتاج طلب`} icon={Package} color="#BB86FC" delay={0.2} />
+      </div>
+
+      {/* Secondary Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard title="قيمة المخزون" value={`${stats.inventoryValue.toLocaleString('ar-EG')} ج.م`} icon={TrendingUp} color="#03DAC6" delay={0.25} />
+        <StatCard title="قيمة الرولات المتبقية" value={`${stats.rollsValue.toLocaleString('ar-EG')} ج.م`} icon={Film} color="#FF9100" delay={0.3} />
+        <StatCard title="إجمالي الفواتير" value={`${stats.invoicesTotal.toLocaleString('ar-EG')} ج.م`} subtitle={`${stats.invoicesCount} فاتورة`} icon={Wrench} color="#FFD600" delay={0.35} />
+        <StatCard title="تنبيهات نشطة" value={stats.unreadAlerts} subtitle={`${stats.criticalAlerts} حرجة`} icon={Bell} color="#FF1744" delay={0.4} />
+      </div>
+
+      {/* Charts row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Monthly Revenue Chart */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="prestige-card p-5 lg:col-span-2"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="font-bold text-white">الإيرادات الشهرية</h3>
+              <p className="text-xs text-gray-500">آخر 6 أشهر</p>
+            </div>
+            <Badge className="bg-[#DC143C]/15 text-[#DC143C] border-[#DC143C]/30">
+              <TrendingUp size={12} className="ml-1" />
+              {data.monthlyRevenue[data.monthlyRevenue.length - 1]?.count || 0} خدمة هذا الشهر
+            </Badge>
+          </div>
+          <ResponsiveContainer width="100%" height={260}>
+            <AreaChart data={data.monthlyRevenue} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#DC143C" stopOpacity={0.6} />
+                  <stop offset="100%" stopColor="#DC143C" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+              <XAxis dataKey="month" stroke="#888" tick={{ fill: '#888', fontSize: 12 }} />
+              <YAxis stroke="#888" tick={{ fill: '#888', fontSize: 11 }} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
+              <Tooltip
+                contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
+                formatter={(v: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, 'الإيراد']}
+              />
+              <Area type="monotone" dataKey="revenue" stroke="#DC143C" strokeWidth={2} fill="url(#colorRev)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </motion.div>
+
+        {/* Revenue by Type Pie */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="prestige-card p-5"
+        >
+          <h3 className="font-bold text-white mb-4">الإيرادات حسب نوع الخدمة</h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <PieChart>
+              <Pie
+                data={data.revenueByType}
+                dataKey="total"
+                nameKey="type"
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                innerRadius={45}
+                paddingAngle={2}
+              >
+                {data.revenueByType.map((_, idx) => (
+                  <Cell key={idx} fill={COLORS[idx % COLORS.length]} stroke="none" />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
+                formatter={(v: any, n: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, n]}
+              />
+              <Legend wrapperStyle={{ fontSize: 11, color: '#888' }} />
+            </PieChart>
+          </ResponsiveContainer>
+        </motion.div>
+      </div>
+
+      {/* Bottom row: Alerts + Employee Performance */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Alerts */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55 }}
+          className="prestige-card p-5"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-bold text-white flex items-center gap-2">
+              <AlertTriangle size={18} className="text-[#FF9100]" />
+              التنبيهات الذكية
+            </h3>
+            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white text-xs">
+              عرض الكل
+            </Button>
+          </div>
+          <ScrollArea className="h-72 pr-3">
+            <div className="space-y-2">
+              {data.alerts.length === 0 ? (
+                <div className="text-center py-8 text-gray-500 text-sm">لا توجد تنبيهات</div>
+              ) : (
+                data.alerts.map((alert, idx) => (
+                  <motion.div
+                    key={alert.id}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.6 + idx * 0.03 }}
+                    className={`p-3 rounded-lg border-r-2 ${
+                      alert.severity === 'critical'
+                        ? 'bg-[#DC143C]/8 border-[#DC143C]'
+                        : alert.severity === 'warning'
+                        ? 'bg-[#FF9100]/8 border-[#FF9100]'
+                        : 'bg-white/5 border-gray-500'
+                    }`}
+                  >
+                    <p className="text-sm font-semibold text-white">{alert.title}</p>
+                    <p className="text-xs text-gray-400 mt-1">{alert.message}</p>
+                  </motion.div>
+                ))
+              )}
+            </div>
+          </ScrollArea>
+        </motion.div>
+
+        {/* Employee Performance */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="prestige-card p-5"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-bold text-white flex items-center gap-2">
+              <Users size={18} className="text-[#00C853]" />
+              أداء الفنيين هذا الشهر
+            </h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => onNavigate('employees')}
+              className="text-gray-400 hover:text-white text-xs"
+            >
+              التفاصيل <ArrowLeft size={12} className="mr-1" />
+            </Button>
+          </div>
+          {data.employeePerformance.length === 0 ? (
+            <div className="text-center py-8 text-gray-500 text-sm">لا توجد عمولات هذا الشهر</div>
+          ) : (
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={data.employeePerformance} layout="vertical" margin={{ left: 0, right: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+                <XAxis type="number" stroke="#888" tick={{ fill: '#888', fontSize: 11 }} tickFormatter={v => `${v}`} />
+                <YAxis type="category" dataKey="name" stroke="#888" tick={{ fill: '#ccc', fontSize: 12 }} width={100} />
+                <Tooltip
+                  contentStyle={{ background: '#0A0A0A', border: '1px solid rgba(220,20,60,0.3)', borderRadius: 8, color: '#fff' }}
+                  formatter={(v: any) => [`${Number(v).toLocaleString('ar-EG')} ج.م`, 'العمولات']}
+                />
+                <Bar dataKey="commissions" radius={[0, 6, 6, 0]}>
+                  {data.employeePerformance.map((_, idx) => (
+                    <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </motion.div>
+      </div>
+
+      {/* Recent Services */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65 }}
+        className="prestige-card p-5"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-bold text-white flex items-center gap-2">
+            <Wrench size={18} className="text-[#03DAC6]" />
+            آخر الخدمات المسجلة
+          </h3>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onNavigate('services')}
+            className="text-gray-400 hover:text-white text-xs"
+          >
+            عرض الكل <ArrowLeft size={12} className="mr-1" />
+          </Button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-right border-b border-white/5">
+                <th className="py-2 px-3 text-gray-400 font-medium">الكود</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">التاريخ</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">العميل</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">السيارة</th>
+                <th className="py-2 px-3 text-gray-400 font-medium">الخدمة</th>
+                <th className="py-2 px-3 text-gray-400 font-medium text-left">السعر</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.recentServices.map((s, idx) => (
+                <tr key={idx} className="border-b border-white/5 hover:bg-white/3">
+                  <td className="py-2 px-3 font-mono text-[#DC143C]">{s.code}</td>
+                  <td className="py-2 px-3 text-gray-300">{new Date(s.date).toLocaleDateString('ar-EG')}</td>
+                  <td className="py-2 px-3 text-white">{s.clientName || '-'}</td>
+                  <td className="py-2 px-3 text-gray-300">{s.carType || '-'}</td>
+                  <td className="py-2 px-3">
+                    <Badge className="bg-white/5 text-gray-300 border-white/10 text-xs">{s.serviceType}</Badge>
+                  </td>
+                  <td className="py-2 px-3 text-left font-bold text-[#00C853]">
+                    {Number(s.price).toLocaleString('ar-EG')} ج.م
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
