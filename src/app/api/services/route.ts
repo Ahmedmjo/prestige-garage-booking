@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { unifyServiceType } from '@/lib/i18n'
 
 // GET /api/services — list services with optional filters
 export async function GET(req: NextRequest) {
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// POST /api/services — add new service record
+// POST /api/services — add new service record (with terminology unification)
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -43,6 +44,9 @@ export async function POST(req: NextRequest) {
       code = `SRV-${String(count + 1).padStart(4, '0')}`
     }
 
+    // Unify service type terminology
+    const unifiedType = unifyServiceType(body.serviceType) || 'أخرى'
+
     const service = await db.service.create({
       data: {
         code,
@@ -50,8 +54,8 @@ export async function POST(req: NextRequest) {
         plate: body.plate || null,
         clientName: body.clientName || null,
         carType: body.carType || null,
-        serviceType: body.serviceType || 'أخرى',
-        serviceCategory: body.serviceCategory || body.serviceType || 'أخرى',
+        serviceType: unifiedType,
+        serviceCategory: unifiedType,
         price: Number(body.price) || 0,
         paymentMethod: body.paymentMethod || null,
         technician: body.technician || null,
@@ -73,8 +77,8 @@ export async function POST(req: NextRequest) {
             year: d.getFullYear(),
             clientName: service.clientName,
             carType: service.carType,
-            serviceType: service.serviceType,
-            serviceCategory: service.serviceCategory || undefined,
+            serviceType: unifiedType,
+            serviceCategory: unifiedType,
             amount: Number(body.commissionAmount),
             notes: `عمولة خدمة ${service.code}`,
           },

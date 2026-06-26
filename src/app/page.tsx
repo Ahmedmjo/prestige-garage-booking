@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
   Film,
@@ -12,8 +11,6 @@ import {
   Menu,
   X,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { useI18n } from '@/lib/i18n-context'
 import { NotificationBell } from '@/components/prestige/notification-bell'
 import { LanguageToggle } from '@/components/prestige/language-toggle'
@@ -42,41 +39,53 @@ export default function Home() {
     { id: 'ai', label: t('aiAssistant'), icon: Bot, color: '#DC143C' },
   ]
 
+  // Lock body scroll when sidebar is open on mobile
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [sidebarOpen])
+
   return (
     <div className="min-h-screen bg-black text-white flex relative" dir={dir}>
-      {/* Subtle luxury car background */}
       <BackgroundDecoration />
 
-      {/* Mobile overlay */}
-      <AnimatePresence>
-        {sidebarOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSidebarOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-          />
-        )}
-      </AnimatePresence>
+      {/* Mobile overlay — no animation to prevent shaking */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+        />
+      )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 ${dir === 'rtl' ? 'right-0 border-l' : 'left-0 border-r'} z-50 h-screen w-72 bg-[#050505]/95 backdrop-blur-md border-white/5 flex flex-col transition-transform duration-300 ${
-          sidebarOpen ? 'translate-x-0' : (dir === 'rtl' ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0')
+        className={`fixed lg:sticky top-0 z-50 h-screen w-72 bg-[#050505]/95 backdrop-blur-md border-white/5 flex flex-col ${
+          dir === 'rtl' ? 'right-0 border-l' : 'left-0 border-r'
+        } ${
+          sidebarOpen
+            ? 'translate-x-0'
+            : dir === 'rtl'
+            ? 'translate-x-full lg:translate-x-0'
+            : '-translate-x-full lg:translate-x-0'
         }`}
+        style={{ transitionProperty: 'transform', transitionDuration: '0.2s', transitionTimingFunction: 'ease-out' }}
       >
         {/* Logo / Header */}
         <div className="p-5 border-b border-white/5">
           <div className="flex items-center gap-3">
             <PrestigeLogo size={48} className="flex-shrink-0" />
-            <div>
-              <h1 className="text-lg font-bold text-white leading-tight">Prestige Garage</h1>
-              <p className="text-xs text-gray-500">{t('appTagline')}</p>
+            <div className="min-w-0">
+              <h1 className="text-lg font-bold text-white leading-tight truncate">Prestige Garage</h1>
+              <p className="text-xs text-gray-500 truncate">{t('appTagline')}</p>
             </div>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden mr-auto p-2 text-gray-400 hover:text-white"
+              className="lg:hidden mr-auto p-2 text-gray-400 hover:text-white flex-shrink-0"
+              aria-label="Close sidebar"
             >
               <X size={20} />
             </button>
@@ -95,17 +104,17 @@ export default function Home() {
                   setActiveTab(item.id)
                   setSidebarOpen(false)
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium ${
                   isActive
                     ? 'bg-[#DC143C]/15 text-white'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
-                style={isActive ? { borderRightWidth: dir === 'rtl' ? '2px' : '0', borderLeftWidth: dir === 'ltr' ? '2px' : '0', borderStyle: 'solid', borderColor: '#DC143C' } : {}}
+                style={{ transition: 'background-color 0.15s, color 0.15s' }}
               >
-                <Icon size={20} style={{ color: isActive ? item.color : undefined }} />
+                <Icon size={20} style={{ color: isActive ? item.color : undefined }} className="flex-shrink-0" />
                 <span className="flex-1 text-right">{item.label}</span>
                 {item.id === 'ai' && (
-                  <span className="w-2 h-2 rounded-full bg-[#DC143C] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#DC143C] animate-pulse flex-shrink-0" />
                 )}
               </button>
             )
@@ -129,6 +138,7 @@ export default function Home() {
             <button
               onClick={() => setSidebarOpen(true)}
               className="lg:hidden p-2 text-gray-400 hover:text-white"
+              aria-label="Open sidebar"
             >
               <Menu size={22} />
             </button>
@@ -137,29 +147,20 @@ export default function Home() {
               <span className="font-bold hidden sm:inline">Prestige Garage</span>
             </div>
           </div>
-          {/* Right side actions */}
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <NotificationBell />
           </div>
         </header>
 
-        {/* Module content — fixed: no AnimatePresence mode="wait" to prevent shaking */}
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-x-hidden">
-          {/* Use simple key-based remount without exit animation to prevent shaking */}
-          <motion.div
-            key={activeTab + lang}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.15 }}
-          >
-            {activeTab === 'dashboard' && <Dashboard onNavigate={setActiveTab} />}
-            {activeTab === 'rolls' && <RollsModule />}
-            {activeTab === 'employees' && <EmployeesModule />}
-            {activeTab === 'stock' && <StockModule />}
-            {activeTab === 'services' && <ServicesModule />}
-            {activeTab === 'ai' && <AIChat />}
-          </motion.div>
+        {/* Module content — NO animation to prevent shaking */}
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-x-hidden" key={activeTab + lang}>
+          {activeTab === 'dashboard' && <Dashboard onNavigate={setActiveTab} />}
+          {activeTab === 'rolls' && <RollsModule />}
+          {activeTab === 'employees' && <EmployeesModule />}
+          {activeTab === 'stock' && <StockModule />}
+          {activeTab === 'services' && <ServicesModule />}
+          {activeTab === 'ai' && <AIChat />}
         </main>
       </div>
     </div>

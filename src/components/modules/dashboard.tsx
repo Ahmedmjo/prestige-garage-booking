@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import {
   DollarSign, Film, Users, Wrench, Package, Bell,
   TrendingUp, AlertTriangle, ArrowLeft, Bot,
@@ -143,7 +142,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       </div>
 
       {/* AI Quick Suggestions */}
-      <motion.div
+      <div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         className="prestige-card p-5"
@@ -171,7 +170,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </button>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -192,7 +191,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       {/* Charts row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Monthly Revenue Chart — thinner, cleaner */}
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
@@ -226,10 +225,10 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               <Area type="monotone" dataKey="revenue" stroke="#DC143C" strokeWidth={1.5} fill="url(#colorRev)" dot={{ r: 3, fill: '#DC143C', strokeWidth: 0 }} activeDot={{ r: 4 }} />
             </AreaChart>
           </ResponsiveContainer>
-        </motion.div>
+        </div>
 
         {/* Revenue by Category Pie (regrouped) */}
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -260,11 +259,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               <Legend wrapperStyle={{ fontSize: 10, color: '#888' }} iconSize={8} iconType="circle" />
             </PieChart>
           </ResponsiveContainer>
-        </motion.div>
+        </div>
       </div>
 
       {/* Category breakdown cards — uniform colored design */}
-      <motion.div
+      <div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.52 }}
@@ -298,12 +297,12 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             )
           })}
         </div>
-      </motion.div>
+      </div>
 
       {/* Bottom row: Alerts + Employee Performance */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Alerts */}
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55 }}
@@ -324,7 +323,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                 <div className="text-center py-8 text-gray-500 text-sm">{t('noNotifications')}</div>
               ) : (
                 data.alerts.map((alert, idx) => (
-                  <motion.div
+                  <div
                     key={alert.id}
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -339,15 +338,15 @@ export function Dashboard({ onNavigate }: DashboardProps) {
                   >
                     <p className="text-sm font-semibold text-white">{alert.title}</p>
                     <p className="text-xs text-gray-400 mt-1">{alert.message}</p>
-                  </motion.div>
+                  </div>
                 ))
               )}
             </div>
           </ScrollArea>
-        </motion.div>
+        </div>
 
         {/* Employee Performance — line per employee, thin lines */}
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -424,11 +423,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
               </div>
             </>
           )}
-        </motion.div>
+        </div>
       </div>
 
       {/* Recent Services */}
-      <motion.div
+      <div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.65 }}
@@ -478,7 +477,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }

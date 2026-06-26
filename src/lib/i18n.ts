@@ -324,6 +324,7 @@ export const translations = {
 export type TranslationKey = keyof typeof translations.ar
 
 // ─── Service type → category mapping ─────────────────────────
+// Unify terminology: "ديتيلنج" (correct spelling), "بروتيكشن" (not فيلم حماية)
 export function categorizeService(serviceType: string | null | undefined): string {
   if (!serviceType) return 'cat_other'
   const t = serviceType.toLowerCase()
@@ -331,14 +332,32 @@ export function categorizeService(serviceType: string | null | undefined): strin
   if (t.includes('بوليش') || t.includes('polish') || t.includes('تلميع')) return 'cat_polish'
   // Nano ceramic
   if (t.includes('نانو') || t.includes('nano') || t.includes('ceramic')) return 'cat_nano'
-  // Detailing
-  if (t.includes('دتيلنج') || t.includes('ديتيلنج') || t.includes('detail')) return 'cat_detailing'
+  // Detailing — unified to "ديتيلنج"
+  if (t.includes('ديتيلنج') || t.includes('دتيلنج') || t.includes('detail')) return 'cat_detailing'
   // Thermal insulation + Vamia
   if (t.includes('عزل') || t.includes('thermal') || t.includes('فاميه') || t.includes('vamia') || t.includes('thv') || t.includes('thf')) return 'cat_thermal'
-  // Protection (PPF)
+  // Protection (PPF) — unified to "بروتيكشن" (not فيلم حماية)
   if (t.includes('بروتيكشن') || t.includes('protection') || t.includes('ppf') || t.includes('حماية')) return 'cat_protection'
   // Other
   return 'cat_other'
+}
+
+// ─── Unify service type names ─────────────────────────────────
+// Fix typos and standardize terms:
+// - "دتيلنج" → "ديتيلنج"
+// - "فيلم حماية" → "بروتيكشن"
+// - "أإزالة قطران" → "إزالة قطران"
+export function unifyServiceType(serviceType: string | null | undefined): string {
+  if (!serviceType) return ''
+  let s = serviceType.trim()
+  // Fix common typo: "أإزالة" → "إزالة"
+  s = s.replace(/أإزالة/g, 'إزالة')
+  s = s.replace(/أإزال/g, 'إزال')
+  // Unify "دتيلنج" → "ديتيلنج" (correct Arabic spelling)
+  s = s.replace(/دتيلنج/g, 'ديتيلنج')
+  // Unify "فيلم حماية" → "بروتيكشن"
+  s = s.replace(/فيلم حماية/g, 'بروتيكشن')
+  return s
 }
 
 // ─── Format number with Latin digits ──────────────────────────

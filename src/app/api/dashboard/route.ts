@@ -100,7 +100,7 @@ export async function GET() {
       weeklyLeave: monthAttendance.filter(a => a.status === 'ر').length,
     }
 
-    // Top employees by commissions this month
+    // ALL employees with commissions this month — show everyone who has commissions
     const monthCommissions = commissions.filter(c => c.month === currentMonth && c.year === currentYear)
     const employeePerf: Record<string, { commissions: number; services: number }> = {}
     for (const c of monthCommissions) {
