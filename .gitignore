@@ -60,3 +60,4 @@ dev.log
 *.log
 .env.local
 
+download/

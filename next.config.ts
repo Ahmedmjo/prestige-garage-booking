@@ -6,8 +6,16 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  // Required for Vercel + SQLite (serverless)
+  // Required for Prisma + AI SDK on Vercel serverless
   serverExternalPackages: ["@prisma/client", "z-ai-web-dev-sdk"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
