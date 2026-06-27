@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Sparkles, User, Trash2, Lightbulb, History } from 'lucide-react'
+import { Send, Sparkles, User, X, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -31,30 +31,35 @@ const QUICK_SUGGESTIONS = [
   { icon: '🔔', text: 'ما هي التنبيهات النشطة؟', category: 'تنبيه' },
 ]
 
-const STORAGE_KEY = 'prestige-ai-chat-history'
-const MAX_STORED_MESSAGES = 100
+const STORAGE_KEY = 'prestige-ai-chat-active'
+const MAX_STORED_MESSAGES = 200
 
-export function AIChat() {
+interface AIChatProps {
+  onClose?: () => void  // When closed, return to dashboard
+}
+
+export function AIChat({ onClose }: AIChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [showHistory, setShowHistory] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  // ─── Load saved conversation on mount ───────────────────
+  // ─── Load active conversation on mount ─────────────────
+  // Each "session" continues until user clicks "Close conversation"
   useEffect(() => {
-    const saved = loadConversation()
+    const saved = loadActiveConversation()
     if (saved && saved.length > 0) {
+      // Resume existing conversation
       setMessages(saved)
     } else {
-      // First time — show welcome message
+      // Start new conversation with welcome message
       const welcomeMsg: Message = {
         role: 'assistant',
         content: 'مرحباً! أنا **مساعد برستيج** 🤖\n\nأنا هنا لمساعدتك في إدارة المركز بذكاء. أقدر أجيب على أسئلتك عن المخزون والرواتب والإيرادات، وأساعدك في تحليل البيانات وإنشاء التقارير.\n\nاكتب سؤالك أو اختر من الاقتراحات السريعة بالأسفل 👇',
         timestamp: new Date().toISOString(),
       }
       setMessages([welcomeMsg])
-      saveConversation([welcomeMsg])
+      saveActiveConversation([welcomeMsg])
     }
   }, [])
 
@@ -65,14 +70,14 @@ export function AIChat() {
     }
   }, [messages])
 
-  // ─── Save conversation to localStorage whenever it changes ──
+  // ─── Save conversation whenever it changes ──────────────
   useEffect(() => {
     if (messages.length > 0) {
-      saveConversation(messages)
+      saveActiveConversation(messages)
     }
   }, [messages])
 
-  function loadConversation(): Message[] | null {
+  function loadActiveConversation(): Message[] | null {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (!saved) return null
@@ -83,14 +88,17 @@ export function AIChat() {
     }
   }
 
-  function saveConversation(msgs: Message[]) {
+  function saveActiveConversation(msgs: Message[]) {
     try {
-      // Keep only last MAX_STORED_MESSAGES
       const toStore = msgs.slice(-MAX_STORED_MESSAGES)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore))
     } catch {
       // localStorage might be full, ignore
     }
+  }
+
+  function clearActiveConversation() {
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   async function sendMessage(text: string) {
@@ -139,24 +147,22 @@ export function AIChat() {
     }
   }
 
-  function clearChat() {
-    if (!confirm('هل تريد مسح جميع المحادثات؟ لا يمكن التراجع.')) return
-    const welcomeMsg: Message = {
-      role: 'assistant',
-      content: 'مرحباً! أنا **مساعد برستيج** 🤖\n\nكيف أقدر أساعدك اليوم؟',
-      timestamp: new Date().toISOString(),
+  // ─── Close conversation: clear saved chat + return to dashboard ───
+  function handleCloseConversation() {
+    if (!confirm('هل تريد إنهاء المحادثة والعودة للوحة التحكم؟ سيتم مسح المحادثة الحالية.')) return
+    clearActiveConversation()
+    toast.success('تم إنهاء المحادثة')
+    if (onClose) {
+      onClose()  // Return to dashboard
     }
-    setMessages([welcomeMsg])
-    saveConversation([welcomeMsg])
-    toast.success('تم مسح المحادثة')
   }
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)] lg:h-[calc(100vh-4rem)] max-w-4xl mx-auto">
-      {/* Header — with Prestige Logo instead of Bot icon */}
+      {/* Header — with Prestige Logo + Close button */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          {/* Prestige Logo (Red) instead of Bot icon */}
+          {/* Prestige Logo (Red) */}
           <div className="relative">
             <PrestigeLogo size={48} className="flex-shrink-0" />
             <span className="absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 rounded-full bg-[#00C853] border-2 border-black" />
@@ -169,19 +175,22 @@ export function AIChat() {
             </p>
           </div>
         </div>
+        {/* Close conversation button — returns to dashboard */}
         <Button
           variant="ghost"
           size="sm"
-          onClick={clearChat}
-          className="text-gray-400 hover:text-white"
-          title="مسح المحادثة"
+          onClick={handleCloseConversation}
+          className="text-gray-400 hover:text-white hover:bg-[#DC143C]/10"
+          title="إنهاء المحادثة والعودة للوحة التحكم"
         >
-          <Trash2 size={16} />
+          <X size={18} className="ml-1" />
+          <span className="text-xs hidden sm:inline">إنهاء المحادثة</span>
         </Button>
       </div>
 
-      {/* Chat area */}
+      {/* Chat area — conversation scrolls up, input stays at bottom */}
       <div className="flex-1 prestige-card overflow-hidden flex flex-col">
+        {/* Messages — scrollable area */}
         <ScrollArea className="flex-1 p-4" ref={scrollRef}>
           <div className="space-y-4">
             <AnimatePresence>
@@ -193,7 +202,7 @@ export function AIChat() {
                   transition={{ duration: 0.3 }}
                   className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                 >
-                  {/* Avatar — use Prestige Logo for assistant, User icon for user */}
+                  {/* Avatar — Prestige Logo for assistant */}
                   <div className={`w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
                     msg.role === 'user' ? 'bg-white/10' : 'bg-transparent'
                   }`}>
@@ -236,7 +245,7 @@ export function AIChat() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-600 mt-1 px-2">
-                      {new Date(msg.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}
+                      {new Date(msg.timestamp).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                 </motion.div>
@@ -290,8 +299,8 @@ export function AIChat() {
           </div>
         )}
 
-        {/* Input */}
-        <div className="border-t border-white/5 p-3 bg-black/30">
+        {/* Input bar — always visible at bottom during conversation */}
+        <div className="border-t border-white/5 p-3 bg-black/30 flex-shrink-0">
           <form
             onSubmit={(e) => { e.preventDefault(); sendMessage(input) }}
             className="flex gap-2"
@@ -302,6 +311,7 @@ export function AIChat() {
               placeholder="اكتب سؤالك هنا..."
               disabled={loading}
               className="bg-[#0A0A0A] border-white/10 text-white placeholder:text-gray-600 flex-1"
+              autoFocus
             />
             <Button
               type="submit"
@@ -312,7 +322,7 @@ export function AIChat() {
             </Button>
           </form>
           <p className="text-[10px] text-gray-600 mt-2 text-center">
-            💾 المحادثة تُحفظ تلقائياً — لن تفقد أسئلتك عند التحديث
+            💬 المحادثة مستمرة — اكتب سؤالك التالي مباشرة
           </p>
         </div>
       </div>

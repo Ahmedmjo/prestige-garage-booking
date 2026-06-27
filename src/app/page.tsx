@@ -166,7 +166,7 @@ export default function Home() {
           {activeTab === 'employees' && <EmployeesModule />}
           {activeTab === 'stock' && <StockModule />}
           {activeTab === 'services' && <ServicesModule />}
-          {activeTab === 'ai' && <AIChat />}
+          {activeTab === 'ai' && <AIChat onClose={() => setActiveTab('dashboard')} />}
         </main>
       </div>
     </div>
