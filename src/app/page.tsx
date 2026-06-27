@@ -7,7 +7,6 @@ import {
   Users,
   Package,
   Wrench,
-  Bot,
   Menu,
   X,
 } from 'lucide-react'
@@ -30,13 +29,14 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<TabId>('dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  const NAV_ITEMS: { id: TabId; label: string; icon: any; color: string }[] = [
+  // Special: AI tab uses Prestige Logo instead of icon
+  const NAV_ITEMS: { id: TabId; label: string; icon: any; color: string; isLogo?: boolean }[] = [
     { id: 'dashboard', label: t('dashboard'), icon: LayoutDashboard, color: '#DC143C' },
     { id: 'rolls', label: t('rolls'), icon: Film, color: '#FF9100' },
     { id: 'employees', label: t('employees'), icon: Users, color: '#00C853' },
     { id: 'stock', label: t('stock'), icon: Package, color: '#BB86FC' },
     { id: 'services', label: t('services'), icon: Wrench, color: '#03DAC6' },
-    { id: 'ai', label: t('aiAssistant'), icon: Bot, color: '#DC143C' },
+    { id: 'ai', label: t('aiAssistant'), icon: null, color: '#DC143C', isLogo: true },
   ]
 
   // Lock body scroll when sidebar is open on mobile
@@ -111,7 +111,13 @@ export default function Home() {
                 }`}
                 style={{ transition: 'background-color 0.15s, color 0.15s' }}
               >
-                <Icon size={20} style={{ color: isActive ? item.color : undefined }} className="flex-shrink-0" />
+                {item.isLogo ? (
+                  <div className="flex-shrink-0" style={{ filter: isActive ? 'none' : 'grayscale(0.3) opacity(0.7)' }}>
+                    <PrestigeLogo size={24} />
+                  </div>
+                ) : (
+                  <Icon size={20} style={{ color: isActive ? item.color : undefined }} className="flex-shrink-0" />
+                )}
                 <span className="flex-1 text-right">{item.label}</span>
                 {item.id === 'ai' && (
                   <span className="w-2 h-2 rounded-full bg-[#DC143C] animate-pulse flex-shrink-0" />

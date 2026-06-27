@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Bot, Send, Sparkles, User, Trash2, Lightbulb } from 'lucide-react'
+import { Send, Sparkles, User, Trash2, Lightbulb, History } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { toast } from 'sonner'
+import { PrestigeLogo } from '@/components/prestige/logo'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -30,23 +31,67 @@ const QUICK_SUGGESTIONS = [
   { icon: '🔔', text: 'ما هي التنبيهات النشطة؟', category: 'تنبيه' },
 ]
 
+const STORAGE_KEY = 'prestige-ai-chat-history'
+const MAX_STORED_MESSAGES = 100
+
 export function AIChat() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: 'مرحباً! أنا **مساعد برستيج** 🤖\n\nأنا هنا لمساعدتك في إدارة المركز بذكاء. أقدر أجيب على أسئلتك عن المخزون والرواتب والإيرادات، وأساعدك في تحليل البيانات وإنشاء التقارير.\n\nاكتب سؤالك أو اختر من الاقتراحات السريعة بالأسفل 👇',
-      timestamp: new Date().toISOString(),
-    },
-  ])
+  const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showHistory, setShowHistory] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
+  // ─── Load saved conversation on mount ───────────────────
+  useEffect(() => {
+    const saved = loadConversation()
+    if (saved && saved.length > 0) {
+      setMessages(saved)
+    } else {
+      // First time — show welcome message
+      const welcomeMsg: Message = {
+        role: 'assistant',
+        content: 'مرحباً! أنا **مساعد برستيج** 🤖\n\nأنا هنا لمساعدتك في إدارة المركز بذكاء. أقدر أجيب على أسئلتك عن المخزون والرواتب والإيرادات، وأساعدك في تحليل البيانات وإنشاء التقارير.\n\nاكتب سؤالك أو اختر من الاقتراحات السريعة بالأسفل 👇',
+        timestamp: new Date().toISOString(),
+      }
+      setMessages([welcomeMsg])
+      saveConversation([welcomeMsg])
+    }
+  }, [])
+
+  // ─── Auto-scroll to bottom on new messages ──────────────
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages])
+
+  // ─── Save conversation to localStorage whenever it changes ──
+  useEffect(() => {
+    if (messages.length > 0) {
+      saveConversation(messages)
+    }
+  }, [messages])
+
+  function loadConversation(): Message[] | null {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (!saved) return null
+      const parsed = JSON.parse(saved)
+      return Array.isArray(parsed) ? parsed : null
+    } catch {
+      return null
+    }
+  }
+
+  function saveConversation(msgs: Message[]) {
+    try {
+      // Keep only last MAX_STORED_MESSAGES
+      const toStore = msgs.slice(-MAX_STORED_MESSAGES)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore))
+    } catch {
+      // localStorage might be full, ignore
+    }
+  }
 
   async function sendMessage(text: string) {
     if (!text.trim() || loading) return
@@ -95,22 +140,25 @@ export function AIChat() {
   }
 
   function clearChat() {
-    setMessages([{
+    if (!confirm('هل تريد مسح جميع المحادثات؟ لا يمكن التراجع.')) return
+    const welcomeMsg: Message = {
       role: 'assistant',
       content: 'مرحباً! أنا **مساعد برستيج** 🤖\n\nكيف أقدر أساعدك اليوم؟',
       timestamp: new Date().toISOString(),
-    }])
+    }
+    setMessages([welcomeMsg])
+    saveConversation([welcomeMsg])
+    toast.success('تم مسح المحادثة')
   }
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)] lg:h-[calc(100vh-4rem)] max-w-4xl mx-auto">
-      {/* Header */}
+      {/* Header — with Prestige Logo instead of Bot icon */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
+          {/* Prestige Logo (Red) instead of Bot icon */}
           <div className="relative">
-            <div className="w-12 h-12 rounded-xl prestige-gradient flex items-center justify-center prestige-glow">
-              <Bot size={24} />
-            </div>
+            <PrestigeLogo size={48} className="flex-shrink-0" />
             <span className="absolute -bottom-0.5 -left-0.5 w-3.5 h-3.5 rounded-full bg-[#00C853] border-2 border-black" />
           </div>
           <div>
@@ -126,6 +174,7 @@ export function AIChat() {
           size="sm"
           onClick={clearChat}
           className="text-gray-400 hover:text-white"
+          title="مسح المحادثة"
         >
           <Trash2 size={16} />
         </Button>
@@ -144,15 +193,15 @@ export function AIChat() {
                   transition={{ duration: 0.3 }}
                   className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
                 >
-                  {/* Avatar */}
-                  <div
-                    className={`w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center ${
-                      msg.role === 'user'
-                        ? 'bg-white/10'
-                        : 'prestige-gradient'
-                    }`}
-                  >
-                    {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
+                  {/* Avatar — use Prestige Logo for assistant, User icon for user */}
+                  <div className={`w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
+                    msg.role === 'user' ? 'bg-white/10' : 'bg-transparent'
+                  }`}>
+                    {msg.role === 'user' ? (
+                      <User size={16} />
+                    ) : (
+                      <PrestigeLogo size={36} />
+                    )}
                   </div>
 
                   {/* Bubble */}
@@ -201,8 +250,8 @@ export function AIChat() {
                 animate={{ opacity: 1 }}
                 className="flex gap-3"
               >
-                <div className="w-9 h-9 rounded-lg prestige-gradient flex items-center justify-center">
-                  <Bot size={16} />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden">
+                  <PrestigeLogo size={36} />
                 </div>
                 <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl rounded-tl-sm p-4">
                   <div className="flex gap-1.5">
@@ -216,7 +265,7 @@ export function AIChat() {
           </div>
         </ScrollArea>
 
-        {/* Quick suggestions */}
+        {/* Quick suggestions — only show if few messages */}
         {messages.length <= 1 && (
           <div className="border-t border-white/5 p-3 bg-black/30">
             <div className="flex items-center gap-2 mb-2">
@@ -262,6 +311,9 @@ export function AIChat() {
               <Send size={18} className="rotate-180" />
             </Button>
           </form>
+          <p className="text-[10px] text-gray-600 mt-2 text-center">
+            💾 المحادثة تُحفظ تلقائياً — لن تفقد أسئلتك عند التحديث
+          </p>
         </div>
       </div>
     </div>
@@ -270,7 +322,6 @@ export function AIChat() {
 
 // Format AI response with basic markdown (bold, lists)
 function formatMessage(text: string): React.ReactNode {
-  // Split by lines and render with proper formatting
   const lines = text.split('\n')
   return lines.map((line, idx) => {
     // Bold: **text**
@@ -305,4 +356,3 @@ function formatMessage(text: string): React.ReactNode {
     return <div key={idx} className="my-0.5">{formatted}</div>
   })
 }
-// recompile
