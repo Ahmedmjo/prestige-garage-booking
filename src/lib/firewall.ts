@@ -390,9 +390,12 @@ export async function firewall(req: Request): Promise<FirewallResult> {
   }
 
   // ─── Layer 6: Body Threat Detection (for POST/PUT/PATCH) ───
+  // NOTE: We clone the request to avoid consuming the body
+  // so the route handler can still read it
   if (['POST', 'PUT', 'PATCH'].includes(method) && contentLength > 0) {
     try {
-      const body = await req.json()
+      const clonedReq = req.clone()
+      const body = await clonedReq.json()
       const bodyStr = JSON.stringify(body)
       const bodyThreat = detectThreats(bodyStr)
       if (bodyThreat.detected) {

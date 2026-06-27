@@ -14,6 +14,7 @@ interface Message {
   content: string
   timestamp: string
   intent?: string
+  provider?: string
 }
 
 const QUICK_SUGGESTIONS = [
@@ -78,6 +79,7 @@ export function AIChat() {
         content: data.reply,
         timestamp: data.timestamp || new Date().toISOString(),
         intent: data.intent,
+        provider: data.provider,
       }
       setMessages(prev => [...prev, aiMsg])
     } catch (e: any) {
@@ -165,14 +167,24 @@ export function AIChat() {
                       <div className="text-sm leading-relaxed whitespace-pre-wrap">
                         {formatMessage(msg.content)}
                       </div>
-                      {msg.intent && msg.intent !== 'query' && (
-                        <Badge className="mt-2 bg-white/5 text-gray-400 border-white/10 text-xs">
-                          {msg.intent === 'add' ? '📝 إضافة' :
-                           msg.intent === 'report' ? '📊 تقرير' :
-                           msg.intent === 'alert' ? '🔔 تنبيه' :
-                           msg.intent === 'suggestion' ? '💡 اقتراح' : msg.intent}
-                        </Badge>
-                      )}
+                      <div className="flex items-center gap-1 mt-2 flex-wrap">
+                        {msg.intent && msg.intent !== 'query' && (
+                          <Badge className="bg-white/5 text-gray-400 border-white/10 text-xs">
+                            {msg.intent === 'add' ? '📝 إضافة' :
+                             msg.intent === 'report' ? '📊 تقرير' :
+                             msg.intent === 'alert' ? '🔔 تنبيه' :
+                             msg.intent === 'suggestion' ? '💡 اقتراح' : msg.intent}
+                          </Badge>
+                        )}
+                        {msg.provider && (
+                          <Badge className="bg-[#03DAC6]/10 text-[#03DAC6] border-[#03DAC6]/20 text-[10px]" title="AI Model">
+                            {msg.provider === 'groq-llama-3.3-70b' ? '🦙 Llama 3.3 70B' :
+                             msg.provider === 'openrouter-llama-3.1-8b' ? '🦙 Llama 3.1 8B' :
+                             msg.provider === 'z-ai-glm' ? '🤖 GLM' :
+                             msg.provider === 'none' ? '❌ خطأ' : msg.provider}
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                     <p className="text-xs text-gray-600 mt-1 px-2">
                       {new Date(msg.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}

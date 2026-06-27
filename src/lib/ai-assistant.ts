@@ -1,35 +1,46 @@
 /**
- * Prestige AI Assistant Engine v2 — accurate data reading
- * Uses z-ai-web-dev-sdk with comprehensive database snapshot.
- * The AI has access to ALL data: rolls, employees, salaries, attendance,
- * advances, penalties, commissions, stock, services, invoices, alerts.
+ * 🤖 Prestige AI Assistant — Multi-Provider Hybrid Engine v2
+ *
+ * Tries multiple AI providers in order of quality:
+ * 1. Groq (Llama 3 70B) — fastest + most accurate
+ * 2. OpenRouter (Llama 3 8B) — good fallback
+ * 3. z-ai-web-dev-sdk (GLM) — always available (no key needed)
+ *
+ * Configuration:
+ * - GROQ_API_KEY: Get free key from https://console.groq.com
+ * - OPENROUTER_API_KEY: Get free key from https://openrouter.ai
+ *
+ * If no keys are set, falls back to z-ai-web-dev-sdk automatically.
  */
 import { db } from '@/lib/db'
 import { categorizeService } from '@/lib/i18n'
 
-// ─── Tool: build comprehensive data snapshot ───────────────────
+// ─── Provider configuration ──────────────────────────────────
+const PROVIDERS = {
+  groq: {
+    enabled: !!process.env.GROQ_API_KEY,
+    apiKey: process.env.GROQ_API_KEY || '',
+    model: 'llama-3.3-70b-versatile',
+    url: 'https://api.groq.com/openai/v1/chat/completions',
+  },
+  openrouter: {
+    enabled: !!process.env.OPENROUTER_API_KEY,
+    apiKey: process.env.OPENROUTER_API_KEY || '',
+    model: 'meta-llama/llama-3.1-8b-instruct:free',
+    url: 'https://openrouter.ai/api/v1/chat/completions',
+  },
+}
+
+// ─── Build comprehensive data snapshot ────────────────────────
 async function buildDataSnapshot() {
   const [
-    rolls,
-    employees,
-    services,
-    stockItems,
-    invoices,
-    advances,
-    commissions,
-    attendance,
-    consumptions,
-    alerts,
-    penalties,
-    stockMovements,
+    rolls, employees, services, stockItems, invoices,
+    advances, commissions, attendance, consumptions, alerts, penalties,
   ] = await Promise.all([
     db.roll.findMany({ include: { consumptions: { take: 10, orderBy: { date: 'desc' } } } }),
     db.employee.findMany({
       include: {
-        advances: true,
-        commissions: true,
-        attendance: true,
-        penalties: true,
+        advances: true, commissions: true, attendance: true, penalties: true,
       },
     }),
     db.service.findMany({ orderBy: { date: 'desc' }, take: 200 }),
@@ -41,7 +52,6 @@ async function buildDataSnapshot() {
     db.rollConsumption.findMany(),
     db.alert.findMany({ where: { isRead: false } }),
     db.penalty.findMany(),
-    db.stockMovement.findMany({ orderBy: { date: 'desc' }, take: 50 }),
   ])
 
   const now = new Date()
@@ -49,8 +59,6 @@ async function buildDataSnapshot() {
   const currentYear = now.getFullYear()
   const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']
 
-  // ─── Compute payroll per employee for current month ─────────
-  // FIXED SALARY MODEL: salary is fixed monthly, only advances + penalties deducted
   const payroll = employees.map(emp => {
     const monthAtt = emp.attendance.filter(a => a.month === currentMonth && a.year === currentYear)
     const present = monthAtt.filter(a => a.status === 'ح').length
@@ -60,14 +68,11 @@ async function buildDataSnapshot() {
 
     const monthCommissions = emp.commissions.filter(c => c.month === currentMonth && c.year === currentYear)
     const totalCommissions = monthCommissions.reduce((s, c) => s + c.amount, 0)
-
     const monthAdvances = emp.advances.filter(a => a.month === currentMonth && a.year === currentYear)
     const totalAdvances = monthAdvances.reduce((s, a) => s + a.amount, 0)
-
     const monthPenalties = emp.penalties.filter(p => p.month === currentMonth && p.year === currentYear)
     const totalPenalties = monthPenalties.reduce((s, p) => s + p.amount, 0)
 
-    // FIXED SALARY — does NOT change with attendance
     const fixedSalary = emp.baseSalary
     const netSalary = fixedSalary + totalCommissions - totalAdvances - totalPenalties
 
@@ -77,14 +82,28 @@ async function buildDataSnapshot() {
       status: emp.status,
       fixedSalary,
       attendance: { present, absent, officialLeave, weeklyLeave, total: monthAtt.length },
-      commissions: { count: monthCommissions.length, total: totalCommissions, items: monthCommissions.map(c => ({ client: c.clientName, car: c.carType, service: c.serviceType, amount: c.amount, date: c.date })) },
-      advances: { count: monthAdvances.length, total: totalAdvances, items: monthAdvances.map(a => ({ amount: a.amount, date: a.date, notes: a.notes })) },
-      penalties: { count: monthPenalties.length, total: totalPenalties, items: monthPenalties.map(p => ({ amount: p.amount, date: p.date, reason: p.reason })) },
+      commissions: {
+        count: monthCommissions.length,
+        total: totalCommissions,
+        items: monthCommissions.map(c => ({
+          client: c.clientName, car: c.carType, service: c.serviceType,
+          amount: c.amount, date: c.date
+        }))
+      },
+      advances: {
+        count: monthAdvances.length,
+        total: totalAdvances,
+        items: monthAdvances.map(a => ({ amount: a.amount, date: a.date, notes: a.notes }))
+      },
+      penalties: {
+        count: monthPenalties.length,
+        total: totalPenalties,
+        items: monthPenalties.map(p => ({ amount: p.amount, date: p.date, reason: p.reason }))
+      },
       netSalary,
     }
   })
 
-  // ─── Services analysis (regrouped) ─────────────────────────
   const servicesByCategory: Record<string, { count: number; total: number; items: any[] }> = {
     cat_polish: { count: 0, total: 0, items: [] },
     cat_nano: { count: 0, total: 0, items: [] },
@@ -98,17 +117,11 @@ async function buildDataSnapshot() {
     servicesByCategory[cat].count++
     servicesByCategory[cat].total += s.price
     servicesByCategory[cat].items.push({
-      code: s.code,
-      date: s.date,
-      client: s.clientName,
-      car: s.carType,
-      service: s.serviceType,
-      price: s.price,
-      technician: s.technician,
+      code: s.code, date: s.date, client: s.clientName, car: s.carType,
+      service: s.serviceType, price: s.price, technician: s.technician,
     })
   }
 
-  // ─── Stock summary ─────────────────────────────────────────
   const stockByCategory = {
     detailing: stockItems.filter(s => s.category === 'detailing'),
     polish: stockItems.filter(s => s.category === 'polish'),
@@ -116,7 +129,6 @@ async function buildDataSnapshot() {
     tools: stockItems.filter(s => s.category === 'tools'),
   }
 
-  // ─── Rolls summary ─────────────────────────────────────────
   const rollsByCategory = {
     ppf: rolls.filter(r => r.rollCategory === 'ppf'),
     thermal_long: rolls.filter(r => r.rollCategory === 'thermal_long'),
@@ -130,13 +142,10 @@ async function buildDataSnapshot() {
       currentMonthNum: currentMonth,
       currentYear,
     },
-    payroll, // ← FIXED SALARY model, full breakdown
+    payroll,
     employees: employees.map(e => ({
-      name: e.name,
-      jobTitle: e.jobTitle,
-      baseSalary: e.baseSalary,
-      status: e.status,
-      phone: e.phone,
+      name: e.name, jobTitle: e.jobTitle, baseSalary: e.baseSalary,
+      status: e.status, phone: e.phone,
     })),
     rolls: {
       summary: {
@@ -152,38 +161,23 @@ async function buildDataSnapshot() {
       },
       byCategory: rollsByCategory,
       items: rolls.map(r => ({
-        code: r.code,
-        brand: r.brand,
-        type: r.type,
-        model: r.model,
-        category: r.rollCategory,
-        totalLength: r.totalLength,
-        remainingLength: r.remainingLength,
-        price: r.price,
-        supplier: r.supplier,
-        status: r.status,
-        carsCount: r.carsCount,
-        purchaseDate: r.purchaseDate,
+        code: r.code, brand: r.brand, type: r.type, model: r.model,
+        category: r.rollCategory, totalLength: r.totalLength,
+        remainingLength: r.remainingLength, price: r.price, supplier: r.supplier,
+        status: r.status, carsCount: r.carsCount, purchaseDate: r.purchaseDate,
       })),
     },
     services: {
       total: services.length,
       totalRevenue: services.reduce((s, x) => s + x.price, 0),
       byCategory: Object.entries(servicesByCategory).map(([key, v]) => ({
-        key,
-        count: v.count,
-        total: v.total,
+        key, count: v.count, total: v.total,
         average: v.count > 0 ? Math.round(v.total / v.count) : 0,
         sampleItems: v.items.slice(0, 5),
       })),
       recentItems: services.slice(0, 20).map(s => ({
-        code: s.code,
-        date: s.date,
-        client: s.clientName,
-        car: s.carType,
-        service: s.serviceType,
-        price: s.price,
-        technician: s.technician,
+        code: s.code, date: s.date, client: s.clientName, car: s.carType,
+        service: s.serviceType, price: s.price, technician: s.technician,
       })),
     },
     stock: {
@@ -194,15 +188,10 @@ async function buildDataSnapshot() {
         outOfStock: stockItems.filter(s => s.status === 'نفد').length,
       },
       byCategory: Object.entries(stockByCategory).map(([cat, items]) => ({
-        category: cat,
-        count: items.length,
+        category: cat, count: items.length,
         items: items.map(i => ({
-          name: i.name,
-          unit: i.unit,
-          currentQty: i.currentQty,
-          minLevel: i.minLevel,
-          status: i.status,
-          unitPrice: i.unitPrice,
+          name: i.name, unit: i.unit, currentQty: i.currentQty,
+          minLevel: i.minLevel, status: i.status, unitPrice: i.unitPrice,
         })),
       })),
     },
@@ -210,31 +199,18 @@ async function buildDataSnapshot() {
       total: invoices.length,
       totalNet: invoices.reduce((s, i) => s + i.net, 0),
       items: invoices.map(i => ({
-        deliveryNote: i.deliveryNote,
-        date: i.date,
-        description: i.description,
-        total: i.total,
-        discount: i.discount,
-        net: i.net,
-        itemsCount: i.itemsCount,
+        deliveryNote: i.deliveryNote, date: i.date, description: i.description,
+        total: i.total, discount: i.discount, net: i.net, itemsCount: i.itemsCount,
       })),
     },
     alerts: alerts.map(a => ({
-      type: a.type,
-      severity: a.severity,
-      title: a.title,
-      message: a.message,
+      type: a.type, severity: a.severity, title: a.title, message: a.message,
     })),
     consumptions: {
       total: consumptions.length,
       recent: consumptions.slice(0, 20).map(c => ({
-        date: c.date,
-        rollCode: c.rollCode,
-        client: c.clientName,
-        car: c.carType,
-        metersUsed: c.metersUsed,
-        waste: c.waste,
-        workOrder: c.workOrder,
+        date: c.date, rollCode: c.rollCode, client: c.clientName, car: c.carType,
+        metersUsed: c.metersUsed, waste: c.waste, workOrder: c.workOrder,
       })),
     },
   }
@@ -265,8 +241,8 @@ const SYSTEM_PROMPT = `أنت "مساعد برستيج" — المساعد ال�
 يمكنك الإجابة عن أي سؤال يتعلق بـ:
 - **الرولات**: الرصيد، الاستهلاك، عدد السيارات، الموردين، الحالة، الفئة (PPF/عزل طويل/قصير)
 - **الموظفون**: المرتب الثابت، الحضور، الغياب، العمولات، السلفيات، الجزاءات، صافي المرتب
-- **المخزون**: الكميات، الوحدات (مل/عبوة/وحدة)، الحالة، الفئة (بوليش/دتيلنج/نانو/أدوات)
-- **الخدمات**: السجل، الإيرادات، الفئات (بوليش/نانو/دتيلنج/عزل حراري وفاميه/بروتيكشن/أخرى)
+- **المخزون**: الكميات، الوحدات (مل/عبوة/وحدة)، الحالة، الفئة (بوليش/ديتيلنج/نانو/أدوات)
+- **الخدمات**: السجل، الإيرادات، الفئات (بوليش/نانو/ديتيلنج/عزل حراري وفاميه/بروتيكشن/أخرى)
 - **الفواتير**: أذونات التسليم، المبالغ، الخصومات
 - **التنبيهات**: الرولات المنخفضة، المخزون الناقص
 
@@ -285,13 +261,55 @@ const SYSTEM_PROMPT = `أنت "مساعد برستيج" — المساعد ال�
 
 ستحصل على لقطة بيانات حديثة (JSON) — استخدمها بدقة للإجابة.`
 
-// ─── Main: chat with assistant ──────────────────────────────
-export async function chatWithAssistant(userMessage: string, conversationHistory: { role: string; content: string }[] = []) {
+// ─── OpenAI-compatible API call ──────────────────────────────
+async function callOpenAICompatible(
+  url: string, apiKey: string, model: string,
+  messages: any[], temperature: number, maxTokens: number
+): Promise<string> {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+    }),
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    throw new Error(`API error ${response.status}: ${errorText}`)
+  }
+
+  const data = await response.json()
+  return data.choices[0]?.message?.content || 'عذراً، لم أتمكن من توليد رد.'
+}
+
+// ─── z-ai-web-dev-sdk fallback ───────────────────────────────
+async function callZAI(messages: any[], temperature: number, maxTokens: number): Promise<string> {
+  const ZAI = (await import('z-ai-web-dev-sdk')).default
+  const ai = await ZAI.create()
+
+  const response = await ai.chat.completions.create({
+    messages,
+    temperature,
+    max_tokens: maxTokens,
+  })
+
+  return response.choices[0]?.message?.content || 'عذراً، لم أتمكن من توليد رد.'
+}
+
+// ─── Main: chat with assistant (Multi-Provider) ──────────────
+export async function chatWithAssistant(
+  userMessage: string,
+  conversationHistory: { role: string; content: string }[] = []
+) {
   try {
     const snapshot = await buildDataSnapshot()
-
-    const ZAI = (await import('z-ai-web-dev-sdk')).default
-    const ai = await ZAI.create()
 
     const messages = [
       { role: 'system', content: SYSTEM_PROMPT },
@@ -300,14 +318,61 @@ export async function chatWithAssistant(userMessage: string, conversationHistory
       { role: 'user', content: userMessage },
     ]
 
-    const response = await ai.chat.completions.create({
-      messages,
-      temperature: 0.2, // lower temperature for more accurate, deterministic answers
-      max_tokens: 1200,
-    })
+    let reply = ''
+    let providerUsed = ''
+    const errors: string[] = []
 
-    const reply = response.choices[0]?.message?.content || 'عذراً، لم أتمكن من توليد رد.'
+    // ─── Try 1: Groq (Llama 3 70B) — fastest + most accurate ───
+    if (PROVIDERS.groq.enabled) {
+      try {
+        reply = await callOpenAICompatible(
+          PROVIDERS.groq.url,
+          PROVIDERS.groq.apiKey,
+          PROVIDERS.groq.model,
+          messages,
+          0.2,
+          1200
+        )
+        providerUsed = 'groq-llama-3.3-70b'
+      } catch (e: any) {
+        errors.push(`Groq: ${e.message}`)
+      }
+    }
 
+    // ─── Try 2: OpenRouter (Llama 3 8B) — fallback ────────────
+    if (!reply && PROVIDERS.openrouter.enabled) {
+      try {
+        reply = await callOpenAICompatible(
+          PROVIDERS.openrouter.url,
+          PROVIDERS.openrouter.apiKey,
+          PROVIDERS.openrouter.model,
+          messages,
+          0.2,
+          1200
+        )
+        providerUsed = 'openrouter-llama-3.1-8b'
+      } catch (e: any) {
+        errors.push(`OpenRouter: ${e.message}`)
+      }
+    }
+
+    // ─── Try 3: z-ai-web-dev-sdk (GLM) — always available ─────
+    if (!reply) {
+      try {
+        reply = await callZAI(messages, 0.2, 1200)
+        providerUsed = 'z-ai-glm'
+      } catch (e: any) {
+        errors.push(`Z-AI: ${e.message}`)
+      }
+    }
+
+    // ─── All providers failed ─────────────────────────────────
+    if (!reply) {
+      reply = `عذراً، حدث خطأ في جميع مزودي الذكاء الاصطناعي. الأخطاء: ${errors.join(' | ')}`
+      providerUsed = 'none'
+    }
+
+    // Save conversation
     await db.aiConversation.create({
       data: {
         userMessage,
@@ -316,12 +381,13 @@ export async function chatWithAssistant(userMessage: string, conversationHistory
       },
     })
 
-    return { reply, intent: detectIntent(userMessage) }
+    return { reply, intent: detectIntent(userMessage), provider: providerUsed }
   } catch (e: any) {
     console.error('AI Assistant error:', e)
     return {
       reply: `عذراً، حدث خطأ أثناء معالجة طلبك. ${e.message || ''}`,
       intent: 'error',
+      provider: 'none',
     }
   }
 }

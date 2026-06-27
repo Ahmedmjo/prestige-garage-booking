@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
     const response = NextResponse.json({
       reply: result.reply,
       intent: result.intent,
+      provider: result.provider || 'z-ai-glm',
       timestamp: new Date().toISOString(),
     })
     return applySecurityHeaders(response)
