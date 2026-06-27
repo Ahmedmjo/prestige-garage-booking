@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { firewall, applySecurityHeaders, sanitizeInput } from '@/lib/firewall'
 
-// GET /api/employees — list all employees with related data
-// Salary is FIXED monthly; only advances + penalties are deducted; commissions shown separately
+// GET /api/employees — FIXED SALARY MODEL (Protected by Firewall)
 export async function GET(req: NextRequest) {
+  const check = await firewall(req)
+  if (check.blocked) return check.response!
+
   try {
     const { searchParams } = new URL(req.url)
     const month = parseInt(searchParams.get('month') || String(new Date().getMonth() + 1))
@@ -19,27 +22,22 @@ export async function GET(req: NextRequest) {
       orderBy: { name: 'asc' },
     })
 
-    // Compute payroll — FIXED SALARY MODEL
     const result = employees.map(emp => {
       const presentDays = emp.attendance.filter(a => a.status === 'ح').length
       const absentDays = emp.attendance.filter(a => a.status === 'غ').length
       const officialLeaveDays = emp.attendance.filter(a => a.status === 'إ').length
       const weeklyLeaveDays = emp.attendance.filter(a => a.status === 'ر').length
 
-      // FIXED SALARY — does NOT change with attendance
       const fixedSalary = emp.baseSalary
-
       const totalCommissions = emp.commissions.reduce((s, c) => s + c.amount, 0)
       const totalAdvances = emp.advances.reduce((s, a) => s + a.amount, 0)
       const totalPenalties = emp.penalties.reduce((s, p) => s + p.amount, 0)
-
-      // Net = Fixed Salary + Commissions - Advances - Penalties
       const netSalary = fixedSalary + totalCommissions - totalAdvances - totalPenalties
 
       return {
         id: emp.id,
         name: emp.name,
-        baseSalary: emp.baseSalary, // This is the FIXED monthly salary
+        baseSalary: emp.baseSalary,
         phone: emp.phone,
         jobTitle: emp.jobTitle,
         status: emp.status,
@@ -55,7 +53,7 @@ export async function GET(req: NextRequest) {
           total: emp.attendance.length,
         },
         payroll: {
-          fixedSalary, // ← FIXED, not affected by attendance
+          fixedSalary,
           totalCommissions,
           totalAdvances,
           totalPenalties,
@@ -67,16 +65,23 @@ export async function GET(req: NextRequest) {
       }
     })
 
-    return NextResponse.json(result)
+    const response = NextResponse.json(result)
+    return applySecurityHeaders(response)
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    const response = NextResponse.json({ error: e.message, code: 'INTERNAL_ERROR' }, { status: 500 })
+    return applySecurityHeaders(response)
   }
 }
 
-// POST /api/employees — add new employee
+// POST /api/employees — add new employee (Protected by Firewall)
 export async function POST(req: NextRequest) {
+  const check = await firewall(req)
+  if (check.blocked) return check.response!
+
   try {
-    const body = await req.json()
+    const rawBody = await req.json()
+    const body = sanitizeInput(rawBody)
+
     const emp = await db.employee.create({
       data: {
         name: body.name,
@@ -88,8 +93,10 @@ export async function POST(req: NextRequest) {
         notes: body.notes || null,
       },
     })
-    return NextResponse.json(emp, { status: 201 })
+    const response = NextResponse.json(emp, { status: 201 })
+    return applySecurityHeaders(response)
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    const response = NextResponse.json({ error: e.message, code: 'INTERNAL_ERROR' }, { status: 500 })
+    return applySecurityHeaders(response)
   }
 }

@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { firewall, applySecurityHeaders, sanitizeInput } from '@/lib/firewall'
 
 // GET /api/rolls — list all rolls with consumptions
 export async function GET(req: NextRequest) {
+  const check = await firewall(req)
+  if (check.blocked) return check.response!
+
   try {
     const { searchParams } = new URL(req.url)
     const category = searchParams.get('category')
@@ -14,16 +18,22 @@ export async function GET(req: NextRequest) {
       include: { consumptions: { orderBy: { date: 'desc' }, take: 5 } },
       orderBy: { createdAt: 'desc' },
     })
-    return NextResponse.json(rolls)
+    const response = NextResponse.json(rolls)
+    return applySecurityHeaders(response)
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    const response = NextResponse.json({ error: e.message, code: 'INTERNAL_ERROR' }, { status: 500 })
+    return applySecurityHeaders(response)
   }
 }
 
-// POST /api/rolls — create new roll (code is OPTIONAL, auto-suggested)
+// POST /api/rolls — create new roll (Protected by Firewall)
 export async function POST(req: NextRequest) {
+  const check = await firewall(req)
+  if (check.blocked) return check.response!
+
   try {
-    const body = await req.json()
+    const rawBody = await req.json()
+    const body = sanitizeInput(rawBody)
 
     // Auto-suggest code if not provided
     let code = body.code
@@ -37,7 +47,8 @@ export async function POST(req: NextRequest) {
     // Check code uniqueness
     const existing = await db.roll.findUnique({ where: { code } })
     if (existing) {
-      return NextResponse.json({ error: `كود الرول ${code} موجود مسبقاً` }, { status: 400 })
+      const response = NextResponse.json({ error: `كود الرول ${code} موجود مسبقاً`, code: 'DUPLICATE_CODE' }, { status: 400 })
+      return applySecurityHeaders(response)
     }
 
     const totalLength = Number(body.totalLength) || 0
@@ -76,8 +87,10 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    return NextResponse.json(roll, { status: 201 })
+    const response = NextResponse.json(roll, { status: 201 })
+    return applySecurityHeaders(response)
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    const response = NextResponse.json({ error: e.message, code: 'INTERNAL_ERROR' }, { status: 500 })
+    return applySecurityHeaders(response)
   }
 }
