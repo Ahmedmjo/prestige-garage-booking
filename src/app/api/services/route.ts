@@ -1,93 +1,99 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { unifyServiceType } from '@/lib/i18n'
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { getSettings } from "@/lib/settings";
+import type { ServiceItem, ServiceVariant } from "@/lib/types";
 
-// GET /api/services — list services with optional filters
-export async function GET(req: NextRequest) {
+function mapService(s: any): ServiceItem {
+  return {
+    id: s.id,
+    name: s.name,
+    nameAr: s.nameAr,
+    category: s.category as ServiceItem["category"],
+    subCategory: s.subCategory,
+    description: s.description,
+    descriptionAr: s.descriptionAr,
+    price: s.price,
+    duration: s.duration,
+    icon: s.icon,
+    color: s.color,
+    hasVariants: s.hasVariants,
+    priceNote: s.priceNote,
+    imageUrl: s.imageUrl,
+    isActive: s.isActive,
+    sortOrder: s.sortOrder,
+    variants: (s.variants ?? []).map((v: any): ServiceVariant => ({
+      id: v.id,
+      serviceId: v.serviceId,
+      name: v.name,
+      nameAr: v.nameAr,
+      price: v.price,
+      duration: v.duration,
+      lifespanDays: v.lifespanDays,
+      sortOrder: v.sortOrder,
+      isActive: v.isActive,
+    })),
+  };
+}
+
+export async function GET() {
   try {
-    const { searchParams } = new URL(req.url)
-    const serviceType = searchParams.get('serviceType')
-    const month = searchParams.get('month')
-    const year = searchParams.get('year')
-
-    const where: any = {}
-    if (serviceType && serviceType !== 'all') where.serviceType = serviceType
-
     const services = await db.service.findMany({
-      where,
-      orderBy: { date: 'desc' },
-      take: 500,
-    })
-
-    let filtered = services
-    if (month && year) {
-      filtered = services.filter(s => {
-        const d = new Date(s.date)
-        return d.getMonth() + 1 === parseInt(month) && d.getFullYear() === parseInt(year)
-      })
-    }
-
-    return NextResponse.json(filtered)
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+      where: { isActive: true },
+      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+      include: { variants: { where: { isActive: true }, orderBy: { sortOrder: "asc" } } },
+    });
+    const data: ServiceItem[] = services.map(mapService);
+    return NextResponse.json({ services: data });
+  } catch (e) {
+    console.error("GET /api/services error", e);
+    return NextResponse.json({ services: [], error: "failed" }, { status: 500 });
   }
 }
 
-// POST /api/services — add new service record (with terminology unification)
+// Admin: create a new service (with optional variants)
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    // Generate code if not provided
-    let code = body.code
-    if (!code) {
-      const count = await db.service.count()
-      code = `SRV-${String(count + 1).padStart(4, '0')}`
+    const settings = await getSettings();
+    const auth = req.headers.get("x-admin-pin");
+    if (auth !== settings.adminPin) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
-
-    // Unify service type terminology
-    const unifiedType = unifyServiceType(body.serviceType) || 'أخرى'
-
-    const service = await db.service.create({
+    const body = await req.json();
+    const created = await db.service.create({
       data: {
-        code,
-        date: body.date ? new Date(body.date) : new Date(),
-        plate: body.plate || null,
-        clientName: body.clientName || null,
-        carType: body.carType || null,
-        serviceType: unifiedType,
-        serviceCategory: unifiedType,
+        name: body.name,
+        nameAr: body.nameAr || body.name,
+        category: body.category,
+        subCategory: body.subCategory || null,
+        description: body.description || null,
+        descriptionAr: body.descriptionAr || null,
         price: Number(body.price) || 0,
-        paymentMethod: body.paymentMethod || null,
-        technician: body.technician || null,
-        notes: body.notes || null,
+        duration: Number(body.duration) || 60,
+        icon: body.icon || null,
+        color: body.color || null,
+        hasVariants: body.hasVariants ?? false,
+        priceNote: body.priceNote || null,
+        imageUrl: body.imageUrl || null,
+        isActive: body.isActive ?? true,
+        sortOrder: Number(body.sortOrder) || 0,
+        variants: body.variants?.length
+          ? {
+              create: body.variants.map((v: any, i: number) => ({
+                name: v.name,
+                nameAr: v.nameAr || v.name,
+                price: Number(v.price) || 0,
+                duration: v.duration ? Number(v.duration) : null,
+                sortOrder: v.sortOrder ?? i,
+                isActive: true,
+              })),
+            }
+          : undefined,
       },
-    })
-
-    // Auto-create commission for the technician if amount specified
-    if (body.technician && body.commissionAmount && body.commissionAmount > 0) {
-      const emp = await db.employee.findUnique({ where: { name: body.technician } })
-      if (emp) {
-        const d = new Date(service.date)
-        await db.commission.create({
-          data: {
-            employeeId: emp.id,
-            employeeName: emp.name,
-            date: d,
-            month: d.getMonth() + 1,
-            year: d.getFullYear(),
-            clientName: service.clientName,
-            carType: service.carType,
-            serviceType: unifiedType,
-            serviceCategory: unifiedType,
-            amount: Number(body.commissionAmount),
-            notes: `عمولة خدمة ${service.code}`,
-          },
-        })
-      }
-    }
-
-    return NextResponse.json(service, { status: 201 })
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+      include: { variants: true },
+    });
+    return NextResponse.json({ service: mapService(created) });
+  } catch (e) {
+    console.error("POST /api/services error", e);
+    return NextResponse.json({ error: "failed" }, { status: 500 });
   }
 }

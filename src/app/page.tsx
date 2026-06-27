@@ -1,174 +1,100 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import {
-  LayoutDashboard,
-  Film,
-  Users,
-  Package,
-  Wrench,
-  Menu,
-  X,
-} from 'lucide-react'
-import { useI18n } from '@/lib/i18n-context'
-import { NotificationBell } from '@/components/prestige/notification-bell'
-import { LanguageToggle } from '@/components/prestige/language-toggle'
-import { PrestigeLogo } from '@/components/prestige/logo'
-import { BackgroundDecoration } from '@/components/prestige/background'
-import { Dashboard } from '@/components/modules/dashboard'
-import { RollsModule } from '@/components/modules/rolls-module'
-import { EmployeesModule } from '@/components/modules/employees-module'
-import { StockModule } from '@/components/modules/stock-module'
-import { ServicesModule } from '@/components/modules/services-module'
-import { AIChat } from '@/components/modules/ai-chat'
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useApp } from "@/lib/store";
+import { Header } from "@/components/layout/Header";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { HomeScreen } from "@/components/home/HomeScreen";
+import { ContactScreen } from "@/components/home/ContactScreen";
+import { AboutScreen } from "@/components/home/AboutScreen";
+import { ServicesScreen } from "@/components/services/ServicesScreen";
+import { BookingScreen } from "@/components/booking/BookingScreen";
+import { BookingsScreen } from "@/components/booking/BookingsScreen";
+import { AdminLogin } from "@/components/admin/AdminLogin";
+import { AdminDashboard } from "@/components/admin/AdminDashboard";
+import { BrandCrown } from "@/components/brand/Logo";
+import { useLangEffect, useLang } from "@/lib/use-lang";
 
-type TabId = 'dashboard' | 'rolls' | 'employees' | 'stock' | 'services' | 'ai'
+export default function Page() {
+  const tab = useApp((s) => s.tab);
+  const adminMode = useApp((s) => s.adminMode);
+  const adminPin = useApp((s) => s.adminPin);
+  const loadServices = useApp((s) => s.loadServices);
+  const loadSettings = useApp((s) => s.loadSettings);
+  const loadBranches = useApp((s) => s.loadBranches);
+  const loadOffers = useApp((s) => s.loadOffers);
+  const lang = useLang();
+  useLangEffect();
 
-export default function Home() {
-  const { t, lang, dir } = useI18n()
-  const [activeTab, setActiveTab] = useState<TabId>('dashboard')
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [showSplash, setShowSplash] = useState(true);
 
-  // Special: AI tab uses Prestige Logo instead of icon
-  const NAV_ITEMS: { id: TabId; label: string; icon: any; color: string; isLogo?: boolean }[] = [
-    { id: 'dashboard', label: t('dashboard'), icon: LayoutDashboard, color: '#DC143C' },
-    { id: 'rolls', label: t('rolls'), icon: Film, color: '#FF9100' },
-    { id: 'employees', label: t('employees'), icon: Users, color: '#00C853' },
-    { id: 'stock', label: t('stock'), icon: Package, color: '#BB86FC' },
-    { id: 'services', label: t('services'), icon: Wrench, color: '#03DAC6' },
-    { id: 'ai', label: t('aiAssistant'), icon: null, color: '#DC143C', isLogo: true },
-  ]
-
-  // Lock body scroll when sidebar is open on mobile
   useEffect(() => {
-    if (sidebarOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [sidebarOpen])
+    loadServices();
+    loadSettings();
+    loadBranches();
+    loadOffers();
+    const t = setTimeout(() => setShowSplash(false), 2800);
+    return () => clearTimeout(t);
+  }, [loadServices, loadSettings, loadBranches, loadOffers]);
 
-  return (
-    <div className="min-h-screen bg-black text-white flex relative" dir={dir}>
-      <BackgroundDecoration />
-
-      {/* Mobile overlay — no animation to prevent shaking */}
-      {sidebarOpen && (
-        <div
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed lg:sticky top-0 z-50 h-screen w-72 bg-[#050505]/95 backdrop-blur-md border-white/5 flex flex-col ${
-          dir === 'rtl' ? 'right-0 border-l' : 'left-0 border-r'
-        } ${
-          sidebarOpen
-            ? 'translate-x-0'
-            : dir === 'rtl'
-            ? 'translate-x-full lg:translate-x-0'
-            : '-translate-x-full lg:translate-x-0'
-        }`}
-        style={{ transitionProperty: 'transform', transitionDuration: '0.2s', transitionTimingFunction: 'ease-out' }}
-      >
-        {/* Logo / Header */}
-        <div className="p-5 border-b border-white/5">
-          <div className="flex items-center gap-3">
-            <PrestigeLogo size={48} className="flex-shrink-0" />
-            <div className="min-w-0">
-              <h1 className="text-lg font-bold text-white leading-tight truncate">Prestige Garage</h1>
-              <p className="text-xs text-gray-500 truncate">{t('appTagline')}</p>
-            </div>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="lg:hidden mr-auto p-2 text-gray-400 hover:text-white flex-shrink-0"
-              aria-label="Close sidebar"
-            >
-              <X size={20} />
-            </button>
-          </div>
+  // ===== Splash screen — cinematic inside-out reveal (NO glow as requested) =====
+  if (showSplash) {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-home-strong">
+        {/* Cinematic inside-out logo reveal — emerges small + blurred, expands to full size */}
+        <div className="splash-logo-cinematic">
+          <BrandCrown size={160} glow={false} priority />
         </div>
 
-        {/* Nav */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {NAV_ITEMS.map(item => {
-            const Icon = item.icon
-            const isActive = activeTab === item.id
-            return (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setActiveTab(item.id)
-                  setSidebarOpen(false)
-                }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium ${
-                  isActive
-                    ? 'bg-[#DC143C]/15 text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
-                style={{ transition: 'background-color 0.15s, color 0.15s' }}
-              >
-                {item.isLogo ? (
-                  <div className="flex-shrink-0" style={{ filter: isActive ? 'none' : 'grayscale(0.3) opacity(0.7)' }}>
-                    <PrestigeLogo size={24} />
-                  </div>
-                ) : (
-                  <Icon size={20} style={{ color: isActive ? item.color : undefined }} className="flex-shrink-0" />
-                )}
-                <span className="flex-1 text-right">{item.label}</span>
-                {item.id === 'ai' && (
-                  <span className="w-2 h-2 rounded-full bg-[#DC143C] animate-pulse flex-shrink-0" />
-                )}
-              </button>
-            )
-          })}
-        </nav>
+        {/* Title with letter-spacing glow animation (starts at 0.8s) */}
+        <h1 className="splash-title-glow mt-5 text-center text-2xl font-extrabold text-white">
+          <span className="crown-shine">PRESTIGE</span> GARAGE
+        </h1>
+        <p className="mt-1.5 text-center text-[10px] uppercase tracking-[0.34em] text-white/45">
+          {lang === "ar" ? "العناية الفاخرة" : "Premium Car Care"}
+        </p>
 
-        {/* Footer */}
-        <div className="p-4 border-t border-white/5">
-          <div className="glass-effect rounded-lg p-3 flex items-center justify-between">
-            <LanguageToggle />
-            <NotificationBell />
-          </div>
-        </div>
-      </aside>
-
-      {/* Main content */}
-      <div className="flex-1 min-w-0 flex flex-col">
-        {/* Top bar */}
-        <header className="sticky top-0 z-30 glass-effect border-b border-white/5 px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 text-gray-400 hover:text-white"
-              aria-label="Open sidebar"
-            >
-              <Menu size={22} />
-            </button>
-            <div className="flex items-center gap-2">
-              <PrestigeLogo size={32} className="lg:hidden" />
-              <span className="font-bold hidden sm:inline">Prestige Garage</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <LanguageToggle />
-            <NotificationBell />
-          </div>
-        </header>
-
-        {/* Module content — NO animation to prevent shaking */}
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-x-hidden" key={activeTab + lang}>
-          {activeTab === 'dashboard' && <Dashboard onNavigate={setActiveTab} />}
-          {activeTab === 'rolls' && <RollsModule />}
-          {activeTab === 'employees' && <EmployeesModule />}
-          {activeTab === 'stock' && <StockModule />}
-          {activeTab === 'services' && <ServicesModule />}
-          {activeTab === 'ai' && <AIChat onClose={() => setActiveTab('dashboard')} />}
-        </main>
+        {/* Tagline rises from bottom to top (starts at 1.2s delay) */}
+        <p className="splash-tagline-rise absolute bottom-10 text-[10px] italic text-white/40">
+          {lang === "ar" ? "صنع في ألمانيا. أتقن في مصر." : "Born in Germany. Mastered in Egypt."}
+        </p>
       </div>
+    );
+  }
+
+  // ===== Admin mode =====
+  if (adminMode) {
+    if (!adminPin) {
+      return <AdminLogin />;
+    }
+    return <AdminDashboard />;
+  }
+
+  // ===== Customer app =====
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+      <main className="flex-1 mx-auto w-full max-w-md">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            {tab === "home" && <HomeScreen />}
+            {tab === "services" && <ServicesScreen />}
+            {tab === "booking" && <BookingScreen />}
+            {tab === "bookings" && <BookingsScreen />}
+            {tab === "contact" && <ContactScreen />}
+            {tab === "about" && <AboutScreen />}
+          </motion.div>
+        </AnimatePresence>
+      </main>
+      <BottomNav />
     </div>
-  )
+  );
 }
+

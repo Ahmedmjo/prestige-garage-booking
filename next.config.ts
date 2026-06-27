@@ -1,19 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   typescript: {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  // Required for Prisma + AI SDK on Vercel serverless
-  serverExternalPackages: ["@prisma/client", "z-ai-web-dev-sdk"],
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
+      { protocol: "https", hostname: "drive.google.com" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      // allow all HTTPS sources for user-supplied image/video URLs
+      { protocol: "https", hostname: "**" },
     ],
   },
 };

@@ -1,5 +1,5 @@
-// Prestige Garage AI-OS — Prisma Schema v2
-// SQLite database for local + Vercel deployment
+// Prisma schema for Prestige Garage - Premium Car Care booking app
+// Brand: Prestige Garage | Powered by SONAX | Born in Germany. Mastered in Egypt.
 
 generator client {
   provider = "prisma-client-js"
@@ -10,254 +10,159 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ════════════════════════════════════════════════════════════════
-// 🎞️ PPF Rolls Inventory — جرد البروتيكشن
-// ════════════════════════════════════════════════════════════════
-
-model Roll {
-  id            String   @id @default(cuid())
-  code          String   @unique
-  brand         String
-  type          String
-  model         String?
-  width         Float?
-  totalLength   Float
-  remainingLength Float?
-  price         Float?
-  supplier      String?
-  rollCategory  String   @default("ppf") // ppf | thermal_long | thermal_short
-  purchaseDate  DateTime?
-  notes         String?
-  status        String   @default("active") // active | low | finished
-  carsCount     Int      @default(0) // number of cars serviced from this roll
-  createdAt     DateTime @default(now())
-
-  consumptions  RollConsumption[]
-
-  @@map("rolls")
-}
-
-model RollConsumption {
-  id            String   @id @default(cuid())
-  rollId        String
-  rollCode      String
-  date          DateTime
-  clientName    String?
-  carType       String?
-  plateNumber   String?
-  metersUsed    Float
-  waste         Float    @default(0)
-  usageArea     String?
-  workOrder     String?
-  notes         String?
-  technician    String?
-  transactionType String? @default("استهلاك")
-  createdAt     DateTime @default(now())
-
-  roll          Roll     @relation(fields: [rollId], references: [id], onDelete: Cascade)
-
-  @@map("roll_consumptions")
-}
-
-// ════════════════════════════════════════════════════════════════
-// 👷 Employees — حسابات الموظفين
-// ════════════════════════════════════════════════════════════════
-
-model Employee {
-  id            String   @id @default(cuid())
-  name          String   @unique
-  baseSalary    Float    // FIXED monthly salary (not affected by attendance)
-  phone         String?
-  hireDate      DateTime?
-  jobTitle      String?
-  status        String   @default("نشط") // نشط | متوقف | محذوف
-  notes         String?
-  createdAt     DateTime @default(now())
-
-  attendance    Attendance[]
-  advances      Advance[]
-  commissions   Commission[]
-  penalties     Penalty[]
-
-  @@map("employees")
-}
-
-model Attendance {
-  id            String   @id @default(cuid())
-  employeeId    String
-  employeeName  String
-  date          DateTime
-  status        String   // ح=حضور | غ=غياب | إ=إجازة | ر=إجازة أسبوعية
-  month         Int
-  year          Int
-  notes         String?
-  createdAt     DateTime @default(now())
-
-  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  @@unique([employeeId, date])
-  @@map("attendance")
-}
-
-model Commission {
-  id            String   @id @default(cuid())
-  employeeId    String
-  employeeName  String
-  date          DateTime?
-  month         Int?
-  year          Int?
-  monthLabel    String?
-  clientName    String?
-  carType       String?
-  serviceType   String?
-  serviceCategory String?
-  amount        Float
-  notes         String?
-  createdAt     DateTime @default(now())
-
-  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  @@map("commissions")
-}
-
-model Advance {
-  id            String   @id @default(cuid())
-  employeeId    String
-  employeeName  String
-  date          DateTime
-  amount        Float
-  notes         String?
-  month         Int
-  year          Int
-  createdAt     DateTime @default(now())
-
-  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  @@map("advances")
-}
-
-// NEW: Penalties / Deductions
-model Penalty {
-  id            String   @id @default(cuid())
-  employeeId    String
-  employeeName  String
-  date          DateTime
-  amount        Float
-  reason        String?
-  notes         String?
-  month         Int
-  year          Int
-  createdAt     DateTime @default(now())
-
-  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  @@map("penalties")
-}
-
-// ════════════════════════════════════════════════════════════════
-// 📦 Stock Management — المخزون والخامات
-// ════════════════════════════════════════════════════════════════
-
-model StockItem {
-  id            String   @id @default(cuid())
-  name          String   @unique
-  category      String   // detailing | polish | nano | tools
-  unit          String   @default("ml") // ml | pack | unit | liter
-  totalReceived Float    @default(0)
-  totalWithdrawn Float   @default(0)
-  currentQty    Float    @default(0)
-  minLevel      Float    @default(0)
-  status        String   @default("كافي") // كافي | منخفض | نفد
-  unitPrice     Float    @default(0)
-  createdAt     DateTime @default(now())
-
-  movements     StockMovement[]
-
-  @@map("stock_items")
-}
-
-model StockMovement {
-  id            String   @id @default(cuid())
-  itemId        String?
-  itemName      String
-  date          DateTime
-  materialType  String?
-  movementType  String   // استلام | سحب
-  quantity      Float
-  unit          String?
-  unitPrice     Float    @default(0)
-  totalCost     Float    @default(0)
-  notes         String?
-  deliveryNote  String?
-  createdAt     DateTime @default(now())
-
-  item          StockItem? @relation(fields: [itemId], references: [id], onDelete: SetNull)
-
-  @@map("stock_movements")
-}
-
-// ════════════════════════════════════════════════════════════════
-// 🔧 Services & Invoices — الخدمات والفواتير
-// ════════════════════════════════════════════════════════════════
-
 model Service {
-  id            String   @id @default(cuid())
-  code          String   @unique
-  date          DateTime
-  plate         String?
-  clientName    String?
-  carType       String?
-  serviceType   String
-  serviceCategory String?
-  price         Float
-  paymentMethod String?
-  technician    String?
-  notes         String?
-  createdAt     DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String
+  category    String   // "detailing" | "wash" | "protection" | "polish" | "extra"
+  subCategory String?  // For detailing: "interior" | "roof" | "wheels" | "motor" | "full"
+  description String?
+  descriptionAr String?
+  price       Float    // base price (used directly if no variants)
+  duration    Int      // in minutes
+  icon        String?  // lucide icon name
+  color       String?  // soft color key: blue|yellow|green|purple|orange|gray
+  hasVariants Boolean  @default(false)
+  priceNote   String?  // e.g. "From" | "Tap for prices"
+  imageUrl    String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@map("services")
+  variants    ServiceVariant[]
+  bookings    Booking[]
+
+  @@index([category, subCategory])
+  @@index([isActive])
 }
 
-model Invoice {
-  id            String   @id @default(cuid())
-  deliveryNote  String   @unique
-  date          DateTime?
-  description   String?
-  total         Float
-  discount      Float    @default(0)
-  net           Float
-  itemsCount    Int      @default(0)
-  notes         String?
-  createdAt     DateTime @default(now())
+model ServiceVariant {
+  id        String  @id @default(cuid())
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  name      String
+  nameAr    String
+  price     Float
+  duration  Int?    // optional override in minutes
+  lifespanDays Int? // smart reminder: days until service should be renewed
+  sortOrder Int     @default(0)
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@map("invoices")
+  @@index([serviceId])
 }
 
-// ════════════════════════════════════════════════════════════════
-// 🤖 AI Conversations & Alerts
-// ════════════════════════════════════════════════════════════════
 
-model AiConversation {
-  id            String   @id @default(cuid())
-  userMessage   String
-  aiResponse    String
-  actionTaken   String?
-  intentType    String?
-  timestamp     DateTime @default(now())
+model Booking {
+  id          String   @id @default(cuid())
+  refCode     String   @unique
+  customerName String
+  phone       String
+  carType     String?  // Sedan | SUV | Large SUV
+  carBrand    String?  // BMW, Mercedes, Audi...
+  carModel    String
+  carPlate    String?
+  branchId    String?
+  branch      Branch?  @relation(fields: [branchId], references: [id])
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  serviceId   String
+  service     Service  @relation(fields: [serviceId], references: [id])
+  variantId   String?
+  variantName String?
+  date        String   // YYYY-MM-DD
+  time        String   // HH:mm
+  status      String   @default("pending") // "pending" | "accepted" | "in_progress" | "completed" | "cancelled"
+  notes       String?
+  address     String?
+  totalPrice  Float
+  // Workflow timestamps
+  acceptedAt    DateTime?
+  inProgressAt  DateTime?
+  completedAt   DateTime?
+  // Smart reminder: admin sets when the service warranty/protection expires
+  expiryDate    String?  // YYYY-MM-DD
+  adminNote     String?  // Admin message shown to customer in their booking profile (e.g. "Protection expires, please renew")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@map("ai_conversations")
+  @@index([date, time])
+  @@index([status])
+  @@index([phone])
+  @@index([customerId])
+  @@index([branchId])
 }
 
-model Alert {
-  id            String   @id @default(cuid())
-  type          String
-  severity      String   @default("warning")
-  title         String
-  message       String
-  relatedId     String?
-  relatedType   String?
-  isRead        Boolean  @default(false)
-  createdAt     DateTime @default(now())
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String   @unique
+  carType   String?
+  carBrand  String?
+  carModel  String?
+  carPlate  String?
+  bookingsCount Int  @default(0)
+  lastVisit String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
 
-  @@map("alerts")
+  @@index([phone])
+}
+
+model Branch {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String
+  address   String?
+  addressAr String?
+  phone     String?
+  mapUrl    String?
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+
+  @@index([isActive])
+}
+
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+  updatedAt DateTime @updatedAt
+}
+
+model Offer {
+  id          String   @id @default(cuid())
+  title       String
+  titleAr     String
+  description String?
+  descriptionAr String?
+  imageUrl    String?
+  videoUrl    String?  // optional video for animated ad (muted autoplay)
+  serviceId   String?  // optional link to a service
+  discountPct Int?     // discount percentage
+  oldPrice    Float?
+  newPrice    Float?
+  startDate   String   // YYYY-MM-DD
+  endDate     String   // YYYY-MM-DD
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, startDate, endDate])
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

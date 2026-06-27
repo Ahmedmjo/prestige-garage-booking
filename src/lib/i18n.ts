@@ -1,375 +1,198 @@
-/**
- * Prestige Garage i18n — bilingual Arabic/English dictionary
- */
+"use client";
 
-export type Lang = 'ar' | 'en'
+// Prestige Garage i18n dictionary (Arabic + English)
+export type Lang = "ar" | "en";
 
 export const translations = {
-  ar: {
-    // App
-    appName: 'Prestige Garage',
-    appTagline: 'AI-OS · إدارة ذكية',
-    // Nav
-    dashboard: 'لوحة التحكم',
-    rolls: 'جرد الرولات',
-    employees: 'الموظفون',
-    stock: 'المخزون',
-    services: 'الخدمات',
-    aiAssistant: 'مساعد برستيج',
-    // Dashboard
-    welcomeTitle: 'مرحباً بك في Prestige Garage',
-    welcomeSubtitle: 'لوحة التحكم الذكية · إحصائيات لحظية وتحليلات تفاعلية',
-    askAssistant: 'اسأل مساعد برستيج',
-    quickSuggestions: 'اقتراحات سريعة لمساعد برستيج',
-    totalRevenue: 'إجمالي الإيرادات',
-    activeRolls: 'الرولات النشطة',
-    activeEmployees: 'الموظفون النشطون',
-    stockItems: 'أصناف المخزون',
-    inventoryValue: 'قيمة المخزون',
-    rollsValue: 'قيمة الرولات المتبقية',
-    totalInvoices: 'إجمالي الفواتير',
-    activeAlerts: 'تنبيهات نشطة',
-    monthlyRevenue: 'الإيرادات الشهرية',
-    last6Months: 'آخر 6 أشهر',
-    revenueByType: 'الإيرادات حسب نوع الخدمة',
-    servicesThisMonth: 'خدمة هذا الشهر',
-    smartAlerts: 'التنبيهات الذكية',
-    employeePerformance: 'أداء الفنيين هذا الشهر',
-    recentServices: 'آخر الخدمات المسجلة',
-    viewAll: 'عرض الكل',
-    details: 'التفاصيل',
-    critical: 'حرجة',
-    service: 'خدمة',
-    // Service categories (regrouped)
-    cat_polish: 'بوليش',
-    cat_nano: 'نانو سيراميك',
-    cat_detailing: 'دتيلنج',
-    cat_thermal: 'عزل حراري وفاميه',
-    cat_protection: 'بروتيكشن',
-    cat_other: 'أخرى',
-    // Rolls
-    ppfRolls: 'جرد الرولات (PPF)',
-    ppfRollsDesc: 'إدارة رولات البروتيكشن والاستهلاك التلقائي',
-    newRoll: 'رول جديد',
-    recordConsumption: 'تسجيل استهلاك',
-    totalRolls: 'إجمالي الرولات',
-    lowRolls: 'أوشكت على النفاذ',
-    finishedRolls: 'منتهية',
-    searchCode: 'بحث بالكود أو الماركة أو النوع...',
-    all: 'الكل',
-    active: 'نشط',
-    low: 'منخفض',
-    finished: 'منتهي',
-    remaining: 'المتبقي',
-    meter: 'متر',
-    // Employees
-    employeeAccounts: 'حسابات الموظفين',
-    employeeAccountsDesc: 'إدارة الحضور والرواتب والعمولات والسلفيات',
-    newEmployee: 'موظف جديد',
-    netPayroll: 'صافي الرواتب',
-    baseEarned: 'الأساسي المستحق',
-    totalCommissions: 'إجمالي العمولات',
-    totalAdvances: 'إجمالي السلفيات',
-    searchName: 'بحث بالاسم أو المسمى الوظيفي...',
-    present: 'حاضر',
-    absent: 'غائب',
-    officialLeave: 'إجازة',
-    weeklyLeave: 'راحة',
-    baseSalary: 'المرتب الأساسي',
-    jobTitle: 'المسمى الوظيفي',
-    status: 'الحالة',
-    netSalary: 'صافي المرتب',
-    advance: 'سلفة',
-    attendanceSheet: 'كشف الحضور',
-    editSalary: 'تعديل المرتب',
-    editBaseSalary: 'تعديل المرتب الأساسي',
-    attendance: 'الحضور',
-    penalties: 'الجزاءات',
-    dailyRate: 'معدل اليومي',
-    paidDays: 'أيام مدفوعة',
-    commissions: 'العمولات',
-    advances: 'السلفيات',
-    // Attendance grid
-    attendanceGrid: 'شبكة الحضور الشهرية',
-    attendanceGridDesc: 'اضغط على الخلية لتغيير الحالة: ح=حضور، غ=غياب، إ=إجازة، ر=راحة',
-    day: 'اليوم',
-    date: 'التاريخ',
-    legendPresent: 'ح حضور',
-    legendAbsent: 'غ غياب',
-    legendOfficial: 'إ إجازة',
-    legendWeekly: 'ر راحة',
-    saveAttendance: 'حفظ الحضور',
-    // Stock
-    stockManagement: 'المخزون والخامات',
-    stockDesc: 'إدارة خامات الديتيلنج والبوليش والأدوات',
-    totalItems: 'إجمالي الأصناف',
-    lowStock: 'مخزون منخفض',
-    outOfStock: 'نفد من المخزون',
-    searchItem: 'بحث عن صنف...',
-    item: 'الصنف',
-    category: 'الفئة',
-    unit: 'الوحدة',
-    received: 'المستلم',
-    withdrawn: 'المسحوب',
-    current: 'الحالي',
-    minLevel: 'حد أدنى',
-    action: 'إجراء',
-    receive: 'استلام',
-    withdraw: 'سحب',
-    movementType: 'نوع الحركة',
-    quantity: 'الكمية',
-    unitPrice: 'سعر الوحدة',
-    deliveryNote: 'رقم إذن التسليم',
-    notes: 'ملاحظات',
-    save: 'حفظ',
-    cancel: 'إلغاء',
-    // Services
-    servicesInvoices: 'الخدمات والفواتير',
-    servicesDesc: 'سجل العمليات والإيرادات حسب نوع الخدمة',
-    newService: 'خدمة جديدة',
-    totalServices: 'إجمالي الخدمات',
-    averagePrice: 'متوسط السعر',
-    serviceTypes: 'أنواع الخدمات',
-    revenueAnalysis: 'تحليل الإيرادات حسب نوع الخدمة',
-    count: 'العدد',
-    revenue: 'الإيراد',
-    code: 'الكود',
-    client: 'العميل',
-    car: 'السيارة',
-    plate: 'اللوحة',
-    technician: 'الفني',
-    payment: 'الدفع',
-    price: 'السعر',
-    // AI Chat
-    prestigeAssistant: 'مساعد برستيج',
-    aiSubtitle: 'مساعد ذكي يعرف كل شيء عن المركز',
-    typeQuestion: 'اكتب سؤالك هنا...',
-    // Notifications
-    notifications: 'الإشعارات',
-    noNotifications: 'لا توجد إشعارات',
-    markAllRead: 'تعليم الكل كمقروء',
-    // Common
-    currency: 'ج.م',
-    egp: 'ج.م',
-    loading: 'جاري التحميل...',
-    saving: 'جاري الحفظ...',
-    add: 'إضافة',
-    edit: 'تعديل',
-    delete: 'حذف',
-    close: 'إغلاق',
-    confirm: 'تأكيد',
-    success: 'تم بنجاح',
-    error: 'خطأ',
-    required: 'مطلوب',
+  // Navigation / common
+  home: { ar: "الرئيسية", en: "Home" },
+  services: { ar: "خدماتنا", en: "Services" },
+  booking: { ar: "حجز موعد", en: "Book" },
+  bookings: { ar: "سجل الحجوزات", en: "Bookings" },
+  contact: { ar: "تواصل معنا", en: "Contact" },
+  about: { ar: "من نحن", en: "About" },
+  trackOrder: { ar: "تتبع الطلب", en: "Track Order" },
+  profile: { ar: "ملفي والتذكيرات", en: "Profile" },
+  shareApp: { ar: "مشاركة التطبيق", en: "Share App" },
+  adminPanel: { ar: "لوحة الأدمن", en: "Admin Panel" },
+  signOut: { ar: "تسجيل خروج", en: "Sign Out" },
+
+  // Home
+  bookNow: { ar: "احجز موعدك الآن", en: "Book Now" },
+  browseServices: { ar: "تصفح خدماتنا", en: "Browse Services" },
+  detailingSection: { ar: "قسم الديتيلنج", en: "Detailing Section" },
+  serviceCategories: { ar: "أقسام الخدمات", en: "Service Categories" },
+  premiumCarCare: { ar: "العناية الفاخرة بالسيارات", en: "Premium Car Care" },
+  bornLine: { ar: "صنع في ألمانيا. أتقن في مصر.", en: "Born in Germany. Mastered in Egypt." },
+  servicesAvail: { ar: "خدمة متاحة", en: "services" },
+
+  // Services
+  ourServices: { ar: "خدماتنا", en: "Our Services" },
+  servicesSub: { ar: "اكتشف خدماتنا المتكاملة", en: "Discover our integrated services" },
+  chooseType: { ar: "اختر النوع", en: "Choose Type" },
+  tapForPrices: { ar: "اضغط للأسعار", en: "Tap for prices" },
+  chooseTypeFirst: { ar: "اختر النوع أولاً", en: "Choose a type first" },
+  bookThisService: { ar: "احجز هذه الخدمة", en: "Book this service" },
+  options: { ar: "خيارات", en: "options" },
+  noServices: { ar: "لا توجد خدمات في هذا القسم حالياً", en: "No services in this section" },
+
+  // Booking flow
+  bookAppointment: { ar: "احجز موعدك", en: "Book Appointment" },
+  stepsSimple: { ar: "خطوات بسيطة", en: "simple steps" },
+  stepService: { ar: "الخدمة", en: "Service" },
+  stepType: { ar: "النوع", en: "Type" },
+  stepDate: { ar: "الموعد", en: "Date" },
+  stepDetails: { ar: "البيانات", en: "Details" },
+  stepConfirm: { ar: "التأكيد", en: "Confirm" },
+  chooseDay: { ar: "اختر اليوم", en: "Choose Day" },
+  chooseTime: { ar: "اختر الوقت", en: "Choose Time" },
+  today: { ar: "اليوم", en: "Today" },
+  tomorrow: { ar: "غداً", en: "Tomorrow" },
+  name: { ar: "الاسم", en: "Name" },
+  phone: { ar: "رقم الهاتف", en: "Phone" },
+  carModel: { ar: "موديل السيارة", en: "Car Model" },
+  carPlate: { ar: "رقم السيارة (اختياري)", en: "Car Plate (optional)" },
+  notes: { ar: "ملاحظات (اختياري)", en: "Notes (optional)" },
+  next: { ar: "التالي", en: "Next" },
+  prev: { ar: "السابق", en: "Back" },
+  confirmBooking: { ar: "تأكيد الحجز", en: "Confirm Booking" },
+  bookingConfirmed: { ar: "تم تأكيد حجزك! 🎉", en: "Booking Confirmed! 🎉" },
+  refCode: { ar: "رمز الحجز", en: "Booking Ref" },
+  summary: { ar: "ملخص الحجز", en: "Booking Summary" },
+  total: { ar: "الإجمالي", en: "Total" },
+  duration: { ar: "المدة", en: "Duration" },
+  whatsappContact: { ar: "تواصل واتساب", en: "WhatsApp" },
+  myBookings: { ar: "حجوزاتي", en: "My Bookings" },
+  change: { ar: "تغيير", en: "Change" },
+
+  // My bookings
+  trackBookings: { ar: "تابع حالة حجوزاتك برقم هاتفك", en: "Track your bookings by phone" },
+  noBookings: { ar: "لا توجد حجوزات لهذا الرقم", en: "No bookings for this number" },
+  slotsFull: { ar: "محجوز", en: "Full" },
+  slotsLeft: { ar: "متبقي", en: "left" },
+  noSlotsAvailable: { ar: "لا توجد مواعيد متاحة في هذا اليوم", en: "No slots available this day" },
+
+  // Car selection
+  carType: { ar: "نوع السيارة", en: "Car Type" },
+  carBrand: { ar: "ماركة السيارة", en: "Car Brand" },
+  selectBrand: { ar: "اختر الماركة...", en: "Select brand..." },
+  sedan: { ar: "سيدان", en: "Sedan" },
+  suv: { ar: "SUV", en: "SUV" },
+  largeSuv: { ar: "SUV كبيرة", en: "Large SUV" },
+
+  // Booking tracking
+  bookingTracker: { ar: "تتبع حالة الحجز", en: "Booking Tracker" },
+  stepPending: { ar: "قيد الانتظار", en: "Pending" },
+  stepAccepted: { ar: "تم القبول", en: "Accepted" },
+  stepInProgress: { ar: "قيد التنفيذ", en: "In Progress" },
+  stepCompleted: { ar: "مكتمل", en: "Completed" },
+
+  // Smart reminders
+  smartReminders: { ar: "تنبيهات ذكية", en: "Smart Reminders" },
+  serviceExpiry: { ar: "انتهاء الخدمة", en: "Service Expiry" },
+  expired: { ar: "منتهي", en: "Expired" },
+  expiresSoon: { ar: "ينتهي قريباً", en: "Expires Soon" },
+  daysLeft: { ar: "يوم متبقي", en: "days left" },
+  overdue: { ar: "متأخر!", en: "Overdue!" },
+  bookNowReminder: { ar: "احجز الآن لتجنب الضرر", en: "Book now to avoid damage" },
+  noReminders: { ar: "لا توجد تنبيهات حالياً", en: "No reminders at this time" },
+
+  // Branches
+  ourBranches: { ar: "فروعنا", en: "Our Branches" },
+  branchAddress: { ar: "العنوان", en: "Address" },
+  branchPhone: { ar: "الهاتف", en: "Phone" },
+  visitBranch: { ar: "زر الفرع", en: "Visit Branch" },
+
+  // Admin workflow
+  accept: { ar: "قبول", en: "Accept" },
+  startWork: { ar: "بدء التنفيذ", en: "Start" },
+  markComplete: { ar: "إكمال", en: "Complete" },
+  reject: { ar: "رفض", en: "Reject" },
+  setExpiry: { ar: "تحديد تاريخ الانتهاء", en: "Set Expiry Date" },
+  expiryDate: { ar: "تاريخ الانتهاء", en: "Expiry Date" },
+
+  // Admin branches
+  branchesTab: { ar: "الفروع", en: "Branches" },
+  addBranch: { ar: "إضافة فرع", en: "Add Branch" },
+  branchName: { ar: "اسم الفرع", en: "Branch Name" },
+
+  // Admin services table
+  servicesTable: { ar: "جدول الخدمات", en: "Services Table" },
+  dailyView: { ar: "يومي", en: "Daily" },
+  monthlyView: { ar: "شهري", en: "Monthly" },
+  byCategory: { ar: "حسب القسم", en: "By Category" },
+
+  // Working hours
+  openTime: { ar: "وقت الفتح", en: "Opening Time" },
+  closeTime: { ar: "وقت الإغلاق", en: "Closing Time" },
+  workingDays: { ar: "أيام العمل", en: "Working Days" },
+
+  // Offers / promotions
+  offers: { ar: "عروض", en: "Offers" },
+  specialOffers: { ar: "عروض خاصة", en: "Special Offers" },
+  addOffer: { ar: "إضافة عرض", en: "Add Offer" },
+  offerTitle: { ar: "عنوان العرض", en: "Offer Title" },
+  offerDesc: { ar: "وصف العرض", en: "Offer Description" },
+  startDate: { ar: "تاريخ البداية", en: "Start Date" },
+  endDate: { ar: "تاريخ النهاية", en: "End Date" },
+  discount: { ar: "نسبة الخصم", en: "Discount %" },
+  oldPrice: { ar: "السعر القديم", en: "Old Price" },
+  newPrice: { ar: "السعر الجديد", en: "New Price" },
+  noOffers: { ar: "لا توجد عروض حالياً", en: "No offers available" },
+  reportsTab: { ar: "التقارير", en: "Reports" },
+  dailyReport: { ar: "تقرير يومي", en: "Daily Report" },
+  monthlyReport: { ar: "تقرير شهري", en: "Monthly Report" },
+  financialReport: { ar: "تقرير مالي", en: "Financial Report" },
+  totalRevenue: { ar: "إجمالي الإيرادات", en: "Total Revenue" },
+  selectDate: { ar: "اختر التاريخ", en: "Select Date" },
+  selectMonth: { ar: "اختر الشهر", en: "Select Month" },
+
+  // About
+  aboutDesc: {
+    ar: "وجهة مصر الرائدة للعناية الفاخرة بالسيارات. نجمع بين التكنولوجيا الألمانية والحرفية المتخصصة لتحقيق نتائج لا مثيل لها لسيارتك.",
+    en: "Egypt's premier destination for luxury car care. We combine German technology with expert craftsmanship to deliver unmatched results for your vehicle.",
   },
-  en: {
-    // App
-    appName: 'Prestige Garage',
-    appTagline: 'AI-OS · Smart Management',
-    // Nav
-    dashboard: 'Dashboard',
-    rolls: 'PPF Rolls',
-    employees: 'Employees',
-    stock: 'Stock',
-    services: 'Services',
-    aiAssistant: 'Prestige AI',
-    // Dashboard
-    welcomeTitle: 'Welcome to Prestige Garage',
-    welcomeSubtitle: 'Smart Dashboard · Real-time stats and interactive analytics',
-    askAssistant: 'Ask Prestige Assistant',
-    quickSuggestions: 'Quick suggestions for Prestige Assistant',
-    totalRevenue: 'Total Revenue',
-    activeRolls: 'Active Rolls',
-    activeEmployees: 'Active Employees',
-    stockItems: 'Stock Items',
-    inventoryValue: 'Inventory Value',
-    rollsValue: 'Remaining Rolls Value',
-    totalInvoices: 'Total Invoices',
-    activeAlerts: 'Active Alerts',
-    monthlyRevenue: 'Monthly Revenue',
-    last6Months: 'Last 6 months',
-    revenueByType: 'Revenue by Service Type',
-    servicesThisMonth: 'services this month',
-    smartAlerts: 'Smart Alerts',
-    employeePerformance: 'Employee Performance This Month',
-    recentServices: 'Recent Services',
-    viewAll: 'View all',
-    details: 'Details',
-    critical: 'critical',
-    service: 'service',
-    // Service categories
-    cat_polish: 'Polish',
-    cat_nano: 'Nano Ceramic',
-    cat_detailing: 'Detailing',
-    cat_thermal: 'Thermal + Vamia',
-    cat_protection: 'Protection',
-    cat_other: 'Other',
-    // Rolls
-    ppfRolls: 'PPF Rolls Inventory',
-    ppfRollsDesc: 'Manage protection film rolls and auto-consumption',
-    newRoll: 'New Roll',
-    recordConsumption: 'Record Consumption',
-    totalRolls: 'Total Rolls',
-    lowRolls: 'Running Low',
-    finishedRolls: 'Finished',
-    searchCode: 'Search by code, brand or type...',
-    all: 'All',
-    active: 'Active',
-    low: 'Low',
-    finished: 'Finished',
-    remaining: 'Remaining',
-    meter: 'm',
-    // Employees
-    employeeAccounts: 'Employee Accounts',
-    employeeAccountsDesc: 'Manage attendance, payroll, commissions and advances',
-    newEmployee: 'New Employee',
-    netPayroll: 'Net Payroll',
-    baseEarned: 'Base Earned',
-    totalCommissions: 'Total Commissions',
-    totalAdvances: 'Total Advances',
-    searchName: 'Search by name or job title...',
-    present: 'Present',
-    absent: 'Absent',
-    officialLeave: 'Official Leave',
-    weeklyLeave: 'Weekly Leave',
-    baseSalary: 'Base Salary',
-    jobTitle: 'Job Title',
-    status: 'Status',
-    netSalary: 'Net Salary',
-    advance: 'Advance',
-    attendanceSheet: 'Attendance Sheet',
-    editSalary: 'Edit Salary',
-    editBaseSalary: 'Edit Base Salary',
-    attendance: 'Attendance',
-    penalties: 'Penalties',
-    dailyRate: 'Daily Rate',
-    paidDays: 'Paid Days',
-    commissions: 'Commissions',
-    advances: 'Advances',
-    // Attendance grid
-    attendanceGrid: 'Monthly Attendance Grid',
-    attendanceGridDesc: 'Click a cell to change status: P=Present, A=Absent, L=Leave, W=Weekly off',
-    day: 'Day',
-    date: 'Date',
-    legendPresent: 'P Present',
-    legendAbsent: 'A Absent',
-    legendOfficial: 'L Leave',
-    legendWeekly: 'W Weekly',
-    saveAttendance: 'Save Attendance',
-    // Stock
-    stockManagement: 'Stock & Materials',
-    stockDesc: 'Manage detailing, polish and tools inventory',
-    totalItems: 'Total Items',
-    lowStock: 'Low Stock',
-    outOfStock: 'Out of Stock',
-    searchItem: 'Search item...',
-    item: 'Item',
-    category: 'Category',
-    unit: 'Unit',
-    received: 'Received',
-    withdrawn: 'Withdrawn',
-    current: 'Current',
-    minLevel: 'Min Level',
-    action: 'Action',
-    receive: 'Receive',
-    withdraw: 'Withdraw',
-    movementType: 'Movement Type',
-    quantity: 'Quantity',
-    unitPrice: 'Unit Price',
-    deliveryNote: 'Delivery Note',
-    notes: 'Notes',
-    save: 'Save',
-    cancel: 'Cancel',
-    // Services
-    servicesInvoices: 'Services & Invoices',
-    servicesDesc: 'Operations log and revenue by service type',
-    newService: 'New Service',
-    totalServices: 'Total Services',
-    averagePrice: 'Average Price',
-    serviceTypes: 'Service Types',
-    revenueAnalysis: 'Revenue Analysis by Service Type',
-    count: 'Count',
-    revenue: 'Revenue',
-    code: 'Code',
-    client: 'Client',
-    car: 'Car',
-    plate: 'Plate',
-    technician: 'Technician',
-    payment: 'Payment',
-    price: 'Price',
-    // AI Chat
-    prestigeAssistant: 'Prestige Assistant',
-    aiSubtitle: 'Smart assistant that knows everything about the garage',
-    typeQuestion: 'Type your question here...',
-    // Notifications
-    notifications: 'Notifications',
-    noNotifications: 'No notifications',
-    markAllRead: 'Mark all as read',
-    // Common
-    currency: 'EGP',
-    egp: 'EGP',
-    loading: 'Loading...',
-    saving: 'Saving...',
-    add: 'Add',
-    edit: 'Edit',
-    delete: 'Delete',
-    close: 'Close',
-    confirm: 'Confirm',
-    success: 'Success',
-    error: 'Error',
-    required: 'Required',
-  },
-} as const
+  germanTech: { ar: "تكنولوجيا ألمانية", en: "German Technology" },
+  sonaxProducts: { ar: "منتجات SONAX", en: "SONAX products" },
+  expertTeam: { ar: "فريق خبير", en: "Expert Team" },
+  trainedPros: { ar: "محترفون مدربون", en: "Trained professionals" },
+  guaranteedResults: { ar: "نتائج مضمونة", en: "Guaranteed Results" },
+  satisfactionPromise: { ar: "وعد الرضا", en: "Satisfaction promise" },
+  premiumService: { ar: "خدمة فاخرة", en: "Premium Service" },
+  luxuryFocus: { ar: "تركيز على السيارات الفاخرة", en: "Luxury vehicle focus" },
+  authorizedDealer: { ar: "وكيل معتمد", en: "AUTHORIZED DEALER" },
+  madeInGermany: { ar: "صنع في ألمانيا - التميز المهني", en: "Made in Germany - Professional Excellence" },
 
-export type TranslationKey = keyof typeof translations.ar
+  // Contact
+  authorizedPartner: { ar: "شريك SONAX الألماني المعتمد", en: "Authorized SONAX Germany Partner" },
+  workingHours: { ar: "١٠:٠٠ ص - ١٢:٠٠ ص", en: "10:00 AM - 12:00 AM" },
+  hoursDaily: { ar: "١٤ ساعة يومياً - طوال الأسبوع", en: "14 Hours Daily - All Week" },
+  callUs: { ar: "اتصل بنا", en: "Call Us" },
+  whatsapp: { ar: "واتساب", en: "WhatsApp" },
+  location: { ar: "الموقع", en: "Location" },
+  openMaps: { ar: "افتح الخريطة", en: "Open Maps" },
+  email: { ar: "بريد", en: "Email" },
+  openInMaps: { ar: "افتح في خرائط Google", en: "Open in Google Maps" },
 
-// ─── Service type → category mapping ─────────────────────────
-// Unify terminology: "ديتيلنج" (correct spelling), "بروتيكشن" (not فيلم حماية)
-export function categorizeService(serviceType: string | null | undefined): string {
-  if (!serviceType) return 'cat_other'
-  const t = serviceType.toLowerCase()
-  // Polish
-  if (t.includes('بوليش') || t.includes('polish') || t.includes('تلميع')) return 'cat_polish'
-  // Nano ceramic
-  if (t.includes('نانو') || t.includes('nano') || t.includes('ceramic')) return 'cat_nano'
-  // Detailing — unified to "ديتيلنج"
-  if (t.includes('ديتيلنج') || t.includes('دتيلنج') || t.includes('detail')) return 'cat_detailing'
-  // Thermal insulation + Vamia
-  if (t.includes('عزل') || t.includes('thermal') || t.includes('فاميه') || t.includes('vamia') || t.includes('thv') || t.includes('thf')) return 'cat_thermal'
-  // Protection (PPF) — unified to "بروتيكشن" (not فيلم حماية)
-  if (t.includes('بروتيكشن') || t.includes('protection') || t.includes('ppf') || t.includes('حماية')) return 'cat_protection'
-  // Other
-  return 'cat_other'
-}
+  // Admin
+  adminDashboard: { ar: "لوحة التحكم", en: "Dashboard" },
+  logout: { ar: "خروج", en: "Logout" },
+  servicesTab: { ar: "الخدمات", en: "Services" },
+  variantsTab: { ar: "الأنواع", en: "Variants" },
+  bookingsTab: { ar: "الحجوزات", en: "Bookings" },
+  customersTab: { ar: "العملاء", en: "Customers" },
+  settingsTab: { ar: "الإعدادات", en: "Settings" },
+  customers: { ar: "العملاء", en: "Customers" },
+  totalCustomers: { ar: "إجمالي العملاء", en: "Total Customers" },
+  totalBookings: { ar: "إجمالي الحجوزات", en: "Total Bookings" },
+  lastVisit: { ar: "آخر زيارة", en: "Last Visit" },
+  searchCustomers: { ar: "بحث بالاسم أو الهاتف...", en: "Search by name or phone..." },
+} as const;
 
-// ─── Unify service type names ─────────────────────────────────
-// Fix typos and standardize terms:
-// - "دتيلنج" → "ديتيلنج"
-// - "فيلم حماية" → "بروتيكشن"
-// - "أإزالة قطران" → "إزالة قطران"
-export function unifyServiceType(serviceType: string | null | undefined): string {
-  if (!serviceType) return ''
-  let s = serviceType.trim()
-  // Fix common typo: "أإزالة" → "إزالة"
-  s = s.replace(/أإزالة/g, 'إزالة')
-  s = s.replace(/أإزال/g, 'إزال')
-  // Unify "دتيلنج" → "ديتيلنج" (correct Arabic spelling)
-  s = s.replace(/دتيلنج/g, 'ديتيلنج')
-  // Unify "فيلم حماية" → "بروتيكشن"
-  s = s.replace(/فيلم حماية/g, 'بروتيكشن')
-  return s
-}
+export type TranslationKey = keyof typeof translations;
 
-// ─── Format number with Latin digits ──────────────────────────
-export function formatNumber(n: number, lang: Lang = 'ar'): string {
-  if (lang === 'ar') {
-    // Arabic text but Latin (English) numerals
-    return new Intl.NumberFormat('en-US').format(n)
-  }
-  return new Intl.NumberFormat('en-US').format(n)
-}
-
-export function formatCurrency(n: number, lang: Lang = 'ar'): string {
-  const formatted = formatNumber(Math.round(n), lang)
-  return `${formatted} ${translations[lang].egp}`
+export function t(key: TranslationKey, lang: Lang): string {
+  const entry = translations[key];
+  if (!entry) return key;
+  return entry[lang];
 }
