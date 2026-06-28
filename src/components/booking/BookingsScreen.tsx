@@ -185,6 +185,80 @@ export function BookingsScreen() {
         </div>
       )}
 
+      {/* ===== Admin Notes (Garage Notices) — prominent glowing banners ===== */}
+      {myBookings.some((b) => (b as BookingItem & { adminNote?: string | null }).adminNote) && (
+        <div className="mt-5 space-y-2.5">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="relative grid h-8 w-8 place-items-center rounded-xl bg-[#fbbf24]/15 border border-[#fbbf24]/30">
+              <Bell size={16} className="text-[#fbbf24]" />
+              <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#fbbf24] animate-pulse shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
+            </div>
+            <h3 className="text-sm font-extrabold text-[#fbbf24]">
+              {lang === "ar" ? "تنبيهات الورشة" : "Garage Notices"}
+            </h3>
+          </div>
+          {myBookings
+            .filter((b) => (b as BookingItem & { adminNote?: string | null }).adminNote)
+            .map((b) => {
+              const note = (b as BookingItem & { adminNote?: string | null }).adminNote!;
+              return (
+                <motion.div
+                  key={`note-${b.id}`}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="relative overflow-hidden rounded-2xl"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.04))",
+                    border: "1.5px solid rgba(251,191,36,0.35)",
+                    boxShadow: "0 0 20px rgba(251,191,36,0.12), inset 0 0 12px rgba(251,191,36,0.05)",
+                  }}
+                >
+                  {/* Animated color-pulsing glow strip at top */}
+                  <div
+                    className="absolute top-0 inset-x-0 h-0.5 animate-pulse"
+                    style={{
+                      background: "linear-gradient(90deg, transparent, #fbbf24, transparent)",
+                      boxShadow: "0 0 10px rgba(251,191,36,0.6)",
+                    }}
+                  />
+                  <div className="flex items-start gap-3 p-4">
+                    <div
+                      className="grid h-10 w-10 shrink-0 place-items-center rounded-xl"
+                      style={{
+                        background: "rgba(251,191,36,0.15)",
+                        border: "1px solid rgba(251,191,36,0.35)",
+                        boxShadow: "0 0 10px rgba(251,191,36,0.2), inset 0 0 8px rgba(251,191,36,0.08)",
+                      }}
+                    >
+                      <Bell size={18} style={{ color: "#fbbf24" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <span className="text-[10px] font-extrabold text-[#fbbf24] uppercase tracking-wider">
+                          {lang === "ar" ? "تنبيه من الورشة" : "Garage Notice"}
+                        </span>
+                        {b.service && (
+                          <span className="text-[9px] font-semibold text-white/40">
+                            · {b.service.nameAr}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[12px] font-medium text-white/90 leading-relaxed">
+                        {note}
+                      </p>
+                      {b.expiryDate && (
+                        <p className="mt-1.5 text-[10px] text-[#fbbf24]/70">
+                          {lang === "ar" ? "تاريخ الانتهاء:" : "Expires:"} {b.expiryDate.slice(0, 10)}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+        </div>
+      )}
+
       {/* ===== Bookings list ===== */}
       {myBookings.length > 0 ? (
         <div className="mt-6 space-y-3">

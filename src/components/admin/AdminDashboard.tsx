@@ -40,6 +40,7 @@ import {
   TrendingUp,
   Wallet,
   CalendarRange,
+  MessageSquare,
 } from "lucide-react";
 import { useApp } from "@/lib/store";
 import { useSettings } from "@/lib/use-settings";
@@ -1918,6 +1919,15 @@ function BookingsManager({ pin }: { pin: string }) {
                         {b.carPlate && ` · ${b.carPlate}`}
                       </span>
                     </div>
+                    {/* Notes shown immediately after car info */}
+                    {b.notes && (
+                      <div className="mt-1 rounded-lg border border-[#fbbf24]/20 bg-[#fbbf24]/5 px-2.5 py-1.5">
+                        <div className="flex items-start gap-1.5">
+                          <MessageSquare size={10} className="mt-0.5 shrink-0 text-[#fbbf24]" />
+                          <span className="text-[10.5px] text-[#fbbf24]/90 leading-relaxed">{b.notes}</span>
+                        </div>
+                      </div>
+                    )}
                     {b.branch && (
                       <div className="flex justify-between">
                         <span className="text-white/40">الفرع</span>
@@ -1954,14 +1964,6 @@ function BookingsManager({ pin }: { pin: string }) {
                         <span className="text-white/40">ينتهي في</span>
                         <span dir="ltr" className="text-[10px] text-[#4ade80]">
                           {b.expiryDate.slice(0, 10)}
-                        </span>
-                      </div>
-                    )}
-                    {b.notes && (
-                      <div className="flex justify-between gap-2">
-                        <span className="text-white/40 shrink-0">ملاحظات</span>
-                        <span className="text-white/80 text-left">
-                          {b.notes}
                         </span>
                       </div>
                     )}

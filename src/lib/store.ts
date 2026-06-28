@@ -25,6 +25,10 @@ interface AppState {
   tab: "home" | "services" | "booking" | "bookings" | "contact" | "about";
   setTab: (t: AppState["tab"]) => void;
 
+  // selected category (from home → services)
+  selectedCategory: string | null;
+  setSelectedCategory: (c: string | null) => void;
+
   // selected service + variant for booking flow
   selectedService: ServiceItem | null;
   selectService: (s: ServiceItem | null) => void;
@@ -92,6 +96,9 @@ export const useApp = create<AppState>()(
 
       tab: "home",
       setTab: (t) => set({ tab: t }),
+
+      selectedCategory: null,
+      setSelectedCategory: (c) => set({ selectedCategory: c }),
 
       selectedService: null,
       selectService: (s) => set({ selectedService: s, selectedVariant: null }),

@@ -206,6 +206,7 @@ function OfferCard({
 
 export function HomeScreen() {
   const setTab = useApp((s) => s.setTab);
+  const setSelectedCategory = useApp((s) => s.setSelectedCategory);
   const selectService = useApp((s) => s.selectService);
   const services = useApp((s) => s.services);
   const branches = useApp((s) => s.branches);
@@ -275,7 +276,7 @@ export function HomeScreen() {
           </span>
         </button>
         <button
-          onClick={() => setTab("services")}
+          onClick={() => { setSelectedCategory(null); setTab("services"); }}
           className="mt-3 w-full rounded-2xl border border-white/10 bg-white/[0.03] py-3.5 text-sm font-semibold text-white/85 backdrop-blur transition hover:bg-white/[0.06] active:scale-[0.98]"
         >
           {t("browseServices")} ({services.length})
@@ -359,7 +360,10 @@ export function HomeScreen() {
             return (
               <button
                 key={cat}
-                onClick={() => setTab("services")}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setTab("services");
+                }}
                 className={`cat-card-premium cat-bg-${cat} fluorescent-border group relative overflow-hidden p-4 pt-14 text-start transition active:scale-[0.98]`}
                 style={
                   {

@@ -39,14 +39,26 @@ export function ServicesScreen() {
   const selectService = useApp((s) => s.selectService);
   const selectVariant = useApp((s) => s.selectVariant);
   const setTab = useApp((s) => s.setTab);
+  const selectedCategory = useApp((s) => s.selectedCategory);
+  const setSelectedCategory = useApp((s) => s.setSelectedCategory);
   const settings = useSettings();
   const t = useT();
   const lang = useLang();
 
-  const [activeCat, setActiveCat] = useState<ServiceCategory>("protection");
+  const [activeCat, setActiveCat] = useState<ServiceCategory>(
+    (selectedCategory as ServiceCategory) || "protection"
+  );
   // drill-down: when a variant service is tapped, show ONLY its variants
   const [drillServiceId, setDrillServiceId] = useState<string | null>(null);
   const [localVariant, setLocalVariant] = useState<ServiceVariant | null>(null);
+
+  // Sync when selectedCategory changes (e.g. navigating from home)
+  useEffect(() => {
+    if (selectedCategory) {
+      setActiveCat(selectedCategory as ServiceCategory);
+      setSelectedCategory(null); // consume it
+    }
+  }, [selectedCategory, setSelectedCategory]);
 
   useEffect(() => {
     if (services.length === 0) loadServices();
