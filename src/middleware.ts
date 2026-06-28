@@ -153,7 +153,7 @@ export function middleware(req: NextRequest) {
   // ── Security headers on every response ──
   const res = NextResponse.next();
   res.headers.set("X-Content-Type-Options", "nosniff");
-  res.headers.set("X-Frame-Options", "DENY");
+  res.headers.set("X-Frame-Options", "SAMEORIGIN");
   res.headers.set("X-XSS-Protection", "1; mode=block");
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   // Don't add CSP here — it can break Next.js inline scripts; handle in next.config
