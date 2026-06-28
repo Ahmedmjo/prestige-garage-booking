@@ -1,10 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "prisma generate && next build",
   "installCommand": "npm install",
-  "devCommand": "next dev",
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "ADMIN_PIN": "@admin_pin"
-  }
+  "devCommand": "next dev"
 }
