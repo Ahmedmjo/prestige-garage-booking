@@ -1,0 +1,171 @@
+// Prisma schema for Prestige Garage - Premium Car Care booking app
+// Brand: Prestige Garage | Powered by SONAX | Born in Germany. Mastered in Egypt.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String
+  category    String   // "detailing" | "wash" | "protection" | "polish" | "extra"
+  subCategory String?  // For detailing: "interior" | "roof" | "wheels" | "motor" | "full"
+  description String?
+  descriptionAr String?
+  price       Float    // base price (used directly if no variants)
+  duration    Int      // in minutes
+  icon        String?  // lucide icon name
+  color       String?  // soft color key: blue|yellow|green|purple|orange|gray
+  hasVariants Boolean  @default(false)
+  priceNote   String?  // e.g. "From" | "Tap for prices"
+  imageUrl    String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  variants    ServiceVariant[]
+  bookings    Booking[]
+
+  @@index([category, subCategory])
+  @@index([isActive])
+}
+
+model ServiceVariant {
+  id        String  @id @default(cuid())
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  name      String
+  nameAr    String
+  price     Float
+  duration  Int?    // optional override in minutes
+  lifespanDays Int? // smart reminder: days until service should be renewed
+  sortOrder Int     @default(0)
+  isActive  Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([serviceId])
+}
+
+
+model Booking {
+  id          String   @id @default(cuid())
+  refCode     String   @unique
+  customerName String
+  phone       String
+  carType     String?  // Sedan | SUV | Large SUV
+  carBrand    String?  // BMW, Mercedes, Audi...
+  carModel    String
+  carPlate    String?
+  branchId    String?
+  branch      Branch?  @relation(fields: [branchId], references: [id])
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id])
+  serviceId   String
+  service     Service  @relation(fields: [serviceId], references: [id])
+  variantId   String?
+  variantName String?
+  date        String   // YYYY-MM-DD
+  time        String   // HH:mm
+  status      String   @default("pending") // "pending" | "accepted" | "in_progress" | "completed" | "cancelled"
+  notes       String?
+  address     String?
+  totalPrice  Float
+  // Workflow timestamps
+  acceptedAt    DateTime?
+  inProgressAt  DateTime?
+  completedAt   DateTime?
+  // Smart reminder: admin sets when the service warranty/protection expires
+  expiryDate    String?  // YYYY-MM-DD
+  adminNote     String?  // Admin message shown to customer in their booking profile (e.g. "Protection expires, please renew")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date, time])
+  @@index([status])
+  @@index([phone])
+  @@index([customerId])
+  @@index([branchId])
+}
+
+model Customer {
+  id           String   @id @default(cuid())
+  name         String
+  phone        String   @unique
+  password     String?
+  sessionToken String?
+  carType      String?
+  carBrand     String?
+  carModel     String?
+  carPlate     String?
+  bookingsCount Int  @default(0)
+  lastVisit    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  bookings     Booking[]
+
+  @@index([phone])
+  @@index([sessionToken])
+}
+
+model Branch {
+  id        String   @id @default(cuid())
+  name      String
+  nameAr    String
+  address   String?
+  addressAr String?
+  phone     String?
+  mapUrl    String?
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+
+  @@index([isActive])
+}
+
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+  updatedAt DateTime @updatedAt
+}
+
+model Offer {
+  id          String   @id @default(cuid())
+  title       String
+  titleAr     String
+  description String?
+  descriptionAr String?
+  imageUrl    String?
+  videoUrl    String?  // optional video for animated ad (muted autoplay)
+  serviceId   String?  // optional link to a service
+  discountPct Int?     // discount percentage
+  oldPrice    Float?
+  newPrice    Float?
+  startDate   String   // YYYY-MM-DD
+  endDate     String   // YYYY-MM-DD
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, startDate, endDate])
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

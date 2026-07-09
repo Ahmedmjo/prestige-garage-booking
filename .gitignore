@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+*.log
+tool-results/
+upload/
+db/
+examples/
+mini-services/
