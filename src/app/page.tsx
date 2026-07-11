@@ -1,36 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ShieldCheck,
-  Thermometer,
-  Sparkles,
-  Droplets,
-  Plus,
-  Waves,
-  Phone,
-  MapPin,
-  Clock,
-  Instagram,
-  Facebook,
-} from "lucide-react";
+import { Phone, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
 import ScrollScrubScene from "@/components/ScrollScrubScene";
+import ServicesAccordion from "@/components/ServicesAccordion";
 import { CATEGORY_LABELS, type ServiceCategory } from "@/lib/types";
 
 // Server Component — rendered fully on the server so real content
 // (services, offers, contact info) is present in the initial HTML for
 // search engines, instead of loading client-side like the /app screens.
-
-const CATEGORY_ICONS: Record<ServiceCategory, React.ComponentType<{ className?: string }>> = {
-  protection: ShieldCheck,
-  thermal: Thermometer,
-  detailing: Sparkles,
-  polish: Waves,
-  wash: Droplets,
-  extra: Plus,
-};
+// (category icons now live inside ServicesAccordion.tsx)
 
 const CATEGORY_ORDER: ServiceCategory[] = [
   "protection",
@@ -187,39 +168,7 @@ export default async function HomePage() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {servicesByCategory.map((group) => {
-            const Icon = CATEGORY_ICONS[group.category];
-            return (
-              <div
-                key={group.category}
-                className="group rounded-2xl border border-border/60 bg-card/40 p-6 transition-colors hover:border-[var(--cinema-crimson)]/60"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--cinema-crimson)]/10 text-[var(--cinema-crimson)]">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mb-1 text-lg font-bold text-foreground">
-                  {group.label.ar}
-                </h3>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  {group.items.length} خدمة متاحة
-                </p>
-                <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  {group.items.slice(0, 4).map((s) => (
-                    <li key={s.id} className="flex items-center justify-between gap-2">
-                      <span>{s.nameAr}</span>
-                      {!s.hasVariants && (
-                        <span className="shrink-0 text-xs text-foreground/70">
-                          {s.price} {settings.currencyAr}
-                        </span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+        <ServicesAccordion groups={servicesByCategory} currencyAr={settings.currencyAr} />
       </section>
 
       {/* ---------- CINEMATIC SCENES ---------- */}
