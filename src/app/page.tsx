@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
 import ScrollScrubScene from "@/components/ScrollScrubScene";
 import ServicesAccordion from "@/components/ServicesAccordion";
+import { LanguageProvider, LanguageToggle, LangText } from "@/components/LanguageProvider";
 import { CATEGORY_LABELS, type ServiceCategory } from "@/lib/types";
 
 // Server Component — rendered fully on the server so real content
@@ -85,6 +86,7 @@ export default async function HomePage() {
   };
 
   return (
+    <LanguageProvider>
     <main className="min-h-screen bg-[var(--cinema-bg)] text-foreground">
       {/* Structured data for search engines — not visible to visitors */}
       <script
@@ -103,12 +105,15 @@ export default async function HomePage() {
             className="h-9 w-9"
           />
         </Link>
-        <Link
-          href="/app"
-          className="rounded-full border border-white/20 bg-black/30 px-5 py-2 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:border-[var(--cinema-crimson)]"
-        >
-          احجز الآن
-        </Link>
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
+          <Link
+            href="/app"
+            className="rounded-full border border-white/20 bg-black/30 px-5 py-2 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:border-[var(--cinema-crimson)]"
+          >
+            <LangText ar="احجز الآن" en="Book Now" />
+          </Link>
+        </div>
       </header>
 
       {/* ---------- HERO ---------- */}
@@ -128,29 +133,35 @@ export default async function HomePage() {
           className="h-auto w-40 drop-shadow-[0_0_35px_var(--cinema-crimson)] sm:w-48"
         />
         <div className="space-y-2">
-          <h1 className="text-4xl font-black tracking-wide text-foreground sm:text-6xl">
-            {settings.brandNameAr}
-          </h1>
+          <LangText
+            as="h1"
+            ar={settings.brandNameAr}
+            en={settings.brandName || settings.brandNameAr}
+            className="text-4xl font-black tracking-wide text-foreground sm:text-6xl"
+          />
           <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground sm:text-base">
             {settings.tagline}
           </p>
         </div>
-        <p className="max-w-xl text-balance text-base italic text-muted-foreground/80 sm:text-lg">
-          {settings.bornLine}
-        </p>
+        <LangText
+          as="p"
+          ar="صُنع في ألمانيا .. أُتقن في مصر"
+          en="Born in Germany. Mastered in Egypt."
+          className="max-w-xl text-balance text-base italic text-muted-foreground/80 sm:text-lg"
+        />
         <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/app"
             className="rounded-full bg-[var(--cinema-crimson)] px-8 py-3.5 text-sm font-bold text-primary-foreground shadow-[0_0_25px_var(--cinema-crimson)] transition-all hover:scale-105 hover:shadow-[0_0_35px_var(--cinema-crimson)] sm:text-base"
           >
-            احجز الآن
+            <LangText ar="احجز الآن" en="Book Now" />
           </Link>
           {primaryBranch?.phone && (
             <a
               href={`https://wa.me/${(settings.whatsapp || "").replace(/[^0-9]/g, "")}`}
               className="rounded-full border border-border px-8 py-3.5 text-sm font-bold text-foreground transition-colors hover:border-[var(--cinema-crimson)] sm:text-base"
             >
-              تواصل واتساب
+              <LangText ar="تواصل واتساب" en="WhatsApp Us" />
             </a>
           )}
         </div>
@@ -177,50 +188,71 @@ export default async function HomePage() {
           video: "/videos/protection-wrap.mp4",
           poster: "/videos/posters/protection-wrap.jpg",
           eyebrow: "حماية الطلاء",
+          eyebrowEn: "Paint Protection",
           title: "PPF — درع غير مرئي لسيارتك",
+          titleEn: "PPF — An Invisible Shield for Your Car",
           text: "فيلم حماية أمريكي عالي الجودة يمتص الصدمات والخدوش قبل ما توصل لطلاء سيارتك، مع لمعان زجاجي دايم.",
+          textEn: "Premium American-grade film absorbs impacts and scratches before they reach your paint, with a lasting glass-like finish.",
         },
         {
           video: "/videos/nano-ceramic.mp4",
           poster: "/videos/posters/nano-ceramic.jpg",
           eyebrow: "نانو سيراميك",
+          eyebrowEn: "Nano Ceramic",
           title: "طبقة حماية معدنية بلمعان مرآة",
+          titleEn: "A Metallic Layer with a Mirror Finish",
           text: "تغليف نانوي يحمي من الأشعة فوق البنفسجية والحرارة، ويخلي مية السيارة تنزلق من غير ما تسيب أثر.",
+          textEn: "Nano coating protects against UV and heat, and makes water slide right off without leaving a trace.",
         },
         {
           video: "/videos/polish-hq.mp4",
           poster: "/videos/posters/polish-hq.jpg",
           eyebrow: "التلميع الاحترافي",
+          eyebrowEn: "Professional Polishing",
           title: "من طلاء باهت لتشطيب مرآة",
+          titleEn: "From Dull Paint to a Mirror Finish",
           text: "بوليش احترافي بمراحل دقيقة يشيل أي خدوش سطحية ويرجع للطلاء لمعانه الأصلي بالظبط.",
+          textEn: "Professional multi-stage polishing removes surface scratches and restores your paint's original gloss.",
         },
         {
           video: "/videos/window-film.mp4",
           poster: "/videos/posters/window-film.jpg",
           eyebrow: "العزل الحراري",
+          eyebrowEn: "Window Film",
           title: "زجاج بارد، خصوصية أعلى",
+          titleEn: "Cooler Glass, More Privacy",
           text: "عزل حراري يقلل درجة الحرارة جوه العربية ويحجب الأشعة الضارة من غير ما يأثر على وضوح الرؤية.",
+          textEn: "Thermal insulation lowers the cabin temperature and blocks harmful rays without affecting visibility.",
         },
         {
           video: "/videos/body-paint.mp4",
           poster: "/videos/posters/body-paint.jpg",
           eyebrow: "الدوكو",
+          eyebrowEn: "Body Paint",
           title: "تشطيب مصنعي بجودة عالية",
+          titleEn: "Factory-Grade Finish Quality",
           text: "إعادة دهان احترافية بطبقات دقيقة توصل السيارة لتشطيب Piano Black زي الوكالة بالظبط.",
+          textEn: "Professional refinishing in precise layers brings your car to a showroom Piano Black finish.",
         },
         {
           video: "/videos/steam-exterior-hq.mp4",
           poster: "/videos/posters/steam-exterior-hq.jpg",
           eyebrow: "ديتيلنج بالبخار",
+          eyebrowEn: "Steam Detailing",
           title: "تنظيف عميق من غير مية زيادة",
+          titleEn: "Deep Clean Without Excess Water",
           text: "بخار مضغوط بيشيل الأوساخ والبكتيريا من كل تفصيلة في السيارة، من غير ما يأثر على أي سطح حساس.",
+          textEn: "Pressurized steam removes dirt and bacteria from every detail of your car without affecting sensitive surfaces.",
         },
         {
           video: "/videos/wash-exterior-hq.mp4",
           poster: "/videos/posters/wash-exterior-hq.jpg",
           eyebrow: "الغسيل الخارجي",
+          eyebrowEn: "Exterior Wash",
           title: "نظافة تليق بسيارتك",
+          titleEn: "A Clean That Matches Your Car",
           text: "غسيل خارجي احترافي بمواد آمنة على الطلاء والحماية المركّبة، بلمسة أخيرة لامعة.",
+          textEn: "Professional exterior wash with products safe on your paint and installed protection, finished with a glossy touch.",
         },
       ].map((scene) => (
         <ScrollScrubScene
@@ -228,8 +260,11 @@ export default async function HomePage() {
           src={scene.video}
           poster={scene.poster}
           eyebrow={scene.eyebrow}
+          eyebrowEn={scene.eyebrowEn}
           title={scene.title}
+          titleEn={scene.titleEn}
           text={scene.text}
+          textEn={scene.textEn}
         />
       ))}
 
@@ -250,36 +285,53 @@ export default async function HomePage() {
         />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <div className="max-w-md rounded-2xl bg-black/35 p-6 backdrop-blur-sm">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]">
-              العناية الداخلية
-            </p>
-            <h3 className="mt-3 text-2xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-3xl">
-              مقصورة فاخرة بلمسة يد خبير
-            </h3>
-            <p className="mt-4 text-sm leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] sm:text-base">
-              تنظيف وتغذية كل تفصيلة جوه السيارة — من الجلد لحد أدق الزوايا — بأدوات ومواد مخصصة لكل خامة.
-            </p>
+            <LangText
+              as="p"
+              ar="العناية الداخلية"
+              en="Interior Detailing"
+              className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]"
+            />
+            <LangText
+              as="h3"
+              ar="مقصورة فاخرة بلمسة يد خبير"
+              en="A Luxurious Cabin, Finished by Expert Hands"
+              className="mt-3 text-2xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-3xl"
+            />
+            <LangText
+              as="p"
+              ar="تنظيف وتغذية كل تفصيلة جوه السيارة — من الجلد لحد أدق الزوايا — بأدوات ومواد مخصصة لكل خامة."
+              en="Cleaning and conditioning every detail inside your car — from the leather to the finest corners — with tools and materials matched to each surface."
+              className="mt-4 text-sm leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] sm:text-base"
+            />
           </div>
         </div>
       </section>
 
       {/* ---------- عناية فاخرة / برنامج الصيانة ---------- */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--brand-gold)]">
-          عناية فاخرة
-        </p>
-        <h2 className="mt-3 text-3xl font-black text-foreground sm:text-4xl">
-          برنامج صيانة كونسيرج
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-balance leading-relaxed text-muted-foreground">
-          متابعة دورية مخصصة لسيارتك — فحص، تجديد الحماية، وتذكير بمواعيد
-          الصيانة، كل ده مُدار بالكامل من فريق بريستيج جراج من غير ما تشغل بالك بأي تفصيلة.
-        </p>
+        <LangText
+          as="p"
+          ar="عناية فاخرة"
+          en="Premium Care"
+          className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--brand-gold)]"
+        />
+        <LangText
+          as="h2"
+          ar="برنامج صيانة كونسيرج"
+          en="Concierge Maintenance Program"
+          className="mt-3 text-3xl font-black text-foreground sm:text-4xl"
+        />
+        <LangText
+          as="p"
+          ar="متابعة دورية مخصصة لسيارتك — فحص، تجديد الحماية، وتذكير بمواعيد الصيانة، كل ده مُدار بالكامل من فريق بريستيج جراج من غير ما تشغل بالك بأي تفصيلة."
+          en="Personalized, recurring care for your car — inspections, protection renewal, and maintenance reminders, fully managed by the Prestige Garage team so you don't have to think about a thing."
+          className="mx-auto mt-4 max-w-xl text-balance leading-relaxed text-muted-foreground"
+        />
         <Link
           href="/app"
           className="mt-6 inline-block rounded-full border border-[var(--cinema-crimson)] px-8 py-3.5 text-sm font-bold text-foreground transition-colors hover:bg-[var(--cinema-crimson)]"
         >
-          اعرف أكتر
+          <LangText ar="اعرف أكتر" en="Learn More" />
         </Link>
       </section>
 
@@ -436,5 +488,6 @@ export default async function HomePage() {
         </div>
       </footer>
     </main>
+    </LanguageProvider>
   );
 }
