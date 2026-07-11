@@ -171,12 +171,18 @@ export default async function HomePage() {
       {/* ---------- SERVICES ---------- */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <div className="mb-14 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]">
-            خدماتنا
-          </p>
-          <h2 className="mt-3 text-3xl font-black text-foreground sm:text-4xl">
-            حماية كاملة لسيارتك، من الألف للياء
-          </h2>
+          <LangText
+            as="p"
+            ar="خدماتنا"
+            en="Our Services"
+            className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]"
+          />
+          <LangText
+            as="h2"
+            ar="حماية كاملة لسيارتك، من الألف للياء"
+            en="Complete Protection for Your Car, A to Z"
+            className="mt-3 text-3xl font-black text-foreground sm:text-4xl"
+          />
         </div>
 
         <ServicesAccordion groups={servicesByCategory} currencyAr={settings.currencyAr} />
@@ -340,12 +346,18 @@ export default async function HomePage() {
       {offers.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="mb-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--brand-gold)]">
-              عروض حالية
-            </p>
-            <h2 className="mt-3 text-3xl font-black text-foreground sm:text-4xl">
-              أحدث العروض
-            </h2>
+            <LangText
+              as="p"
+              ar="عروض حالية"
+              en="Current Offers"
+              className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--brand-gold)]"
+            />
+            <LangText
+              as="h2"
+              ar="أحدث العروض"
+              en="Latest Offers"
+              className="mt-3 text-3xl font-black text-foreground sm:text-4xl"
+            />
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {offers.map((offer) => (
@@ -353,9 +365,19 @@ export default async function HomePage() {
                 key={offer.id}
                 className="rounded-2xl border border-[var(--brand-gold)]/30 bg-card/40 p-6"
               >
-                <h3 className="mb-2 text-lg font-bold text-foreground">{offer.titleAr}</h3>
+                <LangText
+                  as="h3"
+                  ar={offer.titleAr}
+                  en={offer.title}
+                  className="mb-2 text-lg font-bold text-foreground"
+                />
                 {offer.descriptionAr && (
-                  <p className="mb-3 text-sm text-muted-foreground">{offer.descriptionAr}</p>
+                  <LangText
+                    as="p"
+                    ar={offer.descriptionAr}
+                    en={offer.description || offer.descriptionAr}
+                    className="mb-3 text-sm text-muted-foreground"
+                  />
                 )}
                 {offer.newPrice && (
                   <div className="flex items-baseline gap-2">
@@ -378,22 +400,36 @@ export default async function HomePage() {
       {/* ---------- ABOUT ---------- */}
       <section className="border-y border-border/60 bg-card/20">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <h2 className="mb-6 text-2xl font-black text-foreground sm:text-3xl">
-            {settings.brandNameAr}
-          </h2>
-          <p className="text-balance leading-relaxed text-muted-foreground">
-            {settings.aboutAr}
-          </p>
+          <LangText
+            as="h2"
+            ar={settings.brandNameAr}
+            en={settings.brandName || settings.brandNameAr}
+            className="mb-6 text-2xl font-black text-foreground sm:text-3xl"
+          />
+          <LangText
+            as="p"
+            ar={settings.aboutAr}
+            en={settings.aboutEn || settings.aboutAr}
+            className="text-balance leading-relaxed text-muted-foreground"
+          />
         </div>
       </section>
 
       {/* ---------- CONTACT / BRANCHES ---------- */}
       <section className="mx-auto max-w-4xl px-6 py-20">
         <div className="mb-12 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]">
-            تواصل معنا
-          </p>
-          <h2 className="mt-3 text-3xl font-black text-foreground">فروعنا</h2>
+          <LangText
+            as="p"
+            ar="تواصل معنا"
+            en="Get in Touch"
+            className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]"
+          />
+          <LangText
+            as="h2"
+            ar="فروعنا"
+            en="Our Branches"
+            className="mt-3 text-3xl font-black text-foreground"
+          />
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {branches.map((branch) => (
@@ -401,12 +437,17 @@ export default async function HomePage() {
               key={branch.id}
               className="flex flex-col rounded-2xl border border-border/60 bg-card/40 p-6 transition-colors hover:border-[var(--cinema-crimson)]/50"
             >
-              <h3 className="mb-4 text-lg font-bold text-foreground">{branch.nameAr}</h3>
+              <LangText
+                as="h3"
+                ar={branch.nameAr}
+                en={branch.name || branch.nameAr}
+                className="mb-4 text-lg font-bold text-foreground"
+              />
               <div className="flex-1 space-y-3 text-sm text-muted-foreground">
                 {branch.addressAr && (
                   <p className="flex items-start gap-3">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cinema-crimson)]" />
-                    <span>{branch.addressAr}</span>
+                    <LangText ar={branch.addressAr} en={branch.address || branch.addressAr} />
                   </p>
                 )}
                 {branch.phone && (
@@ -428,14 +469,14 @@ export default async function HomePage() {
                   href="/app"
                   className="rounded-full bg-[var(--cinema-crimson)] px-5 py-2 text-xs font-bold text-primary-foreground transition-transform hover:scale-105"
                 >
-                  احجز في الفرع ده
+                  <LangText ar="احجز في الفرع ده" en="Book at This Branch" />
                 </Link>
                 {branch.mapUrl && (
                   <a
                     href={branch.mapUrl}
                     className="text-xs font-bold text-muted-foreground hover:text-[var(--cinema-crimson)] hover:underline"
                   >
-                    افتح في خرائط جوجل ←
+                    <LangText ar="افتح في خرائط جوجل ←" en="Open in Google Maps →" />
                   </a>
                 )}
               </div>
@@ -452,23 +493,29 @@ export default async function HomePage() {
         overlay="radial-gradient(circle at 50% 60%, transparent 30%, var(--cinema-bg) 90%)"
         contentClassName="relative z-10 flex w-full flex-col items-center gap-6 px-6 text-center"
       >
-        <h2 className="text-3xl font-black text-foreground sm:text-5xl">
-          سيارتك تستاهل الحماية دي
-        </h2>
+        <LangText
+          as="h2"
+          ar="سيارتك تستاهل الحماية دي"
+          en="Your Car Deserves This Protection"
+          className="text-3xl font-black text-foreground sm:text-5xl"
+        />
         <Link
           href="/app"
           className="rounded-full bg-[var(--cinema-crimson)] px-10 py-4 text-sm font-bold text-primary-foreground shadow-[0_0_30px_var(--cinema-crimson)] transition-transform hover:scale-105 sm:text-base"
         >
-          احجز الآن
+          <LangText ar="احجز الآن" en="Book Now" />
         </Link>
       </ScrollScrubScene>
 
       {/* ---------- FOOTER ---------- */}
       <footer className="border-t border-border/60 px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {settings.brandNameAr} — {settings.bornLine}
-          </p>
+          <LangText
+            as="p"
+            ar={`© ${new Date().getFullYear()} ${settings.brandNameAr} — صُنع في ألمانيا .. أُتقن في مصر`}
+            en={`© ${new Date().getFullYear()} ${settings.brandName || settings.brandNameAr} — Born in Germany. Mastered in Egypt.`}
+            className="text-xs text-muted-foreground"
+          />
           <div className="flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-2 text-xs text-muted-foreground">
             <Image
               src="/images/Logo_Authorized_Detailer-1.png"
@@ -481,7 +528,7 @@ export default async function HomePage() {
           </div>
           <div className="flex items-center gap-4">
             <Link href="/app" className="text-xs font-bold text-foreground hover:text-[var(--cinema-crimson)]">
-              احجز الآن
+              <LangText ar="احجز الآن" en="Book Now" />
             </Link>
             {settings.instagram && (
               <a href={settings.instagram} aria-label="Instagram" className="text-muted-foreground hover:text-[var(--cinema-crimson)]">

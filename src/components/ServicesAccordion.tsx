@@ -12,6 +12,7 @@ import {
   Waves,
 } from "lucide-react";
 import type { ServiceCategory } from "@/lib/types";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const CATEGORY_ICONS: Record<ServiceCategory, React.ComponentType<{ className?: string }>> = {
   protection: ShieldCheck,
@@ -25,6 +26,7 @@ const CATEGORY_ICONS: Record<ServiceCategory, React.ComponentType<{ className?: 
 interface ServiceItem {
   id: string;
   nameAr: string;
+  name?: string | null;
   price: number | null;
   hasVariants: boolean;
 }
@@ -46,6 +48,8 @@ export default function ServicesAccordion({
   const [openCategory, setOpenCategory] = useState<string | null>(
     groups[0]?.category ?? null
   );
+  const { lang } = useLanguage();
+  const availableLabel = lang === "ar" ? "خدمة متاحة" : "services available";
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-3">
@@ -69,10 +73,10 @@ export default function ServicesAccordion({
                 </span>
                 <span>
                   <span className="block text-base font-bold text-foreground">
-                    {group.label.ar}
+                    {lang === "ar" ? group.label.ar : group.label.en}
                   </span>
                   <span className="block text-xs text-muted-foreground">
-                    {group.items.length} خدمة متاحة
+                    {group.items.length} {availableLabel}
                   </span>
                 </span>
               </span>
@@ -99,7 +103,7 @@ export default function ServicesAccordion({
                         key={s.id}
                         className="flex items-center justify-between gap-2 py-1.5"
                       >
-                        <span>{s.nameAr}</span>
+                        <span>{lang === "ar" ? s.nameAr : s.name || s.nameAr}</span>
                         {!s.hasVariants && s.price != null && (
                           <span className="shrink-0 text-xs font-bold text-foreground/80">
                             {s.price} {currencyAr}
