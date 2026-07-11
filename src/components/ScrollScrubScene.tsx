@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/components/LanguageProvider";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,8 +13,11 @@ interface ScrollScrubSceneProps {
   src: string;
   poster: string;
   eyebrow?: string;
+  eyebrowEn?: string;
   title?: string;
+  titleEn?: string;
   text?: string;
+  textEn?: string;
   /** how many viewport-heights of scroll this scene "owns" before handing off */
   scrubLengthVh?: number;
   /** CSS background value for the gradient overlay; defaults to a left-to-right fade */
@@ -37,13 +41,20 @@ export default function ScrollScrubScene({
   src,
   poster,
   eyebrow,
+  eyebrowEn,
   title,
+  titleEn,
   text,
+  textEn,
   scrubLengthVh = 250,
   overlay,
   contentClassName,
   children,
 }: ScrollScrubSceneProps) {
+  const { lang } = useLanguage();
+  const shownEyebrow = lang === "en" && eyebrowEn ? eyebrowEn : eyebrow;
+  const shownTitle = lang === "en" && titleEn ? titleEn : title;
+  const shownText = lang === "en" && textEn ? textEn : text;
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -161,20 +172,23 @@ export default function ScrollScrubScene({
         }
       >
         {children ?? (
-          <div className="max-w-md rounded-2xl bg-black/35 p-6 backdrop-blur-sm">
+          <div
+            dir={lang === "ar" ? "rtl" : "ltr"}
+            className="max-w-md rounded-2xl bg-black/35 p-6 backdrop-blur-sm"
+          >
             {eyebrow && (
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]">
-                {eyebrow}
+                {shownEyebrow}
               </p>
             )}
             {title && (
               <h3 className="mt-3 text-2xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] sm:text-3xl">
-                {title}
+                {shownTitle}
               </h3>
             )}
             {text && (
               <p className="mt-4 text-sm leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] sm:text-base">
-                {text}
+                {shownText}
               </p>
             )}
           </div>
