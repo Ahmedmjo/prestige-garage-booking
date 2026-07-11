@@ -90,6 +90,41 @@
   /* Soft accent colors per service category */
   --soft-blue: rgba(59, 130, 246, 0.10);
   --soft-yellow: rgba(245, 158, 11, 0.10);
+
+  /* Cinematic marketing site — Visual DNA master palette (exact spec) */
+  --cinema-bg: #050505;
+  --cinema-bg-secondary: #0d0d0d;
+  --cinema-crimson: #7a0018;
+  --cinema-blood-red: #5b0012;
+  --cinema-silver: #c8c8c8;
+  --cinema-gray: #a0a0a0;
+}
+
+@keyframes steam-drift {
+  0% {
+    transform: translateY(10%) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-15%) scale(1.08);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-40%) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.steam-drift {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(18px);
+  animation: steam-drift 6s ease-in-out infinite;
+  pointer-events: none;
   --soft-green: rgba(34, 197, 94, 0.10);
   --soft-purple: rgba(168, 85, 247, 0.10);
   --soft-orange: rgba(255, 107, 53, 0.12);
@@ -572,51 +607,6 @@
 }
 
 /* ============================================
-   BRANCHES MAP ICON — collapsible radar-ping
-   Large circular MapPin with subtle pulse rings
-   ============================================ */
-@keyframes map-pulse-ring {
-  0%   { transform: scale(0.85); opacity: 0.65; }
-  70%  { transform: scale(1.55); opacity: 0;    }
-  100% { transform: scale(1.55); opacity: 0;    }
-}
-@keyframes map-icon-bob {
-  0%, 100% { transform: translateY(0);     }
-  50%      { transform: translateY(-2px);  }
-}
-.map-pulse-ring {
-  position: relative;
-}
-.map-pulse-ring::before,
-.map-pulse-ring::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  border: 1.5px solid rgba(220, 20, 60, 0.55);
-  animation: map-pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  pointer-events: none;
-}
-.map-pulse-ring::after {
-  animation-delay: 1.3s;
-}
-.map-pulse-ring > .map-icon-bob {
-  animation: map-icon-bob 3.2s ease-in-out infinite;
-}
-
-/* Branch row hover — gentle lift + accent border */
-.branch-row {
-  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-}
-.branch-row:hover {
-  background-color: rgba(255, 255, 255, 0.035);
-  border-color: rgba(220, 20, 60, 0.28);
-}
-.branch-row:active {
-  transform: scale(0.995);
-}
-
-/* ============================================
    SPLASH SCREEN — premium cinematic animation
    Logo emerges from inside to outside + tagline rises
    ============================================ */
@@ -925,17 +915,9 @@
   height: 140px;
   background: linear-gradient(135deg, #1a0a0d 0%, #0a0a0b 100%);
   border: 1px solid rgba(220, 20, 60, 0.2);
-  /* No box-shadow — offer content must be clear & visible (Task 1B) */
-  box-shadow: none;
-  cursor: pointer;
-}
-.offer-poster:hover,
-.offer-poster:focus-visible {
-  border-color: rgba(220, 20, 60, 0.4);
-}
-.offer-poster:focus-visible {
-  outline: 2px solid rgba(220, 20, 60, 0.6);
-  outline-offset: 2px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 16px rgba(220, 20, 60, 0.08);
 }
 .offer-poster::before {
   content: "";
@@ -1109,16 +1091,6 @@
   border: 1px solid rgba(220,20,60,0.25);
   flex-shrink: 0;
   cursor: pointer;
-  /* No box-shadow — offer content must be clear & visible (Task 1B) */
-  box-shadow: none;
-}
-.offer-video-wrapper:hover,
-.offer-video-wrapper:focus-visible {
-  border-color: rgba(220, 20, 60, 0.45);
-}
-.offer-video-wrapper:focus-visible {
-  outline: 2px solid rgba(220, 20, 60, 0.6);
-  outline-offset: 2px;
 }
 .offer-video-wrapper video {
   position: absolute;
@@ -1126,7 +1098,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .offer-video-play-btn {
   position: absolute;
@@ -1148,83 +1120,6 @@
 }
 .offer-video-wrapper .video-unmuted .offer-video-play-btn {
   display: none;
-}
-
-/* ============================================
-   OFFER FULLSCREEN MODAL (Task 1A)
-   ============================================ */
-.offer-fullscreen-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.92);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  padding:
-    env(safe-area-inset-top, 0px)
-    env(safe-area-inset-right, 0px)
-    env(safe-area-inset-bottom, 0px)
-    env(safe-area-inset-left, 0px);
-  overflow: hidden;
-}
-.offer-fullscreen-close {
-  position: absolute;
-  top: calc(env(safe-area-inset-top, 0px) + 12px);
-  inset-inline-end: calc(env(safe-area-inset-right, 0px) + 12px);
-  z-index: 110;
-  height: 44px;
-  width: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  transition: background 0.15s ease, transform 0.15s ease;
-  cursor: pointer;
-}
-.offer-fullscreen-close:hover { background: rgba(255, 255, 255, 0.18); }
-.offer-fullscreen-close:active { transform: scale(0.94); }
-.offer-fullscreen-close:focus-visible {
-  outline: 2px solid #ff4d6d;
-  outline-offset: 2px;
-}
-.offer-fullscreen-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-  max-width: 640px;
-  max-height: 100%;
-  padding: 56px 16px 24px; /* top room for the close button */
-  box-sizing: border-box;
-}
-.offer-fullscreen-video,
-.offer-fullscreen-image {
-  max-width: 100%;
-  max-height: 70vh;
-  width: auto;
-  height: auto;
-  border-radius: 14px;
-  background: #000;
-  display: block;
-}
-.offer-fullscreen-video {
-  box-shadow: 0 0 60px rgba(220, 20, 60, 0.2);
-}
-.offer-fullscreen-info {
-  width: 100%;
-  text-align: center;
-  padding: 0 12px;
-  color: #fff;
 }
 
 /* ============================================
