@@ -341,6 +341,84 @@ export default async function HomePage() {
         </Link>
       </section>
 
+      {/* ---------- GALLERY ---------- */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mb-12 text-center">
+          <LangText
+            as="p"
+            ar="من واقع الشغل"
+            en="From the Floor"
+            className="text-xs font-bold uppercase tracking-[0.3em] text-[var(--cinema-crimson)]"
+          />
+          <LangText
+            as="h2"
+            ar="لحظات من عالم بريستيج جراج"
+            en="Moments from the Prestige Garage World"
+            className="mt-3 text-3xl font-black text-foreground sm:text-4xl"
+          />
+        </div>
+
+        {/* شبكة فنية غير متساوية (Bento) بدل الجريد التقليدي المتساوي */}
+        <div className="grid auto-rows-[140px] grid-cols-4 gap-3 sm:auto-rows-[160px] sm:gap-4">
+          {[
+            {
+              src: "/images/reference-boards/ppf-box-unroll-01.png",
+              ar: "فتح صندوق الحماية",
+              en: "Unboxing the Protection",
+              span: "col-span-2 row-span-2",
+            },
+            {
+              src: "/images/reference-boards/nano-ceramic-pour-01.png",
+              ar: "لحظة النانو سيراميك",
+              en: "The Nano Ceramic Moment",
+              span: "col-span-2 row-span-1",
+            },
+            {
+              src: "/images/reference-boards/polishing-swirl-02.png",
+              ar: "دقة التلميع",
+              en: "Precision Polishing",
+              span: "col-span-1 row-span-1",
+            },
+            {
+              src: "/images/reference-boards/polishing-wide-01.png",
+              ar: "تشطيب المرآة",
+              en: "The Mirror Finish",
+              span: "col-span-1 row-span-1",
+            },
+            {
+              src: "/images/reference-boards/steam-interior-01.png",
+              ar: "عناية داخلية دقيقة",
+              en: "Meticulous Interior Care",
+              span: "col-span-2 row-span-1",
+            },
+            {
+              src: "/images/reference-boards/steam-exterior-02.png",
+              ar: "نظافة تليق بالفخامة",
+              en: "A Clean Fit for Luxury",
+              span: "col-span-2 row-span-1",
+            },
+          ].map((img) => (
+            <div
+              key={img.src}
+              className={`group relative overflow-hidden rounded-2xl border border-border/60 ${img.span}`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.src}
+                alt={img.ar}
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <LangText
+                as="p"
+                ar={img.ar}
+                en={img.en}
+                className="absolute inset-x-0 bottom-0 translate-y-2 p-4 text-sm font-bold text-white opacity-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ---------- OFFERS ---------- */}
       {offers.length > 0 && (
