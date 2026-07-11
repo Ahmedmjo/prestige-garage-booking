@@ -79,7 +79,7 @@ export default async function HomePage() {
     "@type": "AutoRepair",
     name: settings.brandNameAr || settings.brandName,
     alternateName: settings.brandName,
-    image: `${siteUrl}/prestige-brand-logo.png`,
+    image: `${siteUrl}/images/prestige-logo-neon.jpg`,
     url: siteUrl,
     telephone: settings.phone,
     priceRange: "$$$",
@@ -115,7 +115,7 @@ export default async function HomePage() {
       <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/prestige-brand-logo.png"
+            src="/images/prestige-logo-neon.jpg"
             alt={settings.brandNameAr}
             width={40}
             height={40}
@@ -139,7 +139,7 @@ export default async function HomePage() {
         contentClassName="relative z-10 flex w-full flex-col items-center gap-6 px-6 text-center"
       >
         <Image
-          src="/prestige-brand-logo.png"
+          src="/images/prestige-logo-neon.jpg"
           alt={settings.brandNameAr}
           width={200}
           height={200}
