@@ -399,37 +399,46 @@ export default async function HomePage() {
           {branches.map((branch) => (
             <div
               key={branch.id}
-              className="rounded-2xl border border-border/60 bg-card/40 p-6"
+              className="flex flex-col rounded-2xl border border-border/60 bg-card/40 p-6 transition-colors hover:border-[var(--cinema-crimson)]/50"
             >
-              <h3 className="mb-3 text-lg font-bold text-foreground">{branch.nameAr}</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
+              <h3 className="mb-4 text-lg font-bold text-foreground">{branch.nameAr}</h3>
+              <div className="flex-1 space-y-3 text-sm text-muted-foreground">
                 {branch.addressAr && (
-                  <p className="flex items-start gap-2">
+                  <p className="flex items-start gap-3">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cinema-crimson)]" />
-                    {branch.addressAr}
+                    <span>{branch.addressAr}</span>
                   </p>
                 )}
                 {branch.phone && (
-                  <p className="flex items-center gap-2">
+                  <p className="flex items-center gap-3">
                     <Phone className="h-4 w-4 shrink-0 text-[var(--cinema-crimson)]" />
                     <a href={`tel:${branch.phone}`} dir="ltr" className="hover:text-foreground">
                       {branch.phone}
                     </a>
                   </p>
                 )}
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-3">
                   <Clock className="h-4 w-4 shrink-0 text-[var(--cinema-crimson)]" />
-                  {settings.workingHoursAr}
+                  <span>{settings.workingHoursAr}</span>
                 </p>
               </div>
-              {branch.mapUrl && (
-                <a
-                  href={branch.mapUrl}
-                  className="mt-4 inline-block text-xs font-bold text-[var(--cinema-crimson)] hover:underline"
+
+              <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border/40 pt-4">
+                <Link
+                  href="/app"
+                  className="rounded-full bg-[var(--cinema-crimson)] px-5 py-2 text-xs font-bold text-primary-foreground transition-transform hover:scale-105"
                 >
-                  افتح في خرائط جوجل ←
-                </a>
-              )}
+                  احجز في الفرع ده
+                </Link>
+                {branch.mapUrl && (
+                  <a
+                    href={branch.mapUrl}
+                    className="text-xs font-bold text-muted-foreground hover:text-[var(--cinema-crimson)] hover:underline"
+                  >
+                    افتح في خرائط جوجل ←
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>
