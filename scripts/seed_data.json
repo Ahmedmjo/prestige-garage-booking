@@ -1,0 +1,4662 @@
+{
+  "rolls": [
+    {
+      "code": "HXS-BF-001",
+      "brand": "Hexis",
+      "type": "Body Fence",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 18500,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "3M-SG-001",
+      "brand": "3M",
+      "type": "TPU SG 8.5",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 16000,
+      "supplier": "Mohsen",
+      "purchase_date": "2026-04-19",
+      "notes": "TPU MOHS 8.5"
+    },
+    {
+      "code": "BF-TPU-001",
+      "brand": "BF",
+      "type": "TPU",
+      "model": "Black Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": null,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "DNS-TPU-001",
+      "brand": "Dyno Stick",
+      "type": "TPU",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 25000,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": null
+    },
+    {
+      "code": "GEN-GEN-001",
+      "brand": "Generic",
+      "type": "Vinyl",
+      "model": "Purple Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": null,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Purple glossy vinyl roll"
+    },
+    {
+      "code": "SPR-PRO-001",
+      "brand": "Super Pro",
+      "type": "TPU",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 25000,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "3M-SG-002",
+      "brand": "3M",
+      "type": "Scotchgard",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 19000,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "AEP-TPH-001",
+      "brand": "AEP",
+      "type": "TPH",
+      "model": "Black",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 8000,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Remaining10m"
+    },
+    {
+      "code": "D150-WHT-001",
+      "brand": "D150",
+      "type": "TPU",
+      "model": "White",
+      "width": 1.52,
+      "total_length": 15,
+      "price": null,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "D150-white-Ban"
+    },
+    {
+      "code": "GEN-GEN-002",
+      "brand": "Generic",
+      "type": "PPF",
+      "model": "Matte Black",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 9500,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "GEN-GEN-003",
+      "brand": "Generic",
+      "type": "Vinyl",
+      "model": "Blue",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 3850,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Closed roll 15m"
+    },
+    {
+      "code": "HXS-BF-002",
+      "brand": "Hexis",
+      "type": "Body Fence",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 18,
+      "price": null,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Tech: Youssef | Tyron"
+    },
+    {
+      "code": "HXS-BF-003",
+      "brand": "Hexis",
+      "type": "TPU",
+      "model": "matte",
+      "width": 1.52,
+      "total_length": 15,
+      "price": null,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-04-19",
+      "notes": "Remaining 12m + front bumper piece"
+    },
+    {
+      "code": "3M-SG-003",
+      "brand": "3M",
+      "type": "TPU SG 7.5",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 12000,
+      "supplier": "Mohsen",
+      "purchase_date": "2026-04-19",
+      "notes": "TPU MOHS 7.5"
+    },
+    {
+      "code": "3M-SG-004",
+      "brand": "3M",
+      "type": "TPU SG 7.5",
+      "model": "Glossy",
+      "width": 1.52,
+      "total_length": 15,
+      "price": 12000,
+      "supplier": "Mohsen",
+      "purchase_date": "2026-05-03",
+      "notes": "TPU MOHS 7.5"
+    },
+    {
+      "code": "3M-SG-005",
+      "brand": "3M",
+      "type": "TPU SG 8.5",
+      "model": "Glossy",
+      "width": 1.25,
+      "total_length": 15,
+      "price": 16000,
+      "supplier": "Mohsen",
+      "purchase_date": "2026-05-03",
+      "notes": "TPU MOHS 8.5"
+    },
+    {
+      "code": "D195-WHT-001",
+      "brand": "D195",
+      "type": "TPU",
+      "model": "white",
+      "width": 180,
+      "total_length": 15,
+      "price": 27000,
+      "supplier": "Al-Banna",
+      "purchase_date": "2026-06-15",
+      "notes": "D-195-white-Width-Ban"
+    }
+  ],
+  "consumptions": [
+    {
+      "date": "2026-04-19",
+      "roll_code": "DNS-TPU-001",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 13.3,
+      "usage_area": "Right Front Fender",
+      "waste": 0,
+      "work_order": "OB-0001",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "SPR-PRO-001",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 9.6,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0002",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "3M-SG-002",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 6.6,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0003",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "AEP-TPH-001",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 5,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0004",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "D150-WHT-001",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 4,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0005",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "GEN-GEN-002",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 3,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0006",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "GEN-GEN-003",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 5,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0007",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "HXS-BF-002",
+      "client_name": "Youssef",
+      "car_type": "Tyron",
+      "plate_number": null,
+      "meters_used": 13.9,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0008",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "HXS-BF-003",
+      "client_name": null,
+      "car_type": null,
+      "plate_number": null,
+      "meters_used": 3,
+      "usage_area": "Front Bumper + Body",
+      "waste": 0,
+      "work_order": "OB-0009",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-19",
+      "roll_code": "3M-SG-003",
+      "client_name": "Dena",
+      "car_type": "Mercedes",
+      "plate_number": null,
+      "meters_used": 12.1,
+      "usage_area": "Prior Usage",
+      "waste": 0,
+      "work_order": "OB-0010",
+      "notes": "Opening balance entry",
+      "transaction_type": "رصيد افتتاحي"
+    },
+    {
+      "date": "2026-04-25",
+      "roll_code": "3M-SG-003",
+      "client_name": "Elwahsh",
+      "car_type": "Mercedes Coupe",
+      "plate_number": "DF 8663",
+      "meters_used": 2.9,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0011",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-04-25",
+      "roll_code": "HXS-BF-002",
+      "client_name": "Elwahsh",
+      "car_type": "Mercedes coupe",
+      "plate_number": "DF 8663",
+      "meters_used": 4.1,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0011",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-05-04",
+      "roll_code": "3M-SG-001",
+      "client_name": "Mahmoud safwt",
+      "car_type": "Mercedes E 200",
+      "plate_number": "Unplated",
+      "meters_used": 13.5,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0012",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-05-04",
+      "roll_code": "3M-SG-005",
+      "client_name": "Mahmoud Derbala",
+      "car_type": "BMW 520",
+      "plate_number": "AW 1435",
+      "meters_used": 12.8,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0013",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-05-04",
+      "roll_code": "SPR-PRO-001",
+      "client_name": "Mahmoud Derbala",
+      "car_type": "BMW 520",
+      "plate_number": "AW 1435",
+      "meters_used": 1.8,
+      "usage_area": "Front Bumper",
+      "waste": 0,
+      "work_order": "OB-0013",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "02/06/202",
+      "roll_code": "HXS-BF-001",
+      "client_name": "Ahmed Yasser",
+      "car_type": "Audi Q8",
+      "plate_number": "MEA 111",
+      "meters_used": 11,
+      "usage_area": "Full Body",
+      "waste": 0,
+      "work_order": "OB-0014",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-06-04",
+      "roll_code": "HXS-BF-001",
+      "client_name": "Ahmed Adam",
+      "car_type": "Mercedes C180",
+      "plate_number": "KA 7995",
+      "meters_used": 3,
+      "usage_area": "Front Bumper",
+      "waste": 0,
+      "work_order": "OB-0015",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-06-15",
+      "roll_code": "D195-WHT-001",
+      "client_name": "Mahmoud Derbala",
+      "car_type": "BMW 520",
+      "plate_number": "AW 1435",
+      "meters_used": 1.8,
+      "usage_area": "Front Bumper",
+      "waste": 1.8,
+      "work_order": "OB-0016",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-06-17",
+      "roll_code": "D150-WHT-001",
+      "client_name": "Dena",
+      "car_type": "Mercedes",
+      "plate_number": null,
+      "meters_used": 2,
+      "usage_area": "Hood",
+      "waste": 0,
+      "work_order": "OB-0017",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    },
+    {
+      "date": "2026-06-17",
+      "roll_code": "D150-WHT-001",
+      "client_name": "Ramy",
+      "car_type": "Harley",
+      "plate_number": null,
+      "meters_used": 1.5,
+      "usage_area": "Box",
+      "waste": 1,
+      "work_order": "OB-0018",
+      "notes": "Opening balance entry",
+      "transaction_type": "تشغيل"
+    }
+  ],
+  "employees": [
+    {
+      "name": "م/ أمير عمرو",
+      "base_salary": 15000,
+      "phone": 1026100391,
+      "hire_date": null,
+      "job_title": "مدير",
+      "notes": "فودافون كاش",
+      "status": "نشط"
+    },
+    {
+      "name": "إسلام عصام",
+      "base_salary": 15000,
+      "phone": null,
+      "hire_date": null,
+      "job_title": "فني بروتيكشن",
+      "notes": "متوقف من يونيو 2026",
+      "status": "متوقف"
+    },
+    {
+      "name": "علي يحيى",
+      "base_salary": 12000,
+      "phone": null,
+      "hire_date": null,
+      "job_title": "فني عزل",
+      "notes": null,
+      "status": "نشط"
+    },
+    {
+      "name": "أحمد السيد",
+      "base_salary": 7500,
+      "phone": null,
+      "hire_date": null,
+      "job_title": "مساعد فني",
+      "notes": null,
+      "status": "نشط"
+    },
+    {
+      "name": "حسن عبد اللطيف",
+      "base_salary": 7500,
+      "phone": null,
+      "hire_date": null,
+      "job_title": "مساعد فني",
+      "notes": null,
+      "status": "نشط"
+    },
+    {
+      "name": "عمر جمال",
+      "base_salary": 7500,
+      "phone": null,
+      "hire_date": null,
+      "job_title": "مساعد فني",
+      "notes": null,
+      "status": "نشط"
+    }
+  ],
+  "attendance": [
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-01",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-01",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-01",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-01",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-02",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-02",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-02",
+      "day_name": "الثلاثاء",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-02",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-03",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-03",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-03",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-03",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-04",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-04",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-04",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-04",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-05",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-05",
+      "day_name": "الجمعة",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-05",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-05",
+      "day_name": "الجمعة",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-06",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-06",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-06",
+      "day_name": "السبت",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-06",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-07",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-07",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-07",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-07",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-08",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-08",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-08",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-08",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-09",
+      "day_name": "الثلاثاء",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-09",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-09",
+      "day_name": "الثلاثاء",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-09",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-10",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-10",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-10",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-10",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-11",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-11",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-11",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-11",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-12",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-12",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-12",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-12",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-13",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-13",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-13",
+      "day_name": "السبت",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-13",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-14",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-14",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-14",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-14",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-15",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-15",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-15",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-15",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-16",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-16",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-16",
+      "day_name": "الثلاثاء",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-16",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-17",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-17",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-17",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-17",
+      "day_name": "الأربعاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-18",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-18",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-18",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-18",
+      "day_name": "الخميس",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-19",
+      "day_name": "الجمعة",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-19",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-19",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-19",
+      "day_name": "الجمعة",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-20",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-20",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-20",
+      "day_name": "السبت",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-20",
+      "day_name": "السبت",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-21",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-21",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-21",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-21",
+      "day_name": "الأحد",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-22",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-22",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-22",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-22",
+      "day_name": "الاثنين",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-23",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-23",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-23",
+      "day_name": "الثلاثاء",
+      "status": "ر",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-23",
+      "day_name": "الثلاثاء",
+      "status": "ح",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-24",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-24",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-24",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-24",
+      "day_name": "الأربعاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-25",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-25",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-25",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-25",
+      "day_name": "الخميس",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-26",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-26",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-26",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-26",
+      "day_name": "الجمعة",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-27",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-27",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-27",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-27",
+      "day_name": "السبت",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-28",
+      "day_name": "الأحد",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-28",
+      "day_name": "الأحد",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-28",
+      "day_name": "الأحد",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-28",
+      "day_name": "الأحد",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-29",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-29",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-29",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-29",
+      "day_name": "الاثنين",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-06-30",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-30",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-30",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "م/ أمير عمرو",
+      "date": "2026-06-30",
+      "day_name": "الثلاثاء",
+      "status": "غ",
+      "month": 6,
+      "year": 2026
+    }
+  ],
+  "advances": [
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-04-24",
+      "amount": 200,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-04-25",
+      "amount": 400,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-13",
+      "amount": 200,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-14",
+      "amount": 500,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-19",
+      "amount": 300,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-20",
+      "amount": 200,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-21",
+      "amount": 1000,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-24",
+      "amount": 200,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "علي يحيى",
+      "date": "2026-04-28",
+      "amount": 200,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-04-29",
+      "amount": 400,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-04-30",
+      "amount": 3600,
+      "notes": null,
+      "month": 4,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-02",
+      "amount": 0,
+      "notes": "تم خصم المبلغ من مكافأة م/علي",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-05",
+      "amount": 2000,
+      "notes": "تسديد قسط أول من الجلايد من أصل قسطين",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-10",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-11",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-12",
+      "amount": 250,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-03",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-04",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-15",
+      "amount": 400,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-16",
+      "amount": 500,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-05-21",
+      "amount": 400,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-22",
+      "amount": 150,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-05-23",
+      "amount": 400,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-20",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-23",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-24",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-23",
+      "amount": 500,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-24",
+      "amount": 1600,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-05-25",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-05-25",
+      "amount": 1200,
+      "notes": "سلفة",
+      "month": 5,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-01",
+      "amount": 2000,
+      "notes": "قسط ثانٍ للجلايد من أصل قسطتين",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-01",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-03",
+      "amount": 400,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-05",
+      "amount": 1000,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-05",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-06",
+      "amount": 250,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-06",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-07",
+      "amount": 250,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-07",
+      "amount": 50,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-07",
+      "amount": 50,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-07",
+      "amount": 1500,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-08",
+      "amount": 110,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-10",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-11",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-14",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-15",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-16",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-14",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-15",
+      "amount": 100,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-17",
+      "amount": 350,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-17",
+      "amount": 270,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أحمد السيد",
+      "date": "2026-06-19",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-19",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-21",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-21",
+      "amount": 500,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "حسن عبد اللطيف",
+      "date": "2026-06-22",
+      "amount": 300,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    },
+    {
+      "employee_name": "أمير عمرو",
+      "date": "2026-06-22",
+      "amount": 200,
+      "notes": "سلفة",
+      "month": 6,
+      "year": 2026
+    }
+  ],
+  "commissions": [
+    {
+      "date": "2026-04-15",
+      "month": 4,
+      "technician": "إسلام  عصام",
+      "client_name": "دينا",
+      "car_type": "مرسيدس GLA",
+      "service_type": "فيلم حماية",
+      "amount": 1500,
+      "notes": "عمولة مرسيدس Gla عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "علي يحيى",
+      "client_name": "أحمد بدر",
+      "car_type": "فولكس تايرون",
+      "service_type": "عزل حراري",
+      "amount": 200,
+      "notes": "جزء من العمولة",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "كيا سبورتاج",
+      "service_type": "بوليش",
+      "amount": 100,
+      "notes": null,
+      "service_category": "بوليش"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "متسوبيشي لانسر",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "بريليانس",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "أودي",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-20",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "كيا سبورتاج",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-24",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": null,
+      "car_type": "تويوتا فورتشنر",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-24",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": "عمر نبيل",
+      "car_type": "بيجو 508",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": null,
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-04-24",
+      "month": 4,
+      "technician": "أحمد السيد",
+      "client_name": "عمر نبيل",
+      "car_type": "بيجو 508",
+      "service_type": "بوليش",
+      "amount": 100,
+      "notes": null,
+      "service_category": "بوليش"
+    },
+    {
+      "date": "2026-04-30",
+      "month": 4,
+      "technician": "علي يحيى",
+      "client_name": "محمد الوحش",
+      "car_type": "مرسيدس كوبيه",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-04-30",
+      "month": 4,
+      "technician": "علي يحيى",
+      "client_name": "محمد الوحش",
+      "car_type": "متسوبيشي باجيرو",
+      "service_type": "عزل حراري",
+      "amount": 200,
+      "notes": "150 جنيه تم الخصم",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-05-01",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمد الوحش",
+      "car_type": "متسوبيشي باجيرو",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-05-01",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمد الوحش",
+      "car_type": "متسوبيشي باجيرو",
+      "service_type": "نانو سيراميك",
+      "amount": 300,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "نانو سيراميك"
+    },
+    {
+      "date": "2026-05-01",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمود صفوت",
+      "car_type": "مرسيدس E200",
+      "service_type": "بوليش",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بوليش"
+    },
+    {
+      "date": "2026-05-01",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمد الوحش",
+      "car_type": "مرسيدس كوبيه",
+      "service_type": "بروتيكشن",
+      "amount": 200,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "إسلام عصام",
+      "client_name": "محمد الوحش",
+      "car_type": "مرسيدس كوبيه",
+      "service_type": "بروتيكشن",
+      "amount": 1500,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "إسلام عصام",
+      "client_name": "محمود صفوت",
+      "car_type": "مرسيدس E200",
+      "service_type": "بروتيكشن",
+      "amount": 1500,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "إسلام عصام",
+      "client_name": "محمود دربالة",
+      "car_type": "BMW 520",
+      "service_type": "بروتيكشن",
+      "amount": 1500,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "إسلام عصام",
+      "client_name": "ترندي",
+      "car_type": "جولف كار",
+      "service_type": "بروتيكشن",
+      "amount": 500,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "إسلام عصام",
+      "client_name": "ترندي",
+      "car_type": "بيتش باجي",
+      "service_type": "بروتيكشن",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "علي يحيى",
+      "client_name": "محمود صفوت",
+      "car_type": "مرسيدس E200",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-05-04",
+      "month": 5,
+      "technician": "علي يحيى",
+      "client_name": "محمود دربالة",
+      "car_type": "BMW 520",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-05-11",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمود صفوت",
+      "car_type": "مرسيدس E200",
+      "service_type": "بروتيكشن",
+      "amount": 200,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-11",
+      "month": 5,
+      "technician": "أحمد السيد",
+      "client_name": "محمود دربالة",
+      "car_type": "BMW 520",
+      "service_type": "بروتيكشن",
+      "amount": 200,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-05-19",
+      "month": 5,
+      "technician": "علي يحيى",
+      "client_name": "أحمد عثمان",
+      "car_type": "Baic",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-05-22",
+      "month": 5,
+      "technician": "علي يحيى",
+      "client_name": "أحمد عثمان",
+      "car_type": "فيات 500",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-01",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "محمد عز",
+      "car_type": "MG",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-01",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "أحمد ياسر",
+      "car_type": "MG",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-03",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "أحمد ياسر",
+      "car_type": "Audi Q8",
+      "service_type": "عزل حراري",
+      "amount": 500,
+      "notes": "عمولة بروتيكشن اكصدام و عتب و داير",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-03",
+      "month": 6,
+      "technician": "أحمد السيد",
+      "client_name": "أحمد ياسر",
+      "car_type": "Audi Q8",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-06-03",
+      "month": 6,
+      "technician": "أحمد السيد",
+      "client_name": "أحمد ياسر",
+      "car_type": "Audi Q8",
+      "service_type": "بروتيكشن",
+      "amount": 200,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-06-03",
+      "month": 6,
+      "technician": "أحمد السيد",
+      "client_name": "عمر",
+      "car_type": "Mercedes v",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-06-03",
+      "month": 6,
+      "technician": "أحمد السيد",
+      "client_name": "مصطفى عامر",
+      "car_type": "Peugeot",
+      "service_type": "ديتيلنج",
+      "amount": 100,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "ديتيلنج"
+    },
+    {
+      "date": "2026-06-14",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "أحمد آدم",
+      "car_type": "مرسيدس E180",
+      "service_type": "بروتيكشن",
+      "amount": 400,
+      "notes": "عمولة بروتيكشن اكصدام",
+      "service_category": "بروتيكشن"
+    },
+    {
+      "date": "2026-06-17",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "زياد",
+      "car_type": "فيات تيبو",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-17",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "يوسف نشأت",
+      "car_type": "بايك",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-20",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "محمد التركاوي",
+      "car_type": "هيونداي",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-20",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "يوسف الشريف",
+      "car_type": "MG",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-15",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "محمد التركاوي",
+      "car_type": "هيونداي",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    },
+    {
+      "date": "2026-06-16",
+      "month": 6,
+      "technician": "علي يحيى",
+      "client_name": "محمد التركاوي",
+      "car_type": "هيونداي",
+      "service_type": "عزل حراري",
+      "amount": 350,
+      "notes": "عمولة كاملة تم الدفع",
+      "service_category": "عزل حراري"
+    }
+  ],
+  "stock_items": [
+    {
+      "name": "Sonax Active Foam Energy 2L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 2,
+      "total_withdrawn": 0,
+      "current_qty": 2,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Insect Remover 12L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 12,
+      "total_withdrawn": 0,
+      "current_qty": 12,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Profiline Shiny Wheels 500ml",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 0.5,
+      "total_withdrawn": 0,
+      "current_qty": 0.5,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Multistar 8L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 8,
+      "total_withdrawn": 0,
+      "current_qty": 8,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Pre-Wash 3.75L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 3.75,
+      "total_withdrawn": 0,
+      "current_qty": 3.75,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Xtreme Wheel Cleaner 230 5L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 5,
+      "total_withdrawn": 0,
+      "current_qty": 5,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Clear Glass 338 4.5L (Diluted)",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 4.5,
+      "total_withdrawn": 0,
+      "current_qty": 4.5,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Wax Shampoo 2L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 2,
+      "total_withdrawn": 0,
+      "current_qty": 2,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Dashboard Dressing Concentrate (Raw)",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 15,
+      "total_withdrawn": 0,
+      "current_qty": 15,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Glass Cleaner 2L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 2,
+      "total_withdrawn": 0,
+      "current_qty": 2,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Insect Remover Concentrate (Raw)",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 2.5,
+      "total_withdrawn": 2.06,
+      "current_qty": 0.43999999999999995,
+      "min_level": 0.3,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Interior Cleaner 10L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 10,
+      "total_withdrawn": 0,
+      "current_qty": 10,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax MoS2 Oil 339 5L (Jerican)",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 5,
+      "total_withdrawn": 0,
+      "current_qty": 5,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Profiline Multiclean Alkaline 5L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 5,
+      "total_withdrawn": 1,
+      "current_qty": 4,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Profiline Refresh 5L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 5,
+      "total_withdrawn": 1,
+      "current_qty": 4,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Rim Cleaner 230 25L",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 25,
+      "total_withdrawn": 7,
+      "current_qty": 18,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Shampoo + Gloss",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 1,
+      "total_withdrawn": 0.05,
+      "current_qty": 0.95,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Tyre Shine 5L (Jerican)",
+      "category": "ديتيلنج",
+      "unit": "لتر",
+      "total_received": 5,
+      "total_withdrawn": 1.1,
+      "current_qty": 3.9,
+      "min_level": 0.5,
+      "status": "كافي",
+      "unit_price": 0
+    },
+    {
+      "name": "Sonax Glass Polish Intensive",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 650
+    },
+    {
+      "name": "Sonax Polish+Wax Color Black",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 675
+    },
+    {
+      "name": "Sonax Polish+Wax Color Blue",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 675
+    },
+    {
+      "name": "Sonax Polish+Wax Color Red",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 675
+    },
+    {
+      "name": "Sonax Polish+Wax Color Silver",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 675
+    },
+    {
+      "name": "Sonax Polish+Wax Color White",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 675
+    },
+    {
+      "name": "Sonax Profiline CC36 (Step 2)",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1050
+    },
+    {
+      "name": "Sonax Profiline CutMax 6/4",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 2450
+    },
+    {
+      "name": "Sonax Profiline EX 04-06",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1700
+    },
+    {
+      "name": "Sonax Profiline Fabric Coating",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 2400
+    },
+    {
+      "name": "Sonax Profiline FS 05-04",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 2160
+    },
+    {
+      "name": "Sonax Profiline HW 02-04",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1080
+    },
+    {
+      "name": "Sonax Profiline Leather Protection",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1200
+    },
+    {
+      "name": "Sonax Profiline NP 03-06",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1800
+    },
+    {
+      "name": "Sonax Profiline OS 02-06 Glaze",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1500
+    },
+    {
+      "name": "Sonax Profiline Perfect Finish 4/6",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 2950
+    },
+    {
+      "name": "Sonax Profiline Plastic Cleaner",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1400
+    },
+    {
+      "name": "Sonax Profiline Plastic Protectant",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1400
+    },
+    {
+      "name": "Sonax Profiline Polymer NetShield",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1100
+    },
+    {
+      "name": "Sonax Profiline Sensitive Surface",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 900
+    },
+    {
+      "name": "Sonax Profiline Stain Ex",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1200
+    },
+    {
+      "name": "Sonax Profiline Ultimate Cut 6+/3",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 2550
+    },
+    {
+      "name": "Sonax Xtreme Ceramic Plastic",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 750
+    },
+    {
+      "name": "Sonax Xtreme Ceramic Spray Coating",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1080
+    },
+    {
+      "name": "Sonax Xtreme Ceramic Tyre+Rim",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 1080
+    },
+    {
+      "name": "Sonax Xtreme Metal Polish",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 660
+    },
+    {
+      "name": "Sonax Xtreme PPF + Vinyl Cleaner",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 750
+    },
+    {
+      "name": "Sonax Xtreme PPF + Vinyl Detailer",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 850
+    },
+    {
+      "name": "Sonax Xtreme PPF + Vinyl Polish",
+      "category": "بوليش وكوتينج",
+      "unit": "عبوة",
+      "total_received": 1,
+      "total_withdrawn": 0,
+      "current_qty": 1,
+      "min_level": 1,
+      "status": "كافي",
+      "unit_price": 750
+    }
+  ],
+  "stock_movements": [
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Insect Remover 10L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 45.5,
+      "total_cost": 455,
+      "notes": "مغلق",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Multistar 10L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 38,
+      "total_cost": 380,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax MoS2 Oil 339 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 150,
+      "total_cost": 750,
+      "notes": "مغلق",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Tyre Shine 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Glass Cleaner 2L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Refresh 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 87,
+      "total_cost": 435,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Shiny Wheels 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 50,
+      "total_cost": 250,
+      "notes": "Init entry (from photos): Photo-based balance: 3.5L remaining",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Shiny Wheels 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 1.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "Init entry (from photos): Photo-based balance: 3.5L remaining | calculated withdrawal",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Multiclean Alkaline 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 90,
+      "total_cost": 450,
+      "notes": "Init entry (from photos): Photo-based balance: 4L remaining",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Multiclean Alkaline 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "Init entry (from photos): Photo-based balance: 4L remaining | calculated withdrawal",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Rim Cleaner 230 25L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 25,
+      "unit": "لتر",
+      "unit_price": 380,
+      "total_cost": 9500,
+      "notes": "Init entry (from photos): Photo-based balance: 18L remaining",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Rim Cleaner 230 25L",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 7,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "Init entry (from photos): Photo-based balance: 18L remaining | calculated withdrawal",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Refresh 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "Adjustment: 1L taken from original container",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Insect Remover Concentrate (Raw)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 2.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Interior Cleaner 10L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 35,
+      "total_cost": 350,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Dashboard Dressing Concentrate (Raw)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 15,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "١٠ لتر خام + جيركن ٥ لتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Clear Glass 338 5L (Diluted)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 59,
+      "total_cost": 295,
+      "notes": "محلول",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Wax Shampoo",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 3.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "٣ زجاجات ونصف",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Xtreme Wheel Cleaner 230 5L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 90,
+      "total_cost": 450,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Shampoo + Gloss",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 400,
+      "total_cost": 400,
+      "notes": "زجاجة واحدة",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Multistar 10L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "لجهاز الدتيلنج",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Insect Remover Concentrate (Raw)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "لجهاز الدتيلنج",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-05",
+      "item_name": "Tyre Shine 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-10",
+      "item_name": "Tyre Shine 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.6,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Active Foam Energy 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 78,
+      "total_cost": 390,
+      "notes": "Adjustment: missing receipt entry added to avoid negative stock",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-14",
+      "item_name": "Sonax Active Foam Energy 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-20",
+      "item_name": "Sonax Wax Shampoo",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.05,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "سحب من النصف",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-25",
+      "item_name": "Sonax Active Foam Energy 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-25",
+      "item_name": "Sonax Wax Shampoo",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.05,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-28",
+      "item_name": "Insect Remover Concentrate (Raw)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.06,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": null
+    },
+    {
+      "date": "2026-04-29",
+      "item_name": "Sonax Shampoo + Gloss",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.05,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "نوع جديد من الواكس",
+      "delivery_note": null
+    },
+    {
+      "date": "2026-04-29",
+      "item_name": "Sonax Multistar 10L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-29",
+      "item_name": "Sonax Active Foam Energy 5L (Jerican)",
+      "material_type": "دتيلنج",
+      "movement_type": "سحب",
+      "quantity": 0.2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Ultimate Cut 6+/3",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 2550,
+      "total_cost": 2550,
+      "notes": "صنفرة شديدة - الصنفرة الخشنة",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline CutMax 6/4",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 2450,
+      "total_cost": 2450,
+      "notes": "صنفرة قوية للخدوش - الصنفرة الخشنة",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline FS 05-04",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 2160,
+      "total_cost": 2160,
+      "notes": "صنفرة ناعمة وتلميع - الصنفرة الناعمة",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Perfect Finish 4/6",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 2950,
+      "total_cost": 2950,
+      "notes": "تلميع نهائي وإزالة الدوائر",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline EX 04-06",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1700,
+      "total_cost": 1700,
+      "notes": "تلميع لماكينات DA",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline NP 03-06",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1800,
+      "total_cost": 1800,
+      "notes": "تلميع ناعم لأعلى درجة صفاء",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline OS 02-06 Glaze",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1500,
+      "total_cost": 1500,
+      "notes": "تلميع مع طبقة حماية شمعية",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme PPF + Vinyl Cleaner",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 750,
+      "total_cost": 750,
+      "notes": "منظف آمن لأفلام PPF",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme PPF + Vinyl Polish",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 750,
+      "total_cost": 750,
+      "notes": "تلميع وترميم أفلام الحماية",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme PPF + Vinyl Detailer",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 850,
+      "total_cost": 850,
+      "notes": "حماية يومية للأفلام",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline CC36 (Step 2)",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1050,
+      "total_cost": 1050,
+      "notes": "طلاء سيراميك BaseCoat",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme Ceramic Spray Coating",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 1080,
+      "total_cost": 1080,
+      "notes": "حماية سيراميك سريعة",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Polymer NetShield",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1100,
+      "total_cost": 1100,
+      "notes": "حماية بوليمر سائلة",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline HW 02-04",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1080,
+      "total_cost": 1080,
+      "notes": "واكس صلب Hard Wax",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Fabric Coating",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 2400,
+      "total_cost": 2400,
+      "notes": "حماية وتغليف المنسوجات",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme Metal Polish",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "أنبوب",
+      "unit_price": 660,
+      "total_cost": 660,
+      "notes": "تلميع ومعالجة بهتان المعادن",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Glass Polish Intensive",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 650,
+      "total_cost": 650,
+      "notes": "تلميع زجاج وإزالة بقع الماء",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme Ceramic Tyre+Rim",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 1080,
+      "total_cost": 1080,
+      "notes": "حماية سيراميك للإطارات والجنوط",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Xtreme Ceramic Plastic",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 750,
+      "total_cost": 750,
+      "notes": "حماية وتجديد البلاستيك الخارجي",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Plastic Protectant",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1400,
+      "total_cost": 1400,
+      "notes": "حماية وترطيب البلاستيك الخارجي",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Stain Ex",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1200,
+      "total_cost": 1200,
+      "notes": "مزيل بقع وغراء",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Leather Protection",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1200,
+      "total_cost": 1200,
+      "notes": "حماية وتغذية الجلود",
+      "delivery_note": 2309
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Plastic Cleaner",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 1400,
+      "total_cost": 1400,
+      "notes": "منظف البلاستيك الداخلي",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Profiline Sensitive Surface",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 900,
+      "total_cost": 900,
+      "notes": "منظف الشاشات والأسطح الحساسة",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Polish+Wax Color Black",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 675,
+      "total_cost": 675,
+      "notes": "بوليش + واكس صبغة أسود",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Polish+Wax Color White",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 675,
+      "total_cost": 675,
+      "notes": "بوليش + واكس صبغة أبيض",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Polish+Wax Color Silver",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 675,
+      "total_cost": 675,
+      "notes": "بوليش + واكس صبغة فضي",
+      "delivery_note": 2308
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Polish+Wax Color Blue",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 675,
+      "total_cost": 675,
+      "notes": "بوليش + واكس صبغة أزرق",
+      "delivery_note": null
+    },
+    {
+      "date": "2026-04-30",
+      "item_name": "Sonax Polish+Wax Color Red",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 675,
+      "total_cost": 675,
+      "notes": "بوليش + واكس صبغة أحمر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Coating CC EVO",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 6600,
+      "total_cost": 6600,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Coating vinyl+ppf",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "وحدة",
+      "unit_price": 3600,
+      "total_cost": 7200,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Profiline Lack prepare D/F/NL",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 4,
+      "unit": "وحدة",
+      "unit_price": 725,
+      "total_cost": 2900,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Leather Cleaner",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 1200,
+      "total_cost": 1200,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Adhesive Residue Remover",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 550,
+      "total_cost": 550,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Coating CC EVO Pro",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "عبوة",
+      "unit_price": 9000,
+      "total_cost": 9000,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "PROFILINE Headlight Restoration Kit",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "وحدة",
+      "unit_price": 3000,
+      "total_cost": 6000,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "MOS 2 Oil",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 415,
+      "total_cost": 415,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Silicone Spray with EasySpray",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 700,
+      "total_cost": 700,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Xtreme PPF + Vinyl Detailer Spray",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "بخاخ",
+      "unit_price": 850,
+      "total_cost": 850,
+      "notes": null,
+      "delivery_note": 2308
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Alcantara and Upholstery Cleaner",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "عبوة",
+      "unit_price": 390,
+      "total_cost": 780,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Profiline Stain EX DN2309",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "وحدة",
+      "unit_price": 1200,
+      "total_cost": 2400,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Leather Care 1 Liter",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 600,
+      "total_cost": 600,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Rubber Protectant 1 Liter",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 610,
+      "total_cost": 610,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Tar Remover",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 400,
+      "total_cost": 400,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Last Touch Rubber Plastic 25L",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 25,
+      "unit": "لتر",
+      "unit_price": 425,
+      "total_cost": 10625,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Hybrid Dry Wax",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 570,
+      "total_cost": 570,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Profiline Plastic Protectant Spray",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 1400,
+      "total_cost": 1400,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Profiline Fabric Coating DN2309",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 2400,
+      "total_cost": 2400,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Interior Cleaner 10L DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 35,
+      "total_cost": 350,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "PROFILINE ReFresh 5L DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 87,
+      "total_cost": 435,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Windscreen Cleaner 5L",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 59,
+      "total_cost": 295,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "INSECT REMOVER 10L DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 41.5,
+      "total_cost": 415,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "MoS2 Oil 5L DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 150,
+      "total_cost": 750,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Gloss Shampoo Concentrate DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 400,
+      "total_cost": 400,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Foam Energy L5 DN2309",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 71,
+      "total_cost": 355,
+      "notes": null,
+      "delivery_note": 2309
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Coating CC Pro",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "piece",
+      "unit_price": 6250,
+      "total_cost": 6250,
+      "notes": null,
+      "delivery_note": 2310
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Tyre and Rim Detailer",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "piece",
+      "unit_price": 1080,
+      "total_cost": 1080,
+      "notes": null,
+      "delivery_note": 2310
+    },
+    {
+      "date": "2025-07-08",
+      "item_name": "Ceramic Coating Plastic and Rubber",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "piece",
+      "unit_price": 4000,
+      "total_cost": 4000,
+      "notes": null,
+      "delivery_note": 2310
+    },
+    {
+      "date": "2025-11-10",
+      "item_name": "Multi Star 10L DN4065",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 34.5,
+      "total_cost": 345,
+      "notes": null,
+      "delivery_note": 4065
+    },
+    {
+      "date": "2025-11-10",
+      "item_name": "Gloss Shampoo Concentrate DN4065",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "لتر",
+      "unit_price": 400,
+      "total_cost": 400,
+      "notes": null,
+      "delivery_note": 4065
+    },
+    {
+      "date": "2026-03-17",
+      "item_name": "Foam Energy L5 DN905",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 78,
+      "total_cost": 390,
+      "notes": null,
+      "delivery_note": 905
+    },
+    {
+      "date": "2026-03-17",
+      "item_name": "Special Shiny Wheels DN905",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 50,
+      "total_cost": 250,
+      "notes": null,
+      "delivery_note": 905
+    },
+    {
+      "date": "2026-04-01",
+      "item_name": "INSECT REMOVER 10L DN1058",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 45.5,
+      "total_cost": 455,
+      "notes": null,
+      "delivery_note": 1058
+    },
+    {
+      "date": "2026-04-01",
+      "item_name": "Multi Star 10L DN1058",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 10,
+      "unit": "لتر",
+      "unit_price": 38,
+      "total_cost": 380,
+      "notes": null,
+      "delivery_note": 1058
+    },
+    {
+      "date": "2026-04-01",
+      "item_name": "Profiline OS 02-06 DN1058",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "وحدة",
+      "unit_price": 1725,
+      "total_cost": 1725,
+      "notes": null,
+      "delivery_note": 1058
+    },
+    {
+      "date": "2026-04-01",
+      "item_name": "Ceramic Coating Plastic Rubber DN1058",
+      "material_type": "بوليش",
+      "movement_type": "استلام",
+      "quantity": 1,
+      "unit": "piece",
+      "unit_price": 3600,
+      "total_cost": 3600,
+      "notes": null,
+      "delivery_note": 1058
+    },
+    {
+      "date": "2026-04-07",
+      "item_name": "Wheel Cleaner 5L DN1132",
+      "material_type": "ديتيلنج",
+      "movement_type": "استلام",
+      "quantity": 5,
+      "unit": "لتر",
+      "unit_price": 90,
+      "total_cost": 450,
+      "notes": null,
+      "delivery_note": 1132
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Active Foam Energy 2L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Insect Remover 12L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 12,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Profiline Shiny Wheels 500ml",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 0.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Multistar 8L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 8,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Pre-Wash 3.75L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 3.75,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Clear Glass 338 4.5L (Diluted)",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 4.5,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    },
+    {
+      "date": "2025-04-01",
+      "item_name": "Sonax Wax Shampoo 2L",
+      "material_type": "دتيلنج",
+      "movement_type": "استلام",
+      "quantity": 2,
+      "unit": "لتر",
+      "unit_price": 0,
+      "total_cost": 0,
+      "notes": "رصيد متبقٍ فعلي - باللتر",
+      "delivery_note": null
+    }
+  ],
+  "services": [
+    {
+      "code": "NNO1",
+      "date": "2026-04-30",
+      "plate": "ن ع 2489",
+      "client_name": "محمد الوحش",
+      "car_type": "متسوبيشي باجيرو",
+      "service_type": "نانو سيراميك",
+      "price": 5000,
+      "payment_method": "تحويل بنكي",
+      "technician": "أحمد",
+      "notes": "تم عمل دوكو"
+    },
+    {
+      "code": "DET1",
+      "date": "2026-04-13",
+      "plate": null,
+      "client_name": null,
+      "car_type": "برلينس",
+      "service_type": "دتيلنج كامل",
+      "price": 1000,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET2",
+      "date": "2026-04-18",
+      "plate": null,
+      "client_name": null,
+      "car_type": "أودي",
+      "service_type": "دتيلنج سقف",
+      "price": 1000,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET3",
+      "date": "2026-04-21",
+      "plate": null,
+      "client_name": null,
+      "car_type": "تويوتا",
+      "service_type": "دتيلنج كامل",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET4",
+      "date": "2026-04-21",
+      "plate": null,
+      "client_name": null,
+      "car_type": "سوزوكي",
+      "service_type": "دتيلنج جنوط",
+      "price": 800,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET5",
+      "date": "2026-05-11",
+      "plate": null,
+      "client_name": "Beryhan",
+      "car_type": "تويوتا",
+      "service_type": "دتيلنج سقف",
+      "price": 500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET6",
+      "date": "2026-05-17",
+      "plate": null,
+      "client_name": "Maikel",
+      "car_type": "لانسر",
+      "service_type": "دتيلنج محرك",
+      "price": 400,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET7",
+      "date": "2026-05-18",
+      "plate": null,
+      "client_name": null,
+      "car_type": "مرسيدس Q",
+      "service_type": "دتيلنج كامل",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET8",
+      "date": "2026-05-22",
+      "plate": null,
+      "client_name": "Ramy",
+      "car_type": "بورش",
+      "service_type": "دتيلنج كامل",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET9",
+      "date": "2026-05-22",
+      "plate": null,
+      "client_name": "Ramy",
+      "car_type": "بورش",
+      "service_type": "تلميع فوانيس",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET10",
+      "date": "2026-05-26",
+      "plate": null,
+      "client_name": "omar",
+      "car_type": "Mercedes V",
+      "service_type": "دتيلنج كامل",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "DET11",
+      "date": "2026-06-04",
+      "plate": null,
+      "client_name": "Mostafa Amer",
+      "car_type": "بيجو",
+      "service_type": "دتيلنج كامل",
+      "price": 1500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "OTH001",
+      "date": "2026-04-16",
+      "plate": null,
+      "client_name": "Ahmed Arabawey",
+      "car_type": "تويوتا",
+      "service_type": "أخرى",
+      "price": 300,
+      "payment_method": null,
+      "technician": null,
+      "notes": "خلع شماسة باب"
+    },
+    {
+      "code": "OTH002",
+      "date": "2026-04-25",
+      "plate": null,
+      "client_name": null,
+      "car_type": "بيجو",
+      "service_type": "أخرى",
+      "price": 500,
+      "payment_method": null,
+      "technician": null,
+      "notes": "دي كرومينج"
+    },
+    {
+      "code": "OTH003",
+      "date": "2026-04-27",
+      "plate": null,
+      "client_name": null,
+      "car_type": "سوزوكي",
+      "service_type": "أخرى",
+      "price": 1700,
+      "payment_method": null,
+      "technician": null,
+      "notes": "إزالة بوية"
+    },
+    {
+      "code": "OTH004",
+      "date": "2026-04-28",
+      "plate": null,
+      "client_name": null,
+      "car_type": "BMW",
+      "service_type": "أخرى",
+      "price": 1000,
+      "payment_method": null,
+      "technician": null,
+      "notes": "إزالة جير"
+    },
+    {
+      "code": "OTH005",
+      "date": "2026-04-30",
+      "plate": null,
+      "client_name": "Ahmed Adam",
+      "car_type": "مرسيدس",
+      "service_type": "أخرى",
+      "price": 900,
+      "payment_method": null,
+      "technician": null,
+      "notes": "رش أكصدام"
+    },
+    {
+      "code": "OTH006",
+      "date": "2026-06-04",
+      "plate": null,
+      "client_name": "Ahmed Adam",
+      "car_type": "مرسيدس",
+      "service_type": "أخرى",
+      "price": 2000,
+      "payment_method": null,
+      "technician": null,
+      "notes": "أكصدام بروتيكشن"
+    },
+    {
+      "code": "THF001",
+      "date": "2026-06-01",
+      "plate": null,
+      "client_name": "احمد ياسر",
+      "car_type": "MG",
+      "service_type": "عزل حراري كامل",
+      "price": 4000,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF002",
+      "date": "2026-06-01",
+      "plate": null,
+      "client_name": "محمد عز",
+      "car_type": "MG",
+      "service_type": "عزل حراري كامل",
+      "price": 4000,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF003",
+      "date": "2026-06-14",
+      "plate": null,
+      "client_name": "يوسف نشأت",
+      "car_type": "بايك",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF004",
+      "date": "2026-06-14",
+      "plate": null,
+      "client_name": "زياد",
+      "car_type": "فيات تيبو",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THV001",
+      "date": "2026-06-14",
+      "plate": null,
+      "client_name": "yossef El-shrif",
+      "car_type": "MG",
+      "service_type": "فاميه كامل",
+      "price": 3500,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THV002",
+      "date": "2026-06-05",
+      "plate": null,
+      "client_name": "Mohamed Soliman",
+      "car_type": "Mini cooper",
+      "service_type": "فاميه أمامي جانبي",
+      "price": 1000,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF005",
+      "date": "2026-06-15",
+      "plate": null,
+      "client_name": "Mohamed El-Terkawy",
+      "car_type": "Hyundai",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF006",
+      "date": "2026-06-16",
+      "plate": null,
+      "client_name": "Mohamed El-Terkawy",
+      "car_type": "Hyundai",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "OTH007",
+      "date": "2026-06-18",
+      "plate": null,
+      "client_name": null,
+      "car_type": "Kia Cerato",
+      "service_type": "أإزالة قطران+ بيانو بلاك",
+      "price": 1800,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": "إزالة، بيانو"
+    },
+    {
+      "code": "DET012",
+      "date": "2026-06-16",
+      "plate": null,
+      "client_name": "Mohamed El-wahsh",
+      "car_type": "Mitsubishi Pajero",
+      "service_type": "دتيلنج جنوط",
+      "price": 500,
+      "payment_method": "كاش",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "OTH008",
+      "date": "2026-06-04",
+      "plate": null,
+      "client_name": null,
+      "car_type": "Honda",
+      "service_type": "إزالة فاميه 2 أمامي جانبي",
+      "price": 300,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": "إزالة فاميه"
+    },
+    {
+      "code": "THF007",
+      "date": "2026-06-21",
+      "plate": 8724,
+      "client_name": "Mohamed El-Terkawy",
+      "car_type": "Hyundai",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "THF008",
+      "date": "2026-06-22",
+      "plate": "1561-KE",
+      "client_name": "Rolan",
+      "car_type": "Baic",
+      "service_type": "عزل حراري كامل",
+      "price": 3500,
+      "payment_method": "تحويل بنكي",
+      "technician": null,
+      "notes": null
+    },
+    {
+      "code": "OTH1",
+      "date": "2026-04-16",
+      "plate": null,
+      "client_name": null,
+      "car_type": "تويوتا",
+      "service_type": "خدمات أخرى",
+      "price": null,
+      "payment_method": null,
+      "technician": null,
+      "notes": null
+    }
+  ],
+  "invoices": [
+    {
+      "delivery_note": "DN 2308",
+      "date": "08/07/2025",
+      "description": "مواد بوليش + ادوات واسفنجات",
+      "total": 97695,
+      "discount": 4884.75,
+      "net": 92810.25,
+      "items_count": 43,
+      "notes": "---"
+    },
+    {
+      "delivery_note": "DN 2309",
+      "date": "08/07/2025",
+      "description": "خامات ديتيلنج + معدات IK",
+      "total": 95185,
+      "discount": 4759.25,
+      "net": 90425.75,
+      "items_count": 37,
+      "notes": "---"
+    },
+    {
+      "delivery_note": "DN 2310",
+      "date": "08/07/2025",
+      "description": "كوتينجات + طقم تغليف PPF",
+      "total": 15330,
+      "discount": 5475,
+      "net": 9855,
+      "items_count": 3,
+      "notes": "خصم 35.7%"
+    },
+    {
+      "delivery_note": "DN 4065",
+      "date": "10/11/2025",
+      "description": "مواد ديتيلنج متنوعة",
+      "total": 8650,
+      "discount": null,
+      "net": 8650,
+      "items_count": 3,
+      "notes": "بدون خصم"
+    },
+    {
+      "delivery_note": "DN 905",
+      "date": "17/03/2026",
+      "description": "اسفنجات + مواد ديتيلنج",
+      "total": 7650,
+      "discount": null,
+      "net": 7650,
+      "items_count": 4,
+      "notes": "بدون خصم"
+    },
+    {
+      "delivery_note": "DN 1058",
+      "date": "01/04/2026",
+      "description": "ادوات + كيماويات مختلطة",
+      "total": 28400,
+      "discount": null,
+      "net": 28400,
+      "items_count": 14,
+      "notes": "بعد طرح مرتجع 3960 ج.م."
+    },
+    {
+      "delivery_note": "DN 1132",
+      "date": "07/04/2026",
+      "description": "ادوات وقطع اضافية",
+      "total": 3750,
+      "discount": null,
+      "net": 3750,
+      "items_count": 2,
+      "notes": "بدون خصم"
+    }
+  ]
+}
